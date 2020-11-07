@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Nunito:wght@700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+$spacer: 1rem;
+
+// Set custom max container widths (just unset xl)
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  // xl: 960px,
+);
+
+$font-family-sans-serif: "Roboto", sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-font-family: "Nunito", sans-serif;
+$headings-margin-bottom: $spacer * 1.5;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+#recipe-ingredients ul {
+  @media screen and (min-width: 768px) {
+    column-count: 2;
+  }
+}
