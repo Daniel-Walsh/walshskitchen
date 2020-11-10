@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Nunito:wght@700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+$primary: #e83333;
+
 $spacer: 1rem;
 
 // Set custom max container widths (just unset xl)
@@ -24,5 +26,17 @@ $headings-margin-bottom: $spacer * 1.5;
 #recipe-ingredients ul {
   @media screen and (min-width: 768px) {
     column-count: 2;
+  }
+
+  li {
+    span {
+      margin-top: $spacer * 1.5;
+      margin-bottom: 0;
+      display: block;
+    }
+
+    &:first-of-type span {
+      margin-top: 0;
+    }
   }
 }

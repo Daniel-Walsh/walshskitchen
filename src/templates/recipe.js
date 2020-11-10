@@ -16,6 +16,9 @@ import {
   faPepperHot,
   faCauldron,
   faMeat,
+  faSteak,
+  faSoup,
+  faInfoCircle,
 } from "@fortawesome/pro-regular-svg-icons"
 
 const getIngredientIcon = ingredient => {
@@ -28,10 +31,10 @@ const getIngredientIcon = ingredient => {
   if (["flour", "sugar"].includes(ingredient)) {
     return faSack
   }
-  if (["carrot", "onion", "mushroom"].includes(ingredient)) {
+  if (["carrot", "onion", "mushroom", "garlic"].includes(ingredient)) {
     return faCarrot
   }
-  if (["parsley", "mint"].includes(ingredient)) {
+  if (["parsley", "mint", "herbs"].includes(ingredient)) {
     return faLeaf
   }
   if (["salt", "pepper", "spice"].includes(ingredient)) {
@@ -43,7 +46,7 @@ const getIngredientIcon = ingredient => {
   if (["tuna", "fish"].includes(ingredient)) {
     return faFish
   }
-  if (["rice"].includes(ingredient)) {
+  if (["rice", "breadcrumbs"].includes(ingredient)) {
     return faWheat
   }
   if (["capsicum"].includes(ingredient)) {
@@ -55,6 +58,12 @@ const getIngredientIcon = ingredient => {
   if (["ham"].includes(ingredient)) {
     return faMeat
   }
+  if (["beef"].includes(ingredient)) {
+    return faSteak
+  }
+  if (["soup"].includes(ingredient)) {
+    return faSoup
+  }
 
   return faQuestionCircle
 }
@@ -64,7 +73,7 @@ export default function Recipe({ data, location }) {
   const { frontmatter, html } = markdownRemark
   return (
     <Layout>
-      <div className="row my-5">
+      <div className="row mb-5">
         <div className="col-12 col-md-6 col-lg-6 order-2 order-md-1">
           <h1>{frontmatter.title}</h1>
           <div
@@ -73,12 +82,22 @@ export default function Recipe({ data, location }) {
           ></div>
           <p>
             <FontAwesomeIcon
-              icon={faQuestionCircle}
+              icon={faInfoCircle}
               className="mr-0 text-primary"
               style={{ width: "2.5ch" }}
             />{" "}
             Serving suggestion: {frontmatter.servingSuggestion}
           </p>
+
+          {frontmatter.tags && frontmatter.tags.length > 0 && (
+            <ul id="recipe-tags" className="list-inline">
+              {frontmatter.tags.map(tag => (
+                <li className="list-inline-item">
+                  <span className="badge badge-pill badge-primary">#{tag}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="col-12 col-md-6 col-lg-5 offset-lg-1 order-1 order-md-2">
           <Img
@@ -98,23 +117,31 @@ export default function Recipe({ data, location }) {
               <ul className="list-unstyled">
                 {frontmatter.ingredients.map(ingredient => {
                   let ingredientIcon, ingredientDesc
+                  let isHeading = false
                   if (ingredient.indexOf("|") === -1) {
                     ingredientIcon = getIngredientIcon("")
                     ingredientDesc = ingredient
                   } else {
+                    if (ingredient.split("|")[0] === "heading") {
+                      isHeading = true
+                    }
+
                     ingredientIcon = getIngredientIcon(ingredient.split("|")[0])
                     ingredientDesc = ingredient.split("|")[1]
                   }
-                  // const ingredientIcon = ingredient.split("|")[0]
-                  // const ingredientDesc = ingredient.split("|")[1]
+
                   return (
-                    <li className="mb-2">
+                    <li className="position-relative mb-2">
                       <FontAwesomeIcon
                         icon={ingredientIcon}
-                        className="mr-3 text-primary"
-                        style={{ width: "2.5ch" }}
+                        className={`position-absolute top-0 mr-3 text-primary ${
+                          isHeading && `d-none`
+                        }`}
+                        style={{ width: "2.5ch", top: ".2rem", left: "-.2rem" }}
                       />
-                      {ingredientDesc}
+                      {(isHeading && (
+                        <span className="h5">{ingredientDesc}</span>
+                      )) || <p className="ml-4">{ingredientDesc}</p>}
                     </li>
                   )
                 })}
@@ -161,6 +188,7 @@ export const pageQuery = graphql`
         ingredients
         directions
         servingSuggestion
+        tags
         image {
           childImageSharp {
             fluid(maxWidth: 450, maxHeight: 450, cropFocus: CENTER) {
