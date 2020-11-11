@@ -16,39 +16,84 @@ import Logo from "./image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
 
-const Layout = ({ children }) => {
+const TagList = () => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+    query {
+      allMarkdownRemark(filter: { frontmatter: { tags: { ne: null } } }) {
+        edges {
+          node {
+            frontmatter {
+              tags
+            }
+          }
         }
       }
     }
   `)
+
+  const recipes = data.allMarkdownRemark.edges
+  let recipeTags = {}
+
+  recipes.forEach(recipe => {
+    recipe.node.frontmatter.tags.forEach(tag => {
+      recipeTags[tag] = recipeTags.hasOwnProperty(tag) ? recipeTags[tag] + 1 : 1
+    })
+  })
+
+  console.log(recipeTags)
+
+  return (
+    <div className="d-flex flex-wrap justify-content-center">
+      {Object.keys(recipeTags)
+        .sort((a, b) => a.localeCompare(b))
+        .map((key, value) => {
+          return (
+            <a
+              key={key}
+              className="btn btn-sm btn-outline-dark mb-1 mr-1"
+              href="#"
+            >
+              #{key}{" "}
+              <span className="badge badge-pill badge-secondary">
+                {recipeTags[key]}
+              </span>
+            </a>
+          )
+        })}
+    </div>
+  )
+}
+
+const Layout = ({ children }) => {
+  // const data = useStaticQuery(graphql`
+  //   query SiteTitleQuery {
+  //     site {
+  //       siteMetadata {
+  //         title
+  //       }
+  //     }
+  //   }
+  // `)
 
   return (
     <>
       {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
       <main className="container">
         <div className="row">
-          <div className="col-3 my-5 d-flex flex-column align-items-center">
+          <div className="col-3 my-5  d-none d-lg-flex flex-column align-items-center">
             <Link to="/" className="mb-5 d-block">
               <Logo />
             </Link>
             <div>
-              <Link to="/recipes" className="btn btn-outline-primary mb-5">
+              <Link to="/recipes" className="btn btn-primary mb-5">
                 <FontAwesomeIcon icon={faUtensils} className="mr-2" />
                 Browse recipes
               </Link>
             </div>
-            <ul className="list-unstyled">
-              <li>Menu item</li>
-              <li>Menu item</li>
-              <li>Menu item</li>
-            </ul>
+            <p>Tags</p>
+            <TagList />
           </div>
-          <div className="col-9 my-5">{children}</div>
+          <div className="col-12 col-lg-9 my-5">{children}</div>
         </div>
       </main>
       <footer>

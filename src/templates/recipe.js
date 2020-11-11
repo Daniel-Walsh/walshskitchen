@@ -90,13 +90,16 @@ export default function Recipe({ data, location }) {
           </p>
 
           {frontmatter.tags && frontmatter.tags.length > 0 && (
-            <ul id="recipe-tags" className="list-inline">
-              {frontmatter.tags.map(tag => (
-                <li className="list-inline-item">
-                  <span className="badge badge-pill badge-primary">#{tag}</span>
-                </li>
-              ))}
-            </ul>
+            <>
+              <span className="h6 mr-2">Tags:</span>
+              <ul id="recipe-tags" className="d-inline list-inline">
+                {frontmatter.tags.map(tag => (
+                  <li className="list-inline-item">
+                    <span className="badge badge-pill badge-grey">#{tag}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </div>
         <div className="col-12 col-md-6 col-lg-5 offset-lg-1 order-1 order-md-2">
