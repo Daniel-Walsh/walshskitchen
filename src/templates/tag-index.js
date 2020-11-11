@@ -1,27 +1,30 @@
 import React from "react"
-import Card from "../components/card"
 import Layout from "../components/layout"
 import RecipeGrid from "../components/recipe-grid"
 import SEO from "../components/seo"
-import { getPathFromFilepath } from "../global-functions"
 
-const RecipeIndex = ({ data, location }) => {
+const TagIndex = ({ data, location, pageContext }) => {
+  const { tag } = pageContext
   return (
     <Layout>
       <SEO title="Recipes" />
-      <h1>🍲 Recipes</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <RecipeGrid recipes={data.allMarkdownRemark.edges} />
+      <h1>
+        <span className="mr-2" role="img">
+          🍲
+        </span>
+        Recipes
+      </h1>
+      <div className="text-secondary h5 mt-n4 mb-4 ml-5">#{tag}</div>
+      <RecipeGrid recipes={data.recipes.edges} />
     </Layout>
   )
 }
 
-export default RecipeIndex
+export default TagIndex
 
 export const pageQuery = graphql`
   query($tag: [String]) {
-    allMarkdownRemark(
+    recipes: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { frontmatter: { tags: { in: $tag } } }
     ) {
