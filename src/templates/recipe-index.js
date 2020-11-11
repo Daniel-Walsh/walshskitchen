@@ -1,16 +1,11 @@
 import React from "react"
-import { Link } from "gatsby"
-import Img from "gatsby-image"
-
+import Card from "../components/card"
 import Layout from "../components/layout"
-import Image from "../components/image"
+import RecipeGrid from "../components/recipe-grid"
 import SEO from "../components/seo"
 import { getPathFromFilepath } from "../global-functions"
 
-import Card from "../components/card"
-import RecipeGrid from "../components/recipe-grid"
-
-const RecipesPage = ({ data, location }) => {
+const RecipeIndex = ({ data, location }) => {
   return (
     <Layout>
       <SEO title="Recipes" />
@@ -22,13 +17,13 @@ const RecipesPage = ({ data, location }) => {
   )
 }
 
-export default RecipesPage
+export default RecipeIndex
 
 export const pageQuery = graphql`
-  query {
+  query($tag: [String]) {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { fileAbsolutePath: { regex: "/recipes/" } }
+      filter: { frontmatter: { tags: { in: $tag } } }
     ) {
       edges {
         node {

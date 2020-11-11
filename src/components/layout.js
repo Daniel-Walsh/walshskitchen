@@ -48,16 +48,16 @@ const TagList = () => {
         .sort((a, b) => a.localeCompare(b))
         .map((key, value) => {
           return (
-            <a
+            <Link
               key={key}
-              className="btn btn-sm btn-outline-dark mb-1 mr-1"
-              href="#"
+              className={`btn btn-sm btn-grey mb-1 mr-1`}
+              to={`/tags/${key}`}
             >
               #{key}{" "}
               <span className="badge badge-pill badge-secondary">
                 {recipeTags[key]}
               </span>
-            </a>
+            </Link>
           )
         })}
     </div>
@@ -76,7 +76,7 @@ const Layout = ({ children }) => {
   // `)
 
   return (
-    <>
+    <div className="bg-light">
       {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
       <main className="container">
         <div className="row">
@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
                 Browse recipes
               </Link>
             </div>
-            <p>Tags</p>
+            <p className="h5 mb-3">Tags:</p>
             <TagList />
           </div>
           <div className="col-12 col-lg-9 my-5">{children}</div>
@@ -101,7 +101,7 @@ const Layout = ({ children }) => {
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>
       </footer>
-    </>
+    </div>
   )
 }
 

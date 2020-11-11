@@ -1,7 +1,8 @@
 import React from "react"
+import Layout from "../components/layout"
 
 const Recipe = () => {
-  return <>fred</>
+  return <Layout>frexd</Layout>
 }
 
 export default Recipe
