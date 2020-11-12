@@ -13,7 +13,8 @@ import Img from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-const Logo = () => {
+const Logo = ({ notag }) => {
+  const path = notag ? "/logo-notag.svg" : "/logo.svg"
   // const data = useStaticQuery(graphql`
   //   query {
   //     placeholderImage: file(relativePath: { eq: "logo.svg" }) {
@@ -33,7 +34,7 @@ const Logo = () => {
   // return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
   return (
     <img
-      src={"/logo.svg"}
+      src={path}
       alt="Logo"
       style={{
         maxWidth: "calc(100% - 2rem)",

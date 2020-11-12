@@ -19,6 +19,7 @@ tags:
   - chicken
   - spicy
   - pasta
+  - comfort food
 ---
 
 Mild or super spicy? However you like it, this is an easy pasta dish you can throw together quickly, and devour slowly.

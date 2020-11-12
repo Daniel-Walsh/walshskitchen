@@ -79,6 +79,17 @@ const Layout = ({ children }) => {
     <div className="bg-light">
       {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
       <main className="container">
+        <div className="row d-lg-none border-bottom">
+          <div className="col">
+            <Link
+              to="/"
+              className="my-3 mx-auto d-block"
+              style={{ maxWidth: "200px" }}
+            >
+              <Logo notag />
+            </Link>
+          </div>
+        </div>
         <div className="row">
           <div className="col-3 my-5  d-none d-lg-flex flex-column align-items-center">
             <Link to="/" className="mb-5 d-block">
@@ -87,13 +98,13 @@ const Layout = ({ children }) => {
             <div>
               <Link to="/recipes" className="btn btn-primary mb-5">
                 <FontAwesomeIcon icon={faUtensils} className="mr-2" />
-                Browse recipes
+                Browse all recipes
               </Link>
             </div>
             <p className="h5 mb-3">Tags:</p>
             <TagList />
           </div>
-          <div className="col-12 col-lg-9 my-5">{children}</div>
+          <div className="col-12 col-lg-9 my-3 my-md-5">{children}</div>
         </div>
       </main>
       <footer>

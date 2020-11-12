@@ -7,7 +7,7 @@ import { Link } from "gatsby"
 export default function Card({ image, title, content, link, tags }) {
   return (
     <div className="col-12 col-md-6 mb-5">
-      <div className="card border-0 shadow rounded-xl overflow-hidden h-100">
+      <div className="card border-0 shadow-sm rounded-xl overflow-hidden h-100">
         <Img fluid={image} className="card-img-top" />
         <div className="card-body d-flex flex-column">
           <Link className="card-title h5" to={link}>
