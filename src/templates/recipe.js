@@ -20,6 +20,7 @@ import {
   faSoup,
   faInfoCircle,
   faTint,
+  faCube,
 } from "@fortawesome/pro-regular-svg-icons"
 
 const getIngredientIcon = ingredient => {
@@ -67,6 +68,9 @@ const getIngredientIcon = ingredient => {
   }
   if (["water"].includes(ingredient)) {
     return faTint
+  }
+  if (["butter", "ghee"].includes(ingredient)) {
+    return faCube
   }
 
   return faQuestionCircle
