@@ -1,7 +1,7 @@
 ---
 date: 2020-11-13
 title: "Roti Bread"
-image: ../../images/recipes/roti-bread.jpgasdsa
+image: ../../images/recipes/roti-bread.jpg
 ingredients:
   - flour|280g plain flour
   - water|150g tepid water
