@@ -19,6 +19,7 @@ import {
   faSteak,
   faSoup,
   faInfoCircle,
+  faTint,
 } from "@fortawesome/pro-regular-svg-icons"
 
 const getIngredientIcon = ingredient => {
@@ -28,7 +29,7 @@ const getIngredientIcon = ingredient => {
   if (["egg"].includes(ingredient)) {
     return faEgg
   }
-  if (["flour", "sugar"].includes(ingredient)) {
+  if (["sugar"].includes(ingredient)) {
     return faSack
   }
   if (["carrot", "onion", "mushroom", "garlic"].includes(ingredient)) {
@@ -46,7 +47,7 @@ const getIngredientIcon = ingredient => {
   if (["tuna", "fish"].includes(ingredient)) {
     return faFish
   }
-  if (["rice", "breadcrumbs"].includes(ingredient)) {
+  if (["rice", "breadcrumbs", "flour"].includes(ingredient)) {
     return faWheat
   }
   if (["capsicum"].includes(ingredient)) {
@@ -63,6 +64,9 @@ const getIngredientIcon = ingredient => {
   }
   if (["soup"].includes(ingredient)) {
     return faSoup
+  }
+  if (["water"].includes(ingredient)) {
+    return faTint
   }
 
   return faQuestionCircle
