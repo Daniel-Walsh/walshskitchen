@@ -8,13 +8,16 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
 
-import Header from "./header"
+// import Header from "./header"
 import "./layout.scss"
 import Logo from "./image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
+// import TransitionLink from "gatsby-plugin-transition-link"
+// import AniLink from "gatsby-plugin-transition-link/AniLink"
+import FadeLink from "./fade-link"
 
 const TagList = () => {
   const data = useStaticQuery(graphql`
@@ -48,7 +51,7 @@ const TagList = () => {
         .sort((a, b) => a.localeCompare(b))
         .map((key, value) => {
           return (
-            <Link
+            <FadeLink
               key={key}
               className={`btn btn-sm btn-grey mb-1 mr-1`}
               to={`/tags/${key}`}
@@ -57,7 +60,7 @@ const TagList = () => {
               <span className="badge badge-pill badge-secondary">
                 {recipeTags[key]}
               </span>
-            </Link>
+            </FadeLink>
           )
         })}
     </div>
@@ -81,25 +84,25 @@ const Layout = ({ children }) => {
       <main className="container">
         <div className="row d-lg-none border-bottom">
           <div className="col">
-            <Link
+            <FadeLink
               to="/"
               className="my-3 mx-auto d-block"
               style={{ maxWidth: "200px" }}
             >
               <Logo notag />
-            </Link>
+            </FadeLink>
           </div>
         </div>
         <div className="row">
           <div className="col-3 my-5  d-none d-lg-flex flex-column align-items-center">
-            <Link to="/" className="mb-5 d-block">
+            <FadeLink to="/" className="mb-5 d-block">
               <Logo />
-            </Link>
+            </FadeLink>
             <div>
-              <Link to="/recipes" className="btn btn-primary mb-5">
+              <FadeLink to="/recipes" className="btn btn-primary mb-5">
                 <FontAwesomeIcon icon={faUtensils} className="mr-2" />
                 Browse all recipes
-              </Link>
+              </FadeLink>
             </div>
             <p className="h5 mb-3">Tags:</p>
             <TagList />
