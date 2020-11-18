@@ -4,7 +4,7 @@ title: "Tandoori Chicken Pasta"
 image: ../../images/recipes/tandoori-chicken-pasta.jpg
 ingredients:
   - 500g chicken breast, diced
-  - 2 tbsp (heaped) Sharwood’s Tandoori Paste
+  - 90-100g Sharwood’s Tandoori Paste
   - 2 tbsp coconut oil
   - 540-600ml coconut cream
   - Spring onion, finely chopped
