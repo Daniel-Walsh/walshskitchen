@@ -21,6 +21,7 @@ import {
   faInfoCircle,
   faTint,
   faCube,
+  faUtensils,
 } from "@fortawesome/pro-regular-svg-icons"
 
 const getIngredientIcon = ingredient => {
@@ -88,13 +89,14 @@ export default function Recipe({ data, location }) {
             className="lead"
             dangerouslySetInnerHTML={{ __html: html }}
           ></div>
-          <p>
-            <FontAwesomeIcon
-              icon={faInfoCircle}
-              className="mr-0 text-primary"
-              style={{ width: "2.5ch" }}
-            />{" "}
-            Serving suggestion: {frontmatter.servingSuggestion}
+          <p className="callout">
+            <FontAwesomeIcon icon={faUtensils} className="mr-0" />{" "}
+            <div>
+              <span className="font-weight-bolder d-block">
+                Serving suggestion
+              </span>{" "}
+              {frontmatter.servingSuggestion}
+            </div>
           </p>
 
           {frontmatter.tags && frontmatter.tags.length > 0 && (

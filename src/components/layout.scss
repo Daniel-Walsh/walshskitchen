@@ -55,3 +55,21 @@ $headings-margin-bottom: $spacer * 1.5;
     transform: translateY(-0.25rem);
   }
 }
+
+.callout {
+  position: relative;
+  background: darken(map-get($theme-colors, "light"), 5%);
+  border-radius: 1rem;
+  padding: 0.75rem 1.25rem;
+  overflow: hidden;
+
+  svg {
+    position: absolute;
+    color: rgba(darken(map-get($theme-colors, "light"), 75%), 0.05);
+    font-size: 8em;
+    z-index: 1;
+    top: 1rem;
+    right: 1rem;
+    pointer-events: none;
+  }
+}
