@@ -89,15 +89,16 @@ export default function Recipe({ data, location }) {
             className="lead"
             dangerouslySetInnerHTML={{ __html: html }}
           ></div>
-          <p className="callout">
-            <FontAwesomeIcon icon={faUtensils} className="mr-0" />{" "}
-            <div>
-              <span className="font-weight-bolder d-block">
-                Serving suggestion
-              </span>{" "}
-              {frontmatter.servingSuggestion}
-            </div>
-          </p>
+          {frontmatter.servingSuggestion && (
+            <p className="callout">
+              <div>
+                <span className="font-weight-bolder d-block">
+                  Serving suggestion
+                </span>{" "}
+                {frontmatter.servingSuggestion}
+              </div>
+            </p>
+          )}
 
           {frontmatter.tags && frontmatter.tags.length > 0 && (
             <>
