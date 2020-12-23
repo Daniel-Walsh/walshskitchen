@@ -17,8 +17,7 @@ directions:
   - Place spinach and pumpkin in a large bowl. Sprinkle with pine nuts. Drizzle with dressing. Season with salt and pepper. Serve.
 servingSuggestion: "Serve with ice-cream and maple syrup. And sprinkles. And chocolate topping. And fresh cut strawberries. And sliced banana. You get the idea."
 tags:
-  - dessert
-  - breakfast
+  - salad
 ---
 
 Oven-roasted pumpkin, baby spinach and toasted pine nuts, all dressed gently in a honey and balsamic glaze.
