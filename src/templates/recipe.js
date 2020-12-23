@@ -22,9 +22,12 @@ import {
   faTint,
   faCube,
   faUtensils,
+  faCircle,
+  faDotCircle,
 } from "@fortawesome/pro-regular-svg-icons"
 
 const getIngredientIcon = ingredient => {
+  return faCircle
   if (["milk"].includes(ingredient)) {
     return faJug
   }
@@ -128,7 +131,7 @@ export default function Recipe({ data, location }) {
           {frontmatter.ingredients.length > 0 && (
             <div id="recipe-ingredients">
               <h2 className="h3">Ingredients</h2>
-              <ul className="list-unstyled">
+              <ul className="pl-4">
                 {frontmatter.ingredients.map(ingredient => {
                   let ingredientIcon, ingredientDesc
                   let isHeading = false
@@ -146,16 +149,16 @@ export default function Recipe({ data, location }) {
 
                   return (
                     <li className="position-relative mb-2">
-                      <FontAwesomeIcon
+                      {/* <FontAwesomeIcon
                         icon={ingredientIcon}
                         className={`position-absolute top-0 mr-3 text-primary ${
                           isHeading && `d-none`
                         }`}
                         style={{ width: "2.5ch", top: ".2rem", left: "-.2rem" }}
-                      />
+                      /> */}
                       {(isHeading && (
                         <span className="h5">{ingredientDesc}</span>
-                      )) || <p className="ml-4">{ingredientDesc}</p>}
+                      )) || <p className="pr-3">{ingredientDesc}</p>}
                     </li>
                   )
                 })}

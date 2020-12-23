@@ -35,6 +35,10 @@ $headings-margin-bottom: $spacer * 1.5;
   }
 
   li {
+    &::marker {
+      color: $primary;
+    }
+
     span {
       margin-top: $spacer * 1.5;
       margin-bottom: 0;
