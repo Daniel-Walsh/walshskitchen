@@ -82,12 +82,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // Filter out just the unique tags
   recipeTags = [...new Set(recipeTags)]
 
-  console.log(recipeTags)
+  // console.log(recipeTags)
 
   recipeTags.forEach(tag => {
     const path = `/tags/${tag}`
 
-    console.log(path)
+    // console.log(path)
 
     createPage({
       path: path,

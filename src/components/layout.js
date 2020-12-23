@@ -43,7 +43,7 @@ const TagList = () => {
     })
   })
 
-  console.log(recipeTags)
+  // console.log(recipeTags)
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
