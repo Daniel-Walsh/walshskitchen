@@ -18,10 +18,11 @@ import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
 // import TransitionLink from "gatsby-plugin-transition-link"
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 import FadeLink from "./fade-link"
+import { makeTitle } from "../global-functions"
 
-const makeTitle = slug => {
-  return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1)
-}
+// const makeTitle = slug => {
+//   return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1)
+// }
 
 const TagList = () => {
   // const data = useStaticQuery(graphql`
@@ -170,6 +171,30 @@ const Layout = ({ children }) => {
       <main className="container">
         <div className="row d-lg-none border-bottom">
           <div className="col">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Le menu
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {/* <a class="dropdown-item" href="#">
+                  Action
+                </a>
+                <a class="dropdown-item" href="#">
+                  Another action
+                </a>
+                <a class="dropdown-item" href="#">
+                  Something else here
+                </a> */}
+                <TagList />
+              </div>
+            </div>
             <FadeLink
               to="/"
               className="my-3 mx-auto d-block"
