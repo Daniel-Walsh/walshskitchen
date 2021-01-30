@@ -6,23 +6,29 @@ import FadeLink from "../components/fade-link"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>
-      <span className="mr-2" role="img">
-        🍛
-      </span>
-      Welcome to the kitchen
-    </h1>
+    <h1>Welcome to the kitchen</h1>
     <p>
-      Praesent ut ligula non mi varius sagittis. Vivamus consectetuer hendrerit
-      lacus. Phasellus blandit leo ut odio. Vestibulum eu odio. Phasellus
-      gravida semper nisi.
+      Way back when, I was originally going to write a family recipe cook book,
+      but creating an online family recipe cook book is so much easier than
+      publishing a physical book.
     </p>
-    <p>Nam at tortor in tellus interdum sagittis. Fusce a quam.</p>
-    <h2>Have you tried...</h2>
-    <p>Display latest recipe here</p>
-    <p>big image</p>
+    <p>
+      The recipes entailed here are a collection of some of our family’s
+      happiest moments shared around the dinner table. Some are Walsh Originals
+      while others are favourites that have been clipped from magazines and
+      websites and adopted into our regular meal rotations.
+    </p>
+    <p>
+      This is for my amazing, crazy, loving family — whom none of which have any
+      idea why a weirdo with food issues like me would want to write a recipe
+      book.
+    </p>
+    <p>I love you all.</p>
+    <p>– Dan</p>
 
-    <FadeLink to="/recipes/">Go to Recipes</FadeLink>
+    <FadeLink className="btn btn-primary btn-large" to="/recipes/">
+      Let's get cooking!
+    </FadeLink>
   </Layout>
 )
 

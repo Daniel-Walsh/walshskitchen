@@ -7,12 +7,7 @@ const RecipesPage = ({ data, location }) => {
   return (
     <Layout>
       <SEO title="Recipes" />
-      <h1 className="mb-5">
-        <span className="mr-2" role="img">
-          🍲
-        </span>
-        Recipes
-      </h1>
+      <h1 className="mb-5">Recipes</h1>
       <RecipeGrid recipes={data.recipes.edges} />
     </Layout>
   )

@@ -8,13 +8,8 @@ const TagIndex = ({ data, location, pageContext }) => {
   return (
     <Layout>
       <SEO title="Recipes" />
-      <h1>
-        <span className="mr-2" role="img">
-          🍲
-        </span>
-        Recipes
-      </h1>
-      <div className="text-secondary h5 mt-n4 mb-4 ml-5">Tag: #{tag}</div>
+      <h1>Recipes</h1>
+      <div className="text-secondary h5 mt-n4 mb-4">Tag: #{tag}</div>
       <RecipeGrid recipes={data.recipes.edges} />
     </Layout>
   )

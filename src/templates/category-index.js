@@ -9,13 +9,8 @@ const CategoryIndex = ({ data, location, pageContext }) => {
   return (
     <Layout>
       <SEO title="Recipes" />
-      <h1>
-        <span className="mr-2" role="img">
-          🍲
-        </span>
-        Recipes
-      </h1>
-      <div className="text-secondary h5 mt-n4 mb-4 ml-5">
+      <h1>Recipes</h1>
+      <div className="text-secondary h5 mt-n4 mb-4">
         Category: {makeTitle(category)}
       </div>
       <RecipeGrid recipes={data.recipes.edges} />

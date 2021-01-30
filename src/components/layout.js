@@ -170,7 +170,7 @@ const Layout = ({ children }) => {
       {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
       <main className="container">
         <div className="row d-lg-none border-bottom">
-          <div className="col">
+          <div className="col py-2">
             <div class="dropdown">
               <button
                 class="btn btn-secondary dropdown-toggle"
@@ -180,7 +180,7 @@ const Layout = ({ children }) => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Le menu
+                <span className="d-none d-sm-inline">Le menu</span>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {/* <a class="dropdown-item" href="#">
@@ -197,8 +197,15 @@ const Layout = ({ children }) => {
             </div>
             <FadeLink
               to="/"
-              className="my-3 mx-auto d-block"
-              style={{ maxWidth: "200px" }}
+              className="my-3 mx-auto d-block position-absolute"
+              style={{
+                width: "275px",
+                maxWidth: "200px",
+                height: "44px",
+                left: "50%",
+                top: 0,
+                transform: "translateX(-50%)",
+              }}
             >
               <Logo notag />
             </FadeLink>
