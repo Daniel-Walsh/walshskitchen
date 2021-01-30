@@ -24,7 +24,7 @@ import { makeTitle } from "../global-functions"
 //   return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1)
 // }
 
-const TagList = () => {
+const TagList = ({ format }) => {
   // const data = useStaticQuery(graphql`
   //   query {
   //     allMarkdownRemark(filter: { frontmatter: { tags: { ne: null } } }) {
@@ -107,13 +107,29 @@ const TagList = () => {
   //   </div>
   // )
 
-  const listGroupItemClasses = `list-group-item list-group-item-action d-flex justify-content-between align-items-center`
+  let containerClasses = ""
+  let itemClasses = ""
+
+  if (format === "dropdown") {
+    containerClasses = "dropdown-menu"
+    itemClasses = "dropdown-item"
+  }
+  if (format === "list-group") {
+    containerClasses = "list-group w-100"
+    itemClasses = "list-group-item list-group-item-action"
+  }
+
+  const listGroupItemClasses = `${itemClasses} d-flex justify-content-between align-items-center`
 
   return (
-    <div className="list-group w-100">
+    <div className={`${containerClasses}`} aria-labelledby="dropdownMenuButton">
       <FadeLink className={listGroupItemClasses} to={`/recipes`}>
-        All recipes
+        Latest recipes
       </FadeLink>
+      <FadeLink className={listGroupItemClasses} to={`/about`}>
+        About this site
+      </FadeLink>
+      <div class="dropdown-divider"></div>
       {Object.keys(categoryItems)
         .sort((a, b) => a.localeCompare(b))
         .map((key, value) => {
@@ -124,7 +140,7 @@ const TagList = () => {
               to={`/category/${key}`}
             >
               {makeTitle(key)}{" "}
-              <span className="badge badge-pill badge-secondary">
+              <span className="badge badge-pill badge-secondary ml-5">
                 {categoryItems[key]}
               </span>
             </FadeLink>
@@ -184,8 +200,8 @@ const Layout = ({ children }) => {
                 <span className="d-none d-sm-inline">Le menu</span>
                 <span className="navbar-toggler-icon d-block d-sm-none"></span>
               </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {/* <a class="dropdown-item" href="#">
+              {/* <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> */}
+              {/* <a class="dropdown-item" href="#">
                   Action
                 </a>
                 <a class="dropdown-item" href="#">
@@ -194,8 +210,8 @@ const Layout = ({ children }) => {
                 <a class="dropdown-item" href="#">
                   Something else here
                 </a> */}
-                <TagList />
-              </div>
+              <TagList format="dropdown" />
+              {/* </div> */}
             </div>
             <FadeLink
               to="/"
@@ -224,19 +240,22 @@ const Layout = ({ children }) => {
                 Browse all recipes
               </FadeLink>
             </div> */}
-            <p className="h5 mb-3">
+            {/* <p className="h5 mb-3">
               <FontAwesomeIcon icon={faUtensils} className="mr-2" />
               Categories
-            </p>
-            <TagList />
+            </p> */}
+            <TagList format="list-group" />
           </div>
           <div className="col-12 col-lg-9 my-3 my-md-5">{children}</div>
         </div>
       </main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+      <footer className="d-flex justify-content-center py-5 px-3">
+        <div>
+          &copy; {new Date().getFullYear()}, Built by{" "}
+          <a href="https://dwalsh.dev/">Dan Walsh</a> with
+          {` `}
+          <a href="https://www.gatsbyjs.com">Gatsby</a>
+        </div>
       </footer>
     </div>
   )

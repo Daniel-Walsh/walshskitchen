@@ -90,7 +90,7 @@ $headings-margin-bottom: $spacer * 1.5;
 
   &:hover {
     box-shadow: 0 0.5rem 1rem rgba($black, 0.2) !important;
-    // transform: translateY(-0.25rem);
+    transform: translateY(-0.25rem);
   }
 }
 
@@ -110,4 +110,10 @@ $headings-margin-bottom: $spacer * 1.5;
     right: 1rem;
     pointer-events: none;
   }
+}
+
+blockquote {
+  font-size: $font-size-base * 1.25;
+  padding-left: $spacer * 1.5;
+  border-left: 4px solid $primary;
 }
