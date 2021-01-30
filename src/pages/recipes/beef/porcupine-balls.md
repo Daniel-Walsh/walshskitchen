@@ -1,7 +1,7 @@
 ---
 date: 2020-01-03
 title: "Porcupine Balls"
-image: ../../images/recipes/porcupine-balls.jpg
+image: ../../../images/recipes/porcupine-balls.jpg
 ingredients:
   - heading|Meatballs
   - beef|500g good quality beef mince

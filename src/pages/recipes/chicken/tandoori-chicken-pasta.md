@@ -1,7 +1,7 @@
 ---
 date: 2020-01-10
 title: "Tandoori Chicken Pasta"
-image: ../../images/recipes/tandoori-chicken-pasta.jpg
+image: ../../../images/recipes/tandoori-chicken-pasta.jpg
 ingredients:
   - 500g chicken breast, diced
   - 90-100g Sharwood’s Tandoori Paste

@@ -15,6 +15,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   //   const releaseTemplate = require.resolve(`./src/templates/release.js`)
   const recipeTemplate = require.resolve(`./src/templates/recipe.js`)
   const recipeIndexTemplate = require.resolve(`./src/templates/tag-index.js`)
+  const recipeCategoryTemplate = require.resolve(
+    `./src/templates/category-index.js`
+  )
 
   const result = await graphql(`
     {
@@ -82,21 +85,32 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // Filter out just the unique tags
   recipeTags = [...new Set(recipeTags)]
 
-  // console.log(recipeTags)
-
   recipeTags.forEach(tag => {
-    const path = `/tags/${tag}`
-
-    // console.log(path)
-
     createPage({
-      path: path,
+      path: `/tags/${tag}`,
       component: recipeIndexTemplate,
       context: {
-        // additional data can be passed via context
-        // slug: path,
-        tag: tag,
-        path: path,
+        tag,
+      },
+    })
+  })
+
+  // category pages
+  let categories = result.data.recipes.edges.map(recipe => {
+    return recipe.node.fileAbsolutePath
+      .split("/src/pages/recipes/")[1]
+      .split("/")[0]
+  })
+
+  categories = [...new Set(categories)]
+
+  categories.forEach(category => {
+    createPage({
+      path: `/category/${category}`,
+      component: recipeCategoryTemplate,
+      context: {
+        glob: `**/src/pages/recipes/${category}/**`,
+        category,
       },
     })
   })

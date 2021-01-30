@@ -1,7 +1,7 @@
 ---
 date: 2020-01-15
 title: "Curried Tuna Fritters"
-image: ../../images/recipes/curried-tuna-fritters.jpg
+image: ../../../images/recipes/curried-tuna-fritters.jpg
 ingredients:
   - 3/4 cup rice
   - 1 (425g) tin of tuna, drained

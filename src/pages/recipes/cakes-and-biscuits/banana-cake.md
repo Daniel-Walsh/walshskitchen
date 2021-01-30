@@ -1,7 +1,7 @@
 ---
 date: 2020-01-21
 title: "Banana Cake"
-image: ../../images/recipes/banana-cake.jpg
+image: ../../../images/recipes/banana-cake.jpg
 ingredients:
   - 125 gram butter, softened
   - 1/2 cup (110g) brown sugar

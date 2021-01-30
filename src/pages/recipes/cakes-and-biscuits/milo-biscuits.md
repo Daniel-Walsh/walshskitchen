@@ -1,7 +1,7 @@
 ---
 date: 2020-01-17
 title: "Milo Biscuits"
-image: ../../images/recipes/milo-biscuits.jpg
+image: ../../../images/recipes/milo-biscuits.jpg
 ingredients:
   - 125 g butter
   - 1 cup caster sugar

@@ -1,7 +1,7 @@
 ---
 date: 2020-01-14
 title: "Easy Peasy Chocolate Cake"
-image: ../../images/recipes/easy-peasy-chocolate-cake.jpg
+image: ../../../images/recipes/easy-peasy-chocolate-cake.jpg
 ingredients:
   - 1 cup of self raising flour, sifted
   - 1/3 cup of cocoa powder, sifted

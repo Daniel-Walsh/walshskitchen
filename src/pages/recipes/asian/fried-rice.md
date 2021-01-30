@@ -1,7 +1,7 @@
 ---
 date: 2020-01-02
 title: "Fried Rice"
-image: ../../images/recipes/fried-rice.jpg
+image: ../../../images/recipes/fried-rice.jpg
 ingredients:
   - rice|1 1/2 cups plain white rice
   - onion|1 onion, chopped

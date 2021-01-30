@@ -1,7 +1,7 @@
 ---
 date: 2020-11-20
 title: "Bolognaise Bake"
-image: ../../images/recipes/bolognese-bake.jpg
+image: ../../../images/recipes/bolognese-bake.jpg
 ingredients:
   - 500g beef mince
   - 250g red lentil pasta spirals

@@ -19,15 +19,39 @@ import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 import FadeLink from "./fade-link"
 
+const makeTitle = slug => {
+  return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1)
+}
+
 const TagList = () => {
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     allMarkdownRemark(filter: { frontmatter: { tags: { ne: null } } }) {
+  //       edges {
+  //         node {
+  //           frontmatter {
+  //             tags
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+
+  // const recipes = data.allMarkdownRemark.edges
+  // let recipeTags = {}
+
+  // recipes.forEach(recipe => {
+  //   recipe.node.frontmatter.tags.forEach(tag => {
+  //     recipeTags[tag] = recipeTags.hasOwnProperty(tag) ? recipeTags[tag] + 1 : 1
+  //   })
+  // })
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: { frontmatter: { tags: { ne: null } } }) {
+      allMarkdownRemark {
         edges {
           node {
-            frontmatter {
-              tags
-            }
+            fileAbsolutePath
           }
         }
       }
@@ -35,36 +59,98 @@ const TagList = () => {
   `)
 
   const recipes = data.allMarkdownRemark.edges
-  let recipeTags = {}
+  // let categories = {}
+
+  // let categories = recipes.map(recipe => {
+  //   return recipe.node.fileAbsolutePath
+  //     .split("/src/pages/recipes/")[1]
+  //     .split("/")[0]
+  // })
+
+  // categories = [...new Set(categories)]
+
+  // recipes.forEach(recipe => {
+  //   recipe.node.frontmatter.tags.forEach(tag => {
+  //     categories[tag] = categories.hasOwnProperty(tag) ? categories[tag] + 1 : 1
+  //   })
+  // })
+
+  let categoryItems = {}
 
   recipes.forEach(recipe => {
-    recipe.node.frontmatter.tags.forEach(tag => {
-      recipeTags[tag] = recipeTags.hasOwnProperty(tag) ? recipeTags[tag] + 1 : 1
-    })
+    const catName = recipe.node.fileAbsolutePath
+      .split("/src/pages/recipes/")[1]
+      .split("/")[0]
+
+    categoryItems[catName] = categoryItems.hasOwnProperty(catName)
+      ? categoryItems[catName] + 1
+      : 1
   })
 
-  // console.log(recipeTags)
+  // return (
+  //   // <div className="d-flex flex-wrap justify-content-center">
+  //   <div className="list-group w-100">
+  //     {categories
+  //       .sort((a, b) => a.localeCompare(b))
+  //       .map((category, id) => {
+  //         return (
+  //           <FadeLink
+  //             key={id}
+  //             className={`list-group-item list-group-item-action`}
+  //             to={`/category/${category}`}
+  //           >
+  //             {makeTitle(category)}
+  //           </FadeLink>
+  //         )
+  //       })}
+  //   </div>
+  // )
+
+  const listGroupItemClasses = `list-group-item list-group-item-action d-flex justify-content-between align-items-center`
 
   return (
-    <div className="d-flex flex-wrap justify-content-center">
-      {Object.keys(recipeTags)
+    <div className="list-group w-100">
+      <FadeLink className={listGroupItemClasses} to={`/recipes`}>
+        All recipes
+      </FadeLink>
+      {Object.keys(categoryItems)
         .sort((a, b) => a.localeCompare(b))
         .map((key, value) => {
           return (
             <FadeLink
               key={key}
-              className={`btn btn-sm btn-grey mb-1 mr-1`}
-              to={`/tags/${key}`}
+              className={listGroupItemClasses}
+              to={`/category/${key}`}
             >
-              #{key}{" "}
+              {makeTitle(key)}{" "}
               <span className="badge badge-pill badge-secondary">
-                {recipeTags[key]}
+                {categoryItems[key]}
               </span>
             </FadeLink>
           )
         })}
     </div>
   )
+  // return (
+  //   <div className="d-flex flex-wrap justify-content-center">
+  //     {Object.keys(recipeTags)
+  //       .sort((a, b) => a.localeCompare(b))
+  //       .map((key, value) => {
+  //         return (
+  //           <FadeLink
+  //             key={key}
+  //             className={`btn btn-sm btn-grey mb-1 mr-1`}
+  //             to={`/tags/${key}`}
+  //           >
+  //             #{key}{" "}
+  //             <span className="badge badge-pill badge-secondary">
+  //               {recipeTags[key]}
+  //             </span>
+  //           </FadeLink>
+  //         )
+  //       })}
+  //   </div>
+  // )
 }
 
 const Layout = ({ children }) => {
@@ -98,13 +184,16 @@ const Layout = ({ children }) => {
             <FadeLink to="/" className="mb-5 d-block">
               <Logo />
             </FadeLink>
-            <div>
+            {/* <div>
               <FadeLink to="/recipes" className="btn btn-primary mb-5">
                 <FontAwesomeIcon icon={faUtensils} className="mr-2" />
                 Browse all recipes
               </FadeLink>
-            </div>
-            <p className="h5 mb-3">Tags:</p>
+            </div> */}
+            <p className="h5 mb-3">
+              <FontAwesomeIcon icon={faUtensils} className="mr-2" />
+              Categories
+            </p>
             <TagList />
           </div>
           <div className="col-12 col-lg-9 my-3 my-md-5">{children}</div>

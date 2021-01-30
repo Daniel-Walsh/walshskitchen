@@ -1,7 +1,7 @@
 ---
 date: 2020-01-06
 title: "Pancakes"
-image: ../../images/recipes/pancakes.jpg
+image: ../../../images/recipes/pancakes.jpg
 ingredients:
   - 2 cups self-raising flour
   - 1/3 cup sugar

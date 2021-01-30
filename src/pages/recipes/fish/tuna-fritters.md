@@ -1,7 +1,7 @@
 ---
 date: 2020-01-01
 title: "Tuna Fritters"
-image: ../../images/recipes/tuna-fritters.png
+image: ../../../images/recipes/tuna-fritters.png
 ingredients:
   - rice|3/4 cup rice
   - tuna|1 (425g) tin of tuna, drained

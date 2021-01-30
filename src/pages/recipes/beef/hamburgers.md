@@ -1,7 +1,7 @@
 ---
 date: 2020-01-08
 title: "Hamburgers"
-image: ../../images/recipes/hamburgers.jpg
+image: ../../../images/recipes/hamburgers.jpg
 ingredients:
   - 500g beef mince
   - 1 onion, finely chopped

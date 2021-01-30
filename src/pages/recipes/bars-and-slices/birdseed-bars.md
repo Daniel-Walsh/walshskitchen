@@ -1,7 +1,7 @@
 ---
 date: 2020-12-06
 title: "Birdseed Bars"
-image: ../../images/recipes/birdseed-bars.png
+image: ../../../images/recipes/birdseed-bars.png
 ingredients:
   - 1 1/2 cup almond meal
   - 1/2 cup hemp seed

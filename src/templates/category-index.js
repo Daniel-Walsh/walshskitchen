@@ -2,9 +2,10 @@ import React from "react"
 import Layout from "../components/layout"
 import RecipeGrid from "../components/recipe-grid"
 import SEO from "../components/seo"
+import { makeTitle } from "../global-functions"
 
-const TagIndex = ({ data, location, pageContext }) => {
-  const { tag } = pageContext
+const CategoryIndex = ({ data, location, pageContext }) => {
+  const { category, glob } = pageContext
   return (
     <Layout>
       <SEO title="Recipes" />
@@ -14,19 +15,21 @@ const TagIndex = ({ data, location, pageContext }) => {
         </span>
         Recipes
       </h1>
-      <div className="text-secondary h5 mt-n4 mb-4 ml-5">Tag: #{tag}</div>
+      <div className="text-secondary h5 mt-n4 mb-4 ml-5">
+        Category: {makeTitle(category)}
+      </div>
       <RecipeGrid recipes={data.recipes.edges} />
     </Layout>
   )
 }
 
-export default TagIndex
+export default CategoryIndex
 
 export const pageQuery = graphql`
-  query($tag: [String]) {
+  query($glob: String) {
     recipes: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { tags: { in: $tag } } }
+      filter: { fileAbsolutePath: { glob: $glob } }
     ) {
       edges {
         node {
