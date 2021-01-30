@@ -7,7 +7,7 @@ const NotFoundPage = () => (
   <Layout>
     <SEO title="About" />
     <div className="row">
-      <div className="col-6 mx-auto">
+      <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
         <h1>To my dear family,</h1>
         <p>
           Way back when, I was originally going to write a family recipe cook
