@@ -173,14 +173,16 @@ const Layout = ({ children }) => {
           <div className="col py-2">
             <div class="dropdown">
               <button
-                class="btn btn-secondary dropdown-toggle"
+                class="border-secondary btn btn-outline-secondary navbar-toggler dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                aria-label="Toggle navigation"
               >
                 <span className="d-none d-sm-inline">Le menu</span>
+                <span className="navbar-toggler-icon d-block d-sm-none"></span>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {/* <a class="dropdown-item" href="#">

@@ -44,6 +44,8 @@ $container-max-widths: (
 
 // @include _assert-ascending($container-max-widths, "$container-max-widths");
 
+$enable-caret: false;
+
 $card-height: 100%;
 
 $font-family-sans-serif: "Roboto", sans-serif;
@@ -52,6 +54,10 @@ $headings-font-family: "Nunito", sans-serif;
 $headings-margin-bottom: $spacer * 1.5;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.dropdown .navbar-toggler-icon {
+  background: $navbar-light-toggler-icon-bg;
+}
 
 .rounded-xl {
   border-radius: 0.75rem !important;
