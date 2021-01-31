@@ -222,7 +222,7 @@ const Layout = ({ children }) => {
               <TagList format="dropdown" />
               {/* </div> */}
             </div>
-            <FadeLink
+            <Link
               to="/"
               className="my-3 mx-auto d-block position-absolute"
               style={{
@@ -235,14 +235,14 @@ const Layout = ({ children }) => {
               }}
             >
               <Logo notag />
-            </FadeLink>
+            </Link>
           </div>
         </div>
         <div className="row">
           <div className="col-3 my-5  d-none d-lg-flex flex-column align-items-center">
-            <FadeLink to="/" className="mb-5 d-block">
+            <Link to="/" className="mb-5 d-block">
               <Logo />
-            </FadeLink>
+            </Link>
             {/* <div>
               <FadeLink to="/recipes" className="btn btn-primary mb-5">
                 <FontAwesomeIcon icon={faUtensils} className="mr-2" />

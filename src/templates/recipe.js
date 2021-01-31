@@ -27,6 +27,7 @@ import {
 } from "@fortawesome/pro-regular-svg-icons"
 import FadeLink from "../components/fade-link"
 import SEO from "../components/seo"
+import { Link } from "gatsby"
 
 const getIngredientIcon = ingredient => {
   return faCircle
@@ -113,7 +114,7 @@ export default function Recipe({ data, location }) {
                 {frontmatter.tags.map(tag => (
                   <li className="list-inline-item">
                     <span className="badge badge-pill badge-grey">
-                      <FadeLink to={`/tags/${tag}`}>#{tag}</FadeLink>
+                      <Link to={`/tags/${tag}`}>#{tag}</Link>
                     </span>
                   </li>
                 ))}
