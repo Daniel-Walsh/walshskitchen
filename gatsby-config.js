@@ -36,7 +36,7 @@ module.exports = {
       options: {
         name: `Walsh's Kitchen`,
         short_name: `Walsh's Kitchen`,
-        start_url: `/recipes/`,
+        start_url: `/`,
         background_color: `#f8f9fa`,
         theme_color: `#e83333`,
         display: `minimal-ui`,
@@ -73,6 +73,7 @@ module.exports = {
     //     },
     //   },
     // },
-    `gatsby-plugin-remove-serviceworker`,
+    // `gatsby-plugin-remove-serviceworker`,
+    `gatsby-plugin-offline`,
   ],
 }
