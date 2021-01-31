@@ -36,11 +36,17 @@ module.exports = {
       options: {
         name: `Walsh's Kitchen`,
         short_name: `Walsh's Kitchen`,
-        start_url: `/`,
+        start_url: `/recipes/`,
         background_color: `#f8f9fa`,
         theme_color: `#e83333`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
+        icon_options: {
+          // For all the options available,
+          // please see the section "Additional Resources" below.
+          purpose: `any maskable`,
+        },
+        cache_busting_mode: "none",
       },
     },
     {
@@ -58,6 +64,15 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // {
+    //   resolve: "gatsby-plugin-offline",
+    //   options: {
+    //     precachePages: [`/recipes/`],
+    //     workboxConfig: {
+    //       globPatterns: ["**/*icon*.png"],
+    //     },
+    //   },
+    // },
+    `gatsby-plugin-remove-serviceworker`,
   ],
 }
