@@ -29,3 +29,4 @@ tags:
 Perfect to take to work for lunch or grab as an occassional breakfast substitute if you're running late.
 
 [//]: # "Source: The Fast 800 - Dr. Michael Mosley, p. 248"
+[//]: # "Makes 12 serves, 195 cals per seve"
