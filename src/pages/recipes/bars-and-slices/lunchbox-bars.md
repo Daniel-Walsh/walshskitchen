@@ -3,7 +3,7 @@ date: 2021-01-31
 title: "Lunchbox Bars"
 image: ./lunchbox-bars.jpg
 ingredients:
-  - 50g soft dates
+  - 50g soft pitted dates
   - 2 unripe bananas
   - 75g coconut oil, melted
   - 100g rolled oats
