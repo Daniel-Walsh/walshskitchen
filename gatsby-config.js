@@ -39,7 +39,7 @@ module.exports = {
         start_url: `/recipes/`,
         background_color: `#f8f9fa`,
         theme_color: `#e83333`,
-        display: `standalone`,
+        display: `minimal-ui`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
         icon_options: {
           // For all the options available,
