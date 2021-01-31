@@ -1,7 +1,7 @@
 ---
 date: 2020-01-16
 title: "Curried Tuna"
-image: ../../../images/recipes/curried-tuna.jpg
+image: ./curried-tuna.jpg
 ingredients:
   - 425g tin of tuna in oil, drained
   - 1 large brown onion, finely chopped

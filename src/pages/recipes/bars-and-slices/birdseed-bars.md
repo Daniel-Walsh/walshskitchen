@@ -1,7 +1,7 @@
 ---
 date: 2020-12-06
 title: "Birdseed Bars"
-image: ../../../images/recipes/birdseed-bars.png
+image: ./birdseed-bars.png
 ingredients:
   - 1 1/2 cup almond meal
   - 1/2 cup hemp seed
@@ -24,4 +24,4 @@ tags:
 
 We all know chocolate is the 'good mood' food &mdash; but here's a bonus, the simple superfood goji berries, called the 'happy berry'. The goji is nutritionally dense and ideal for wellness. Both dark chocolate and goji berries have high levels of cell protecting antioxidants, a big nutritional bonus!
 
-_Source: Woolworths Catalogue - 1.7.2020 - 31.7.2020 - page 90_
+[//]: # "Source: Woolworths Catalogue - 1.7.2020 - 31.7.2020 - page 90"

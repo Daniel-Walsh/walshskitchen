@@ -1,7 +1,7 @@
 ---
 date: 2020-01-09
 title: "Chocolate Fudge"
-image: ../../../images/recipes/chocolate-fudge.jpg
+image: ./chocolate-fudge.jpg
 ingredients:
   - 60g unsalted cooking butter
   - 375g chocolate melts

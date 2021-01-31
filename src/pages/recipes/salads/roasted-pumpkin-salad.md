@@ -1,7 +1,7 @@
 ---
 date: 2020-01-07
 title: "Roasted Pumpkin Salad"
-image: ../../../images/recipes/roasted-pumpkin-salad.jpg
+image: ./roasted-pumpkin-salad.jpg
 ingredients:
   - 1.75kg butternut pumpkin, descended, cut into 2cm thick pieces
   - Olive oil cooking spray

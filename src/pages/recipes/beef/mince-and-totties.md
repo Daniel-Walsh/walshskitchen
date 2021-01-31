@@ -1,7 +1,7 @@
 ---
 date: 2020-01-20
 title: "Mince and Totties"
-image: ../../../images/recipes/mince-and-totties.jpg
+image: ./mince-and-totties.jpg
 ingredients:
   - 1 kg beef mince
   - 2 large brown onions, roughly chopped

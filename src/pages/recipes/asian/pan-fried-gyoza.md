@@ -1,7 +1,7 @@
 ---
 date: 2020-01-05
 title: "Pan-Fried Gyoza"
-image: ../../../images/recipes/pan-fried-gyoza.jpg
+image: ./pan-fried-gyoza.jpg
 ingredients:
   - 500g chicken mince
   - 1 carrot, grated

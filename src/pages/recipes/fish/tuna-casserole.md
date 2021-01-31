@@ -1,7 +1,7 @@
 ---
 date: 2020-01-19
 title: "Tuna Casserole"
-image: ../../../images/recipes/tuna-casserole.jpg
+image: ./tuna-casserole.jpg
 ingredients:
   - 425g tin of tuna in oil, drained
   - 400g dry spiral pasta

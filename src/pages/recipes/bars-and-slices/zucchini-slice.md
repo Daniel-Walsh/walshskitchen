@@ -1,7 +1,7 @@
 ---
 date: 2020-01-12
 title: "Zucchini Slice"
-image: ../../../images/recipes/zucchini-slice.jpg
+image: ./zucchini-slice.jpg
 ingredients:
   - 5 eggs
   - 1 cup self-raising flour, sifted

@@ -1,7 +1,7 @@
 ---
 date: 2020-12-23
 title: "Baileys Chocolate Truffles"
-image: ../../../images/recipes/baileys-chocolate-truffles.jpg
+image: ./baileys-chocolate-truffles.jpg
 ingredients:
   - butter|90g butter
   - milk|1/2 cup thickened cream

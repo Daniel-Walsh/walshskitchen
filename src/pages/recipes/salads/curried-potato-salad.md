@@ -1,7 +1,7 @@
 ---
 date: 2020-01-18
 title: "Curried Potato Salad"
-image: ../../../images/recipes/curried-potato-salad.jpg
+image: ./curried-potato-salad.jpg
 ingredients:
   - 2kg potatoes, peeled and cubed
   - 1 cup spring onion, finely chopped

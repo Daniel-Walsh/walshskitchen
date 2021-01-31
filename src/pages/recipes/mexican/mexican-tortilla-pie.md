@@ -1,7 +1,7 @@
 ---
 date: 2020-01-13
 title: "Mexican Tortilla Pie"
-image: ../../../images/recipes/mexican-tortilla-pie.jpg
+image: ./mexican-tortilla-pie.jpg
 ingredients:
   - 2 tsp olive oil
   - 1 large red onion, finely chopped

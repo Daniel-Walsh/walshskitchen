@@ -54,6 +54,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     // const path = node.fileAbsolutePath.split("/src/pages")[1].replace(".md", "")
     const path = getPathFromFilepath(node.fileAbsolutePath)
 
+    // let path = node.fileAbsolutePath
+    //   .split("/src/pages/recipes/")[1]
+    //   .replace(".md", "")
+    // path = "/recipes/" + path.split("/")[1]
+    // console.log(path)
+
     let component = pageTemplate
     if (path.indexOf("/releases/") === 0) {
       component = releaseTemplate

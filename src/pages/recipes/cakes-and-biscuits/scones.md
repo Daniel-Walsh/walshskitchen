@@ -1,7 +1,7 @@
 ---
 date: 2020-01-11
 title: "Scones"
-image: ../../../images/recipes/scones.jpg
+image: ./scones.jpg
 ingredients:
   - 4 cups self-raising flour, sifted
   - ½ tsp salt

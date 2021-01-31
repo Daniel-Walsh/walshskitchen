@@ -1,7 +1,7 @@
 ---
 date: 2020-01-04
 title: "Meatloaf"
-image: ../../../images/recipes/meatloaf.jpg
+image: ./meatloaf.jpg
 ingredients:
   - heading|Meatloaf
   - 1 kg beef mince
