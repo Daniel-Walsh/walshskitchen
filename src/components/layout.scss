@@ -54,6 +54,9 @@ $font-family-base: $font-family-sans-serif;
 $headings-font-family: "Nunito", sans-serif;
 $headings-margin-bottom: $spacer * 1.5;
 
+$link-decoration: underline;
+$link-hover-decoration: none;
+
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
