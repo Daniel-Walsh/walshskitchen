@@ -32,6 +32,19 @@ module.exports = {
     //   },
     // },
     {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 500,
+            },
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Walsh's Kitchen`,
@@ -47,19 +60,6 @@ module.exports = {
           purpose: `any maskable`,
         },
         cache_busting_mode: "none",
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 500,
-            },
-          },
-        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
