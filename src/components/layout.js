@@ -123,18 +123,27 @@ const TagList = ({ format }) => {
 
   return (
     <div className={`${containerClasses}`} aria-labelledby="dropdownMenuButton">
-      <FadeLink className={listGroupItemClasses} to={`/recipes`}>
+      <Link
+        className={listGroupItemClasses}
+        to={`/recipes`}
+        activeClassName="active"
+      >
         Latest recipes
-      </FadeLink>
-      <FadeLink className={listGroupItemClasses} to={`/about`}>
+      </Link>
+      <Link
+        className={listGroupItemClasses}
+        to={`/about`}
+        activeClassName="active"
+      >
         About this site
-      </FadeLink>
+      </Link>
       <div class="dropdown-divider"></div>
       {Object.keys(categoryItems)
         .sort((a, b) => a.localeCompare(b))
         .map((key, value) => {
           return (
-            <FadeLink
+            <Link
+              activeClassName="active"
               key={key}
               className={listGroupItemClasses}
               to={`/category/${key}`}
@@ -143,7 +152,7 @@ const TagList = ({ format }) => {
               <span className="badge badge-pill badge-secondary ml-5">
                 {categoryItems[key]}
               </span>
-            </FadeLink>
+            </Link>
           )
         })}
     </div>

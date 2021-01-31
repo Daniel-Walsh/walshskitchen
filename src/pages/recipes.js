@@ -6,7 +6,7 @@ import RecipeGrid from "../components/recipe-grid"
 const RecipesPage = ({ data, location }) => {
   return (
     <Layout>
-      <SEO title="Recipes" />
+      <SEO title="Latest recipes" />
       <h1 className="mb-5">Recipes</h1>
       <RecipeGrid recipes={data.recipes.edges} />
     </Layout>

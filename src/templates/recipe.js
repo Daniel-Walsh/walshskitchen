@@ -26,6 +26,7 @@ import {
   faDotCircle,
 } from "@fortawesome/pro-regular-svg-icons"
 import FadeLink from "../components/fade-link"
+import SEO from "../components/seo"
 
 const getIngredientIcon = ingredient => {
   return faCircle
@@ -86,6 +87,7 @@ export default function Recipe({ data, location }) {
   const { frontmatter, html } = markdownRemark
   return (
     <Layout>
+      <SEO title={`${frontmatter.title} | Recipes`} />
       <div className="row mb-5">
         <div className="col-12 col-md-6 col-lg-6 order-2 order-md-1">
           <h1>{frontmatter.title}</h1>

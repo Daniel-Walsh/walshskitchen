@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title="About" />
+    <SEO title="About this site" />
     <div className="row">
       <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
         <h1>To my dear family,</h1>

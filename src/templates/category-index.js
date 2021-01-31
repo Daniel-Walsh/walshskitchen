@@ -8,7 +8,7 @@ const CategoryIndex = ({ data, location, pageContext }) => {
   const { category, glob } = pageContext
   return (
     <Layout>
-      <SEO title="Recipes" />
+      <SEO title={`Category: "${makeTitle(category)}" | Recipes`} />
       <h1>Recipes</h1>
       <div className="text-secondary h5 mt-n4 mb-4">
         Category: {makeTitle(category)}

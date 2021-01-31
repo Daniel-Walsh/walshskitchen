@@ -7,7 +7,7 @@ const TagIndex = ({ data, location, pageContext }) => {
   const { tag } = pageContext
   return (
     <Layout>
-      <SEO title="Recipes" />
+      <SEO title={`Tag: "${tag}" | Recipes`} />
       <h1>Recipes</h1>
       <div className="text-secondary h5 mt-n4 mb-4">Tag: #{tag}</div>
       <RecipeGrid recipes={data.recipes.edges} />
