@@ -33,7 +33,7 @@ export default function Card({ image, title, content, link, tags }) {
                   {tags && tags.length > 0 && (
                     <ul id="recipe-tags" className="list-inline mb-0">
                       {tags.map(tag => (
-                        <li className="list-inline-item">
+                        <li className="list-inline-item mr-0 ml-2">
                           <span className="badge badge-pill badge-grey">
                             #{tag}
                           </span>
