@@ -32,4 +32,4 @@ tags:
   - banana
 ---
 
-Quite possibly the best banana cake recipe I’ve come across (sorry Mum!). And with a couple of little tweaks, it’s become a staple in our house when there are override bananas lying around.
+Quite possibly the best banana cake recipe I’ve come across (sorry Mum!). And with a couple of little tweaks, it’s become a staple in our house when there are over-ripe bananas lying around.
