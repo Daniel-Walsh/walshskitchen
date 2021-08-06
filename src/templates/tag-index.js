@@ -1,13 +1,14 @@
+import { graphql } from "gatsby"
 import React from "react"
 import Layout from "../components/layout"
 import RecipeGrid from "../components/recipe-grid"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const TagIndex = ({ data, location, pageContext }) => {
   const { tag } = pageContext
   return (
     <Layout>
-      <SEO title={`Tag: "${tag}" | Recipes`} />
+      <Seo title={`Tag: "${tag}" | Recipes`} />
       <h1>Recipes</h1>
       <div className="text-secondary h5 mt-n4 mb-4">Tag: #{tag}</div>
       <RecipeGrid recipes={data.recipes.edges} />

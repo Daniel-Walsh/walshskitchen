@@ -1,14 +1,15 @@
+import { graphql } from "gatsby"
 import React from "react"
 import Layout from "../components/layout"
 import RecipeGrid from "../components/recipe-grid"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { makeTitle } from "../global-functions"
 
 const CategoryIndex = ({ data, location, pageContext }) => {
-  const { category, glob } = pageContext
+  const { category } = pageContext
   return (
     <Layout>
-      <SEO title={`Category: "${makeTitle(category)}" | Recipes`} />
+      <Seo title={`Category: "${makeTitle(category)}" | Recipes`} />
       <h1>Recipes</h1>
       <div className="text-secondary h5 mt-n4 mb-4">
         Category: {makeTitle(category)}

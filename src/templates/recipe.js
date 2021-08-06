@@ -1,94 +1,93 @@
 import React from "react"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faJug,
-  faEgg,
-  faSack,
-  faCarrot,
-  faLeaf,
-  faHatChef,
-  faWineBottle,
-  faFish,
-  faWheat,
-  faQuestionCircle,
-  faPepperHot,
-  faCauldron,
-  faMeat,
-  faSteak,
-  faSoup,
-  faInfoCircle,
-  faTint,
-  faCube,
-  faUtensils,
-  faCircle,
-  faDotCircle,
-} from "@fortawesome/pro-regular-svg-icons"
-import FadeLink from "../components/fade-link"
-import SEO from "../components/seo"
-import { Link } from "gatsby"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import // faJug,
+// faEgg,
+// faSack,
+// faCarrot,
+// faLeaf,
+// faHatChef,
+// faWineBottle,
+// faFish,
+// faWheat,
+// faQuestionCircle,
+// faPepperHot,
+// faCauldron,
+// faMeat,
+// faSteak,
+// faSoup,
+// faInfoCircle,
+// faTint,
+// faCube,
+// faUtensils,
+// faCircle,
+// faDotCircle,
+"@fortawesome/pro-regular-svg-icons"
+// import FadeLink from "../components/fade-link"
+import Seo from "../components/seo"
+import { graphql, Link } from "gatsby"
 
-const getIngredientIcon = ingredient => {
-  return faCircle
-  if (["milk"].includes(ingredient)) {
-    return faJug
-  }
-  if (["egg"].includes(ingredient)) {
-    return faEgg
-  }
-  if (["sugar"].includes(ingredient)) {
-    return faSack
-  }
-  if (["carrot", "onion", "mushroom", "garlic"].includes(ingredient)) {
-    return faCarrot
-  }
-  if (["parsley", "mint", "herbs"].includes(ingredient)) {
-    return faLeaf
-  }
-  if (["salt", "pepper", "spice"].includes(ingredient)) {
-    return faHatChef
-  }
-  if (["vinegar", "wine", "oil", "sauce"].includes(ingredient)) {
-    return faWineBottle
-  }
-  if (["tuna", "fish"].includes(ingredient)) {
-    return faFish
-  }
-  if (["rice", "breadcrumbs", "flour"].includes(ingredient)) {
-    return faWheat
-  }
-  if (["capsicum"].includes(ingredient)) {
-    return faPepperHot
-  }
-  if (["stock"].includes(ingredient)) {
-    return faCauldron
-  }
-  if (["ham"].includes(ingredient)) {
-    return faMeat
-  }
-  if (["beef"].includes(ingredient)) {
-    return faSteak
-  }
-  if (["soup"].includes(ingredient)) {
-    return faSoup
-  }
-  if (["water"].includes(ingredient)) {
-    return faTint
-  }
-  if (["butter", "ghee"].includes(ingredient)) {
-    return faCube
-  }
+// const getIngredientIcon = ingredient => {
+//   return faCircle
+// if (["milk"].includes(ingredient)) {
+//   return faJug
+// }
+// if (["egg"].includes(ingredient)) {
+//   return faEgg
+// }
+// if (["sugar"].includes(ingredient)) {
+//   return faSack
+// }
+// if (["carrot", "onion", "mushroom", "garlic"].includes(ingredient)) {
+//   return faCarrot
+// }
+// if (["parsley", "mint", "herbs"].includes(ingredient)) {
+//   return faLeaf
+// }
+// if (["salt", "pepper", "spice"].includes(ingredient)) {
+//   return faHatChef
+// }
+// if (["vinegar", "wine", "oil", "sauce"].includes(ingredient)) {
+//   return faWineBottle
+// }
+// if (["tuna", "fish"].includes(ingredient)) {
+//   return faFish
+// }
+// if (["rice", "breadcrumbs", "flour"].includes(ingredient)) {
+//   return faWheat
+// }
+// if (["capsicum"].includes(ingredient)) {
+//   return faPepperHot
+// }
+// if (["stock"].includes(ingredient)) {
+//   return faCauldron
+// }
+// if (["ham"].includes(ingredient)) {
+//   return faMeat
+// }
+// if (["beef"].includes(ingredient)) {
+//   return faSteak
+// }
+// if (["soup"].includes(ingredient)) {
+//   return faSoup
+// }
+// if (["water"].includes(ingredient)) {
+//   return faTint
+// }
+// if (["butter", "ghee"].includes(ingredient)) {
+//   return faCube
+// }
 
-  return faQuestionCircle
-}
+// return faQuestionCircle
+// }
 
 export default function Recipe({ data, location }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
     <Layout>
-      <SEO title={`${frontmatter.title} | Recipes`} />
+      <Seo title={`${frontmatter.title} | Recipes`} />
       <div className="row mb-5">
         <div className="col-12 col-md-6 col-lg-6 order-2 order-md-1">
           <h1>{frontmatter.title}</h1>
@@ -139,17 +138,18 @@ export default function Recipe({ data, location }) {
               <h2 className="h3">Ingredients</h2>
               <ul className="pl-4">
                 {frontmatter.ingredients.map(ingredient => {
-                  let ingredientIcon, ingredientDesc
+                  // let ingredientIcon
+                  let ingredientDesc
                   let isHeading = false
                   if (ingredient.indexOf("|") === -1) {
-                    ingredientIcon = getIngredientIcon("")
+                    // ingredientIcon = getIngredientIcon("")
                     ingredientDesc = ingredient
                   } else {
                     if (ingredient.split("|")[0] === "heading") {
                       isHeading = true
                     }
 
-                    ingredientIcon = getIngredientIcon(ingredient.split("|")[0])
+                    // ingredientIcon = getIngredientIcon(ingredient.split("|")[0])
                     ingredientDesc = ingredient.split("|")[1]
                   }
 

@@ -1,12 +1,13 @@
 import React from "react"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import RecipeGrid from "../components/recipe-grid"
+import { graphql } from "gatsby"
 
 const RecipesPage = ({ data, location }) => {
   return (
     <Layout>
-      <SEO title="Latest recipes" />
+      <Seo title="Latest recipes" />
       <h1 className="mb-5">Recipes</h1>
       <RecipeGrid recipes={data.recipes.edges} />
     </Layout>
