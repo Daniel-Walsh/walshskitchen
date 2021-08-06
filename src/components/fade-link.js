@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 const FadeLink = ({ to, className, children, style }) => {

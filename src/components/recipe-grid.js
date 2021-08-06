@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import { getPathFromFilepath } from "../global-functions"
 import Card from "./card"
 

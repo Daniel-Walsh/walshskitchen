@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import React from "react"
+// import React from "react"
 import Layout from "../components/layout"
 import RecipeGrid from "../components/recipe-grid"
 import Seo from "../components/seo"

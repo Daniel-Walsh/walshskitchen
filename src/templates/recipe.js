@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -97,12 +97,12 @@ export default function Recipe({ data, location }) {
           ></div>
           {frontmatter.servingSuggestion && (
             <p className="callout">
-              <div>
-                <span className="font-weight-bolder d-block">
-                  Serving suggestion
-                </span>{" "}
-                {frontmatter.servingSuggestion}
-              </div>
+              {/* <div> */}
+              <span className="font-weight-bolder d-block">
+                Serving suggestion
+              </span>{" "}
+              {frontmatter.servingSuggestion}
+              {/* </div> */}
             </p>
           )}
 
@@ -110,8 +110,8 @@ export default function Recipe({ data, location }) {
             <>
               <span className="h6 mr-2">Tags:</span>
               <ul id="recipe-tags" className="d-inline list-inline">
-                {frontmatter.tags.map(tag => (
-                  <li className="list-inline-item">
+                {frontmatter.tags.map((tag, index) => (
+                  <li key={index} className="list-inline-item">
                     <span className="badge badge-pill badge-grey">
                       <Link to={`/tags/${tag}`}>#{tag}</Link>
                     </span>
@@ -137,7 +137,7 @@ export default function Recipe({ data, location }) {
             <div id="recipe-ingredients">
               <h2 className="h3">Ingredients</h2>
               <ul className="pl-4">
-                {frontmatter.ingredients.map(ingredient => {
+                {frontmatter.ingredients.map((ingredient, index) => {
                   // let ingredientIcon
                   let ingredientDesc
                   let isHeading = false
@@ -154,7 +154,7 @@ export default function Recipe({ data, location }) {
                   }
 
                   return (
-                    <li className="position-relative mb-2">
+                    <li key={index} className="position-relative mb-2">
                       {/* <FontAwesomeIcon
                         icon={ingredientIcon}
                         className={`position-absolute top-0 mr-3 text-primary ${
@@ -183,7 +183,7 @@ export default function Recipe({ data, location }) {
               <h2 className="h3">Directions</h2>
               <ol className="list-unstyled">
                 {frontmatter.directions.map((step, index) => (
-                  <li className="mb-4">
+                  <li key={index} className="mb-4">
                     <div className="text-uppercase small font-weight-bolder text-primary">
                       Step {index + 1}
                     </div>

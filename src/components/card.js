@@ -1,4 +1,4 @@
-import React from "react"
+// import React from "react"
 import Img from "gatsby-image"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faHatChef, faArrowRight } from "@fortawesome/pro-regular-svg-icons"
