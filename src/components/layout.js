@@ -137,7 +137,7 @@ const TagList = ({ format }) => {
       >
         About this site
       </Link>
-      <div class="dropdown-divider"></div>
+      <div className="dropdown-divider"></div>
       {Object.keys(categoryItems)
         .sort((a, b) => a.localeCompare(b))
         .map((key, value) => {
@@ -196,9 +196,9 @@ const Layout = ({ children }) => {
       <main className="container">
         <div className="row d-lg-none border-bottom">
           <div className="col py-2">
-            <div class="dropdown">
+            <div className="dropdown">
               <button
-                class="border-secondary btn btn-outline-secondary navbar-toggler dropdown-toggle"
+                className="border-secondary btn btn-outline-secondary navbar-toggler dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
@@ -209,14 +209,14 @@ const Layout = ({ children }) => {
                 <span className="d-none d-sm-inline">Le menu</span>
                 <span className="navbar-toggler-icon d-block d-sm-none"></span>
               </button>
-              {/* <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> */}
-              {/* <a class="dropdown-item" href="#">
+              {/* <div className="dropdown-menu" aria-labelledby="dropdownMenuButton"> */}
+              {/* <a className="dropdown-item" href="#">
                   Action
                 </a>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Another action
                 </a>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Something else here
                 </a> */}
               <TagList format="dropdown" />

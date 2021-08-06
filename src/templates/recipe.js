@@ -183,7 +183,7 @@ export default function Recipe({ data, location }) {
               <h2 className="h3">Directions</h2>
               <ol className="list-unstyled">
                 {frontmatter.directions.map((step, index) => (
-                  <li class="mb-4">
+                  <li className="mb-4">
                     <div className="text-uppercase small font-weight-bolder text-primary">
                       Step {index + 1}
                     </div>

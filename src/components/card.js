@@ -28,8 +28,8 @@ export default function Card({ image, title, content, link, tags }) {
                 </Link>
               </div>
               <div dangerouslySetInnerHTML={{ __html: content }}></div>
-              {/* <div class="mt-auto text-right"> */}
-              <div class="text-right">
+              {/* <div className="mt-auto text-right"> */}
+              <div className="text-right">
                 <div>
                   {tags && tags.length > 0 && (
                     <ul id="recipe-tags" className="list-inline mb-0">
@@ -65,7 +65,7 @@ export default function Card({ image, title, content, link, tags }) {
     //         {title}
     //       </FadeLink>
     //       <div dangerouslySetInnerHTML={{ __html: content }}></div>
-    //       <div class="mt-auto text-right">
+    //       <div className="mt-auto text-right">
     //         <div>
     //           {tags && tags.length > 0 && (
     //             <ul id="recipe-tags" className="list-inline">
