@@ -1,8 +1,8 @@
 // import React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/layout";
 
 const Recipe = () => {
-  return <Layout>frexd</Layout>
-}
+  return <Layout>frexd</Layout>;
+};
 
-export default Recipe
+export default Recipe;

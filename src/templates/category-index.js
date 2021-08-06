@@ -1,12 +1,12 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 // import React from "react"
-import Layout from "../components/layout"
-import RecipeGrid from "../components/recipe-grid"
-import Seo from "../components/seo"
-import { makeTitle } from "../global-functions"
+import Layout from "../components/layout";
+import RecipeGrid from "../components/recipe-grid";
+import Seo from "../components/seo";
+import { makeTitle } from "../global-functions";
 
 const CategoryIndex = ({ data, location, pageContext }) => {
-  const { category } = pageContext
+  const { category } = pageContext;
   return (
     <Layout>
       <Seo title={`Category: "${makeTitle(category)}" | Recipes`} />
@@ -16,10 +16,10 @@ const CategoryIndex = ({ data, location, pageContext }) => {
       </div>
       <RecipeGrid recipes={data.recipes.edges} />
     </Layout>
-  )
-}
+  );
+};
 
-export default CategoryIndex
+export default CategoryIndex;
 
 export const pageQuery = graphql`
   query($glob: String) {
@@ -49,4 +49,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

@@ -1,9 +1,9 @@
 // import React from "react"
-import Img from "gatsby-image"
+import Img from "gatsby-image";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faHatChef, faArrowRight } from "@fortawesome/pro-regular-svg-icons"
 // import FadeLink from "./fade-link"
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 
 export default function Card({ image, title, content, link, tags }) {
   return (
@@ -91,5 +91,5 @@ export default function Card({ image, title, content, link, tags }) {
     //     </div>
     //   </div>
     // </div>
-  )
+  );
 }

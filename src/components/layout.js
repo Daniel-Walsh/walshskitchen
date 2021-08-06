@@ -6,19 +6,19 @@
  */
 
 // import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import PropTypes from "prop-types";
+import { useStaticQuery, graphql, Link } from "gatsby";
 // import Img from "gatsby-image"
 
 // import Header from "./header"
-import "./layout.scss"
-import Logo from "./image"
+import "./layout.scss";
+import Logo from "./image";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
 // import TransitionLink from "gatsby-plugin-transition-link"
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 // import FadeLink from "./fade-link"
-import { makeTitle } from "../global-functions"
+import { makeTitle } from "../global-functions";
 
 // const makeTitle = slug => {
 //   return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1)
@@ -57,9 +57,9 @@ const TagList = ({ format }) => {
         }
       }
     }
-  `)
+  `);
 
-  const recipes = data.allMarkdownRemark.edges
+  const recipes = data.allMarkdownRemark.edges;
   // let categories = {}
 
   // let categories = recipes.map(recipe => {
@@ -76,17 +76,17 @@ const TagList = ({ format }) => {
   //   })
   // })
 
-  let categoryItems = {}
+  let categoryItems = {};
 
-  recipes.forEach(recipe => {
+  recipes.forEach((recipe) => {
     const catName = recipe.node.fileAbsolutePath
       .split("/src/pages/recipes/")[1]
-      .split("/")[0]
+      .split("/")[0];
 
     categoryItems[catName] = categoryItems.hasOwnProperty(catName)
       ? categoryItems[catName] + 1
-      : 1
-  })
+      : 1;
+  });
 
   // return (
   //   // <div className="d-flex flex-wrap justify-content-center">
@@ -107,19 +107,19 @@ const TagList = ({ format }) => {
   //   </div>
   // )
 
-  let containerClasses = ""
-  let itemClasses = ""
+  let containerClasses = "";
+  let itemClasses = "";
 
   if (format === "dropdown") {
-    containerClasses = "dropdown-menu"
-    itemClasses = "dropdown-item"
+    containerClasses = "dropdown-menu";
+    itemClasses = "dropdown-item";
   }
   if (format === "list-group") {
-    containerClasses = "list-group w-100"
-    itemClasses = "list-group-item list-group-item-action"
+    containerClasses = "list-group w-100";
+    itemClasses = "list-group-item list-group-item-action";
   }
 
-  const listGroupItemClasses = `${itemClasses} d-flex justify-content-between align-items-center`
+  const listGroupItemClasses = `${itemClasses} d-flex justify-content-between align-items-center`;
 
   return (
     <div className={`${containerClasses}`} aria-labelledby="dropdownMenuButton">
@@ -153,10 +153,10 @@ const TagList = ({ format }) => {
                 {categoryItems[key]}
               </span>
             </Link>
-          )
+          );
         })}
     </div>
-  )
+  );
   // return (
   //   <div className="d-flex flex-wrap justify-content-center">
   //     {Object.keys(recipeTags)
@@ -177,7 +177,7 @@ const TagList = ({ format }) => {
   //       })}
   //   </div>
   // )
-}
+};
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -267,11 +267,11 @@ const Layout = ({ children }) => {
         </div>
       </footer>
     </div>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

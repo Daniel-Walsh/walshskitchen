@@ -5,5 +5,5 @@
  */
 
 // You can delete this file if you're not using it
-import "jquery/dist/jquery.min.js"
-import "bootstrap/dist/js/bootstrap.bundle"
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.bundle";

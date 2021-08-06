@@ -1,6 +1,6 @@
 // import React from "react"
-import Layout from "../components/layout"
-import Img from "gatsby-image"
+import Layout from "../components/layout";
+import Img from "gatsby-image";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import // faJug,
 // faEgg,
@@ -23,10 +23,10 @@ import // faJug,
 // faUtensils,
 // faCircle,
 // faDotCircle,
-"@fortawesome/pro-regular-svg-icons"
+"@fortawesome/pro-regular-svg-icons";
 // import FadeLink from "../components/fade-link"
-import Seo from "../components/seo"
-import { graphql, Link } from "gatsby"
+import Seo from "../components/seo";
+import { graphql, Link } from "gatsby";
 
 // const getIngredientIcon = ingredient => {
 //   return faCircle
@@ -83,8 +83,8 @@ import { graphql, Link } from "gatsby"
 // }
 
 export default function Recipe({ data, location }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { markdownRemark } = data; // data.markdownRemark holds your post data
+  const { frontmatter, html } = markdownRemark;
   return (
     <Layout>
       <Seo title={`${frontmatter.title} | Recipes`} />
@@ -139,18 +139,18 @@ export default function Recipe({ data, location }) {
               <ul className="pl-4">
                 {frontmatter.ingredients.map((ingredient, index) => {
                   // let ingredientIcon
-                  let ingredientDesc
-                  let isHeading = false
+                  let ingredientDesc;
+                  let isHeading = false;
                   if (ingredient.indexOf("|") === -1) {
                     // ingredientIcon = getIngredientIcon("")
-                    ingredientDesc = ingredient
+                    ingredientDesc = ingredient;
                   } else {
                     if (ingredient.split("|")[0] === "heading") {
-                      isHeading = true
+                      isHeading = true;
                     }
 
                     // ingredientIcon = getIngredientIcon(ingredient.split("|")[0])
-                    ingredientDesc = ingredient.split("|")[1]
+                    ingredientDesc = ingredient.split("|")[1];
                   }
 
                   return (
@@ -166,7 +166,7 @@ export default function Recipe({ data, location }) {
                         <span className="h5">{ingredientDesc}</span>
                       )) || <p className="pr-3">{ingredientDesc}</p>}
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </div>
@@ -198,7 +198,7 @@ export default function Recipe({ data, location }) {
 
       <hr />
     </Layout>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -222,4 +222,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

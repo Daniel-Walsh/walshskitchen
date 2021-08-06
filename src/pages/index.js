@@ -1,10 +1,10 @@
 // import React from "react"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 // import FadeLink from "../components/fade-link"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
-import { Link } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUtensils } from "@fortawesome/pro-regular-svg-icons";
+import { Link } from "gatsby";
 
 const IndexPage = () => (
   <Layout>
@@ -20,6 +20,6 @@ const IndexPage = () => (
       </div>
     </div>
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;

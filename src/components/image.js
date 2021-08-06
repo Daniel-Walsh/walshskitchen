@@ -14,7 +14,7 @@
  */
 
 const Logo = ({ notag }) => {
-  const path = notag ? "/logo-notag.svg" : "/logo.svg"
+  const path = notag ? "/logo-notag.svg" : "/logo.svg";
   // const data = useStaticQuery(graphql`
   //   query {
   //     placeholderImage: file(relativePath: { eq: "logo.svg" }) {
@@ -43,7 +43,7 @@ const Logo = ({ notag }) => {
         display: "block",
       }}
     />
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

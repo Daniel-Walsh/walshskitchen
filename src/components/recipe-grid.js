@@ -1,6 +1,6 @@
 // import React from "react"
-import { getPathFromFilepath } from "../global-functions"
-import Card from "./card"
+import { getPathFromFilepath } from "../global-functions";
+import Card from "./card";
 
 const RecipeGrid = ({ recipes }) => {
   return (
@@ -16,7 +16,7 @@ const RecipeGrid = ({ recipes }) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default RecipeGrid
+export default RecipeGrid;
