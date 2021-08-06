@@ -5,9 +5,9 @@ import Card from "./card"
 const RecipeGrid = ({ recipes }) => {
   return (
     <div className="row">
-      {recipes.map(({ node }) => (
+      {recipes.map(({ node }, index) => (
         <Card
-          key={node.id}
+          key={index}
           image={node.frontmatter.image.childImageSharp.fluid}
           title={node.frontmatter.title}
           content={node.html}
