@@ -213,7 +213,7 @@ export default function Recipe({ data, location }) {
               {frontmatter.servingSuggestion && (
                 <div
                   id="talking-bubble"
-                  className="border border-dark rounded-xl p-3 lead text-uppercase position-relative"
+                  className="border border-dark px-4 py-3  font-weight-bold text-uppercase position-relative"
                 >
                   {frontmatter.servingSuggestion}
                 </div>

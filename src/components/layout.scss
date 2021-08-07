@@ -137,6 +137,8 @@ blockquote {
 
 #talking-bubble {
   font-family: Kalam, $font-family-base;
+  max-width: 380px;
+  border-radius: 3rem;
 
   &:before {
     content: "";
