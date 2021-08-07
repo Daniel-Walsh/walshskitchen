@@ -19,6 +19,7 @@ import Logo from "./image";
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
 // import FadeLink from "./fade-link"
 import { makeTitle } from "../global-functions";
+import Footer from "./footer";
 
 // const makeTitle = slug => {
 //   return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1)
