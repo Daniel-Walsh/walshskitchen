@@ -1,208 +1,239 @@
-// import React from "react"
-import Layout from "../components/layout";
 import Img from "gatsby-image";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import // faJug,
-// faEgg,
-// faSack,
-// faCarrot,
-// faLeaf,
-// faHatChef,
-// faWineBottle,
-// faFish,
-// faWheat,
-// faQuestionCircle,
-// faPepperHot,
-// faCauldron,
-// faMeat,
-// faSteak,
-// faSoup,
-// faInfoCircle,
-// faTint,
-// faCube,
-// faUtensils,
-// faCircle,
-// faDotCircle,
-"@fortawesome/pro-regular-svg-icons";
-// import FadeLink from "../components/fade-link"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faCircle } from "@fortawesome/pro-regular-svg-icons";
+import {
+  faReply,
+  faSalad,
+  faListOl,
+  faCircle as faCircleSolid,
+} from "@fortawesome/pro-solid-svg-icons";
 import Seo from "../components/seo";
 import { graphql, Link } from "gatsby";
+import { useState } from "react";
+import classNames from "classnames";
+import Footer from "../components/footer";
+import Section from "../components/section";
+import SectionHeading from "../components/section-heading";
 
-// const getIngredientIcon = ingredient => {
-//   return faCircle
-// if (["milk"].includes(ingredient)) {
-//   return faJug
-// }
-// if (["egg"].includes(ingredient)) {
-//   return faEgg
-// }
-// if (["sugar"].includes(ingredient)) {
-//   return faSack
-// }
-// if (["carrot", "onion", "mushroom", "garlic"].includes(ingredient)) {
-//   return faCarrot
-// }
-// if (["parsley", "mint", "herbs"].includes(ingredient)) {
-//   return faLeaf
-// }
-// if (["salt", "pepper", "spice"].includes(ingredient)) {
-//   return faHatChef
-// }
-// if (["vinegar", "wine", "oil", "sauce"].includes(ingredient)) {
-//   return faWineBottle
-// }
-// if (["tuna", "fish"].includes(ingredient)) {
-//   return faFish
-// }
-// if (["rice", "breadcrumbs", "flour"].includes(ingredient)) {
-//   return faWheat
-// }
-// if (["capsicum"].includes(ingredient)) {
-//   return faPepperHot
-// }
-// if (["stock"].includes(ingredient)) {
-//   return faCauldron
-// }
-// if (["ham"].includes(ingredient)) {
-//   return faMeat
-// }
-// if (["beef"].includes(ingredient)) {
-//   return faSteak
-// }
-// if (["soup"].includes(ingredient)) {
-//   return faSoup
-// }
-// if (["water"].includes(ingredient)) {
-//   return faTint
-// }
-// if (["butter", "ghee"].includes(ingredient)) {
-//   return faCube
-// }
+const Ingredient = ({ text }) => {
+  const [checked, setChecked] = useState(false);
+  const icon = checked ? faCheckCircle : faCircle;
+  const classes = classNames(
+    { "text-primary": checked },
+    { "text-grey": !checked }
+  );
+  const handleClick = () => {
+    setChecked(!checked);
+  };
+  return (
+    <div className="d-flex align-items-center pb-1">
+      <span
+        onClick={() => {
+          handleClick();
+        }}
+        className="rounded-circle bg-transparent border-0 lead"
+      >
+        <FontAwesomeIcon
+          className={classes}
+          icon={icon}
+          style={{ width: "2.25rem", height: "2.25rem" }}
+        />
+      </span>
+      <span
+        className="ml-2"
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        {text}
+      </span>
+    </div>
+  );
+};
 
-// return faQuestionCircle
-// }
+const Step = ({ number, text, isLast }) => {
+  const [checked, setChecked] = useState(false);
+  const icon = checked ? faCheckCircle : faCircle;
+  const iconClasses = classNames(
+    "w-100 h-100",
+    { "text-primary": checked },
+    { "text-grey": !checked }
+  );
+  const textClasses = classNames("pl-3", { "text-muted": checked });
+  const handleClick = () => {
+    setChecked(!checked);
+  };
+  return (
+    <div className="d-flex position-relative pb-5">
+      {!isLast && (
+        <div
+          className="d-flex position-absolute align-items-center justify-content-center"
+          style={{
+            width: "2.5rem",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+          }}
+        >
+          <div
+            className="h-100 w-1 bg-grey pointer-events-none"
+            style={{ width: ".25rem" }}
+          ></div>
+        </div>
+      )}
+      <div
+        className="d-inline-flex position-relative rounded-circle bg-white"
+        style={{
+          width: "2.5rem",
+          height: "2.5rem",
+          flexShrink: 0,
+        }}
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        <FontAwesomeIcon icon={icon} className={iconClasses} />
+      </div>
+      <div
+        className={textClasses}
+        style={{ flexGrow: 1 }}
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        <div className="text-uppercase small font-weight-bolder text-primary">
+          Step {number}
+        </div>
+        {text}
+      </div>
+    </div>
+  );
+};
+
+const SectionInstructions = ({ text }) => {
+  return (
+    <div className="d-flex align-items-center mb-3 ml-2">
+      <FontAwesomeIcon
+        icon={faReply}
+        style={{ transform: "rotate(-90deg)", opacity: 0.4 }}
+      />
+      <div className="ml-2">{text}</div>
+    </div>
+  );
+};
 
 export default function Recipe({ data, location }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
   return (
-    <Layout>
-      <Seo title={`${frontmatter.title} | Recipes`} />
-      <div className="row mb-5">
-        <div className="col-12 col-md-6 col-lg-6 order-2 order-md-1">
-          <h1>{frontmatter.title}</h1>
-          <div
-            className="lead"
-            dangerouslySetInnerHTML={{ __html: html }}
-          ></div>
-          {frontmatter.servingSuggestion && (
-            <p className="callout">
-              {/* <div> */}
-              <span className="font-weight-bolder d-block">
-                Serving suggestion
-              </span>{" "}
-              {frontmatter.servingSuggestion}
-              {/* </div> */}
-            </p>
-          )}
-
-          {frontmatter.tags && frontmatter.tags.length > 0 && (
-            <>
-              <span className="h6 mr-2">Tags:</span>
-              <ul id="recipe-tags" className="d-inline list-inline">
-                {frontmatter.tags.map((tag, index) => (
-                  <li key={index} className="list-inline-item">
-                    <span className="badge badge-pill badge-grey">
-                      <Link to={`/tags/${tag}`}>#{tag}</Link>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+    <>
+      <div className="">
+        <div className="position-fixed ml-4 mt-4" style={{ zIndex: 1 }}>
+          <Link to="/">
+            <img src="/logo-round.svg" width="64" heigt="64" />
+          </Link>
         </div>
-        <div className="col-12 col-md-6 col-lg-5 offset-lg-1 order-1 order-md-2">
+        <div
+          className="position-fixed d-none d-lg-block"
+          style={{ width: "60%", height: "100vh" }}
+        >
           <Img
             fluid={frontmatter.image.childImageSharp.fluid}
-            className="rounded-xl shadow mw-100 mb-3 "
+            className="d-none d-lg-block mw-100 min-vh-100"
           />
         </div>
+        <Img
+          fluid={frontmatter.image.childImageSharp.fluid}
+          className="mw-100 d-lg-none"
+          style={{ maxHeight: "500px" }}
+        />
       </div>
+      <div id="recipe-content" className="ml-lg-auto bg-white">
+        <div className="px-3 mx-auto" style={{ maxWidth: "480px" }}>
+          <Seo title={`${frontmatter.title} | Recipes`} />
+          <div className="row">
+            <div class="col">
+              <Section>
+                <h1>{frontmatter.title}</h1>
+                <div
+                  className="lead"
+                  dangerouslySetInnerHTML={{ __html: html }}
+                ></div>
 
-      <hr />
+                {frontmatter.tags && frontmatter.tags.length > 0 && (
+                  <ul id="recipe-tags" className="d-inline list-inline">
+                    {frontmatter.tags.map((tag, index) => (
+                      <li key={index} className="list-inline-item">
+                        <span className="badge badge-pill badge-grey">
+                          <Link to={`/tags/${tag}`}>#{tag}</Link>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </Section>
 
-      <div className="row my-5">
-        <div className="col-12 col-lg-8 offset-lg-2">
-          {frontmatter.ingredients.length > 0 && (
-            <div id="recipe-ingredients">
-              <h2 className="h3">Ingredients</h2>
-              <ul className="pl-4">
-                {frontmatter.ingredients.map((ingredient, index) => {
-                  // let ingredientIcon
-                  let ingredientDesc;
-                  let isHeading = false;
-                  if (ingredient.indexOf("|") === -1) {
-                    // ingredientIcon = getIngredientIcon("")
-                    ingredientDesc = ingredient;
-                  } else {
-                    if (ingredient.split("|")[0] === "heading") {
-                      isHeading = true;
-                    }
+              <Section>
+                {frontmatter.ingredients.length > 0 && (
+                  <div id="recipe-ingredients">
+                    <SectionHeading text="Ingredients" icon={faSalad} />
+                    <SectionInstructions text="Check off each of your ingredients before you get started!" />
+                    {frontmatter.ingredients.map((ingredient, index) => {
+                      const [entryType, entryText] = ingredient.split("|");
+                      switch (entryType) {
+                        case "heading":
+                          return (
+                            <div className="lead font-weight-bold mt-3 mb-1">
+                              {entryText}
+                            </div>
+                          );
+                        case "item":
+                          return <Ingredient text={entryText} />;
+                      }
+                    })}
+                  </div>
+                )}
+              </Section>
 
-                    // ingredientIcon = getIngredientIcon(ingredient.split("|")[0])
-                    ingredientDesc = ingredient.split("|")[1];
-                  }
+              <Section>
+                {frontmatter.directions.length > 0 && (
+                  <div id="recipe-directions">
+                    <SectionHeading text="Directions" icon={faListOl} />
+                    <SectionInstructions text="Time to get your hands dirty! Check off each step so you don’t lose you place." />
+                    {frontmatter.directions.map((step, index) => (
+                      <Step
+                        key={index}
+                        text={step}
+                        number={index + 1}
+                        isLast={index === frontmatter.directions.length - 1}
+                      />
+                    ))}
+                  </div>
+                )}
+              </Section>
 
-                  return (
-                    <li key={index} className="position-relative mb-2">
-                      {/* <FontAwesomeIcon
-                        icon={ingredientIcon}
-                        className={`position-absolute top-0 mr-3 text-primary ${
-                          isHeading && `d-none`
-                        }`}
-                        style={{ width: "2.5ch", top: ".2rem", left: "-.2rem" }}
-                      /> */}
-                      {(isHeading && (
-                        <span className="h5">{ingredientDesc}</span>
-                      )) || <p className="pr-3">{ingredientDesc}</p>}
-                    </li>
-                  );
-                })}
-              </ul>
+              {frontmatter.servingSuggestion && (
+                <div
+                  id="talking-bubble"
+                  className="border border-dark rounded-xl p-3 lead text-uppercase position-relative"
+                >
+                  {frontmatter.servingSuggestion}
+                </div>
+              )}
+              <img src="/dan.svg" />
             </div>
-          )}
+          </div>
         </div>
+        <Footer />
       </div>
-
-      <hr />
-
-      <div className="row my-5">
-        <div className="col-12 col-lg-8 offset-lg-2">
-          {frontmatter.directions.length > 0 && (
-            <div id="recipe-directions">
-              <h2 className="h3">Directions</h2>
-              <ol className="list-unstyled">
-                {frontmatter.directions.map((step, index) => (
-                  <li key={index} className="mb-4">
-                    <div className="text-uppercase small font-weight-bolder text-primary">
-                      Step {index + 1}
-                    </div>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <hr />
-    </Layout>
+    </>
   );
 }
 
 export const pageQuery = graphql`
-  query($fileAbsolutePath: String!) {
+  query ($fileAbsolutePath: String!) {
     markdownRemark(fileAbsolutePath: { eq: $fileAbsolutePath }) {
       html
       frontmatter {

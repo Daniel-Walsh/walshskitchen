@@ -51,7 +51,8 @@ $card-height: 100%;
 
 $font-family-sans-serif: "Roboto", sans-serif;
 $font-family-base: $font-family-sans-serif;
-$headings-font-family: "Nunito", sans-serif;
+// $headings-font-family: "Nunito", sans-serif;
+$headings-font-family: "Pacifico", sans-serif;
 $headings-margin-bottom: $spacer * 1.5;
 
 $link-decoration: underline;
@@ -126,4 +127,40 @@ blockquote {
   font-size: $font-size-base * 1.25;
   padding-left: $spacer * 1.5;
   border-left: 4px solid $primary;
+}
+
+#recipe-content {
+  @media screen and (min-width: 992px) {
+    max-width: 40%;
+  }
+}
+
+#talking-bubble {
+  font-family: Kalam, $font-family-base;
+
+  &:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #343a40;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -22px;
+  }
+
+  &:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -19px;
+  }
 }

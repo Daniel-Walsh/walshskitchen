@@ -3,23 +3,23 @@ date: 2021-07-30
 title: Quick Cinnamon Rolls
 image: ./quick-cinnamon-rolls.jpg
 ingredients:
-  - ¼ cup butter, divided (Optional)
+  - item|¼ cup butter, divided (Optional)
   - heading|Dough
-  - "2 cups self-raising flour"
-  - "2 tablespoons white sugar"
-  - 1 teaspoon salt
-  - 3 tablespoons butter, softened (Optional)
-  - "¾ cup milk"
-  - 1 egg
+  - item|2 cups self-raising flour
+  - item|2 tablespoons white sugar
+  - item|1 teaspoon salt
+  - item|3 tablespoons butter, softened (Optional)
+  - item|¾ cup milk
+  - item|1 egg
   - heading|Filling
-  - "½ cup white sugar"
-  - "½ cup brown sugar"
-  - "1 tablespoon ground cinnamon"
+  - item|½ cup white sugar
+  - item|½ cup brown sugar
+  - item|1 tablespoon ground cinnamon
   - heading|Cream cheese frosting
-  - 1 cup confectioners' sugar (Optional)
-  - 4 ounces cream cheese, softened (Optional)
-  - ¼ cup butter, softened (Optional)
-  - ½ teaspoon vanilla extract (Optional)
+  - item|1 cup confectioners' sugar (Optional)
+  - item|4 ounces cream cheese, softened (Optional)
+  - item|¼ cup butter, softened (Optional)
+  - item|½ teaspoon vanilla extract (Optional)
 directions:
   - Preheat oven to 400 degrees F (200 degrees C). Brush a 9-inch square baking
     dish with 2 tablespoons melted butter.

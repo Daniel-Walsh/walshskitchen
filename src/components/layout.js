@@ -258,14 +258,7 @@ const Layout = ({ children }) => {
           <div className="col-12 col-lg-9 my-3 my-md-5">{children}</div>
         </div>
       </main>
-      <footer className="d-flex justify-content-center py-5 px-3">
-        <div>
-          &copy; {new Date().getFullYear()}, Built by{" "}
-          <a href="https://dwalsh.dev/">Dan Walsh</a> with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
