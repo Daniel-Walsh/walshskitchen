@@ -151,7 +151,7 @@ export default function Recipe({ data, location }) {
         />
       </div>
       <div id="recipe-content" className="ml-lg-auto bg-white">
-        <div className="px-3 mx-auto" style={{ maxWidth: "480px" }}>
+        <div className="px-4 mx-auto" style={{ maxWidth: "480px" }}>
           <Seo title={`${frontmatter.title} | Recipes`} />
           <div className="row">
             <div class="col">
