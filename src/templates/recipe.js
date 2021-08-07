@@ -19,35 +19,32 @@ const Ingredient = ({ text }) => {
   const [checked, setChecked] = useState(false);
   const icon = checked ? faCheckCircle : faCircle;
   const classes = classNames(
+    "transition",
     { "text-primary": checked },
     { "text-grey": !checked }
   );
+  const textClasses = classNames("ml-2", "transition", {
+    "opacity-50": checked,
+  });
   const handleClick = () => {
     setChecked(!checked);
   };
   return (
-    <div className="d-flex align-items-center pb-1">
-      <span
-        onClick={() => {
-          handleClick();
-        }}
-        className="rounded-circle bg-transparent border-0 lead"
-      >
+    <div
+      className="d-flex align-items-center py-1"
+      style={{ cursor: "pointer" }}
+      onClick={() => {
+        handleClick();
+      }}
+    >
+      <span className="rounded-circle bg-transparent border-0 lead">
         <FontAwesomeIcon
           className={classes}
           icon={icon}
           style={{ width: "2.25rem", height: "2.25rem" }}
         />
       </span>
-      <span
-        className="ml-2"
-        style={{ cursor: "pointer" }}
-        onClick={() => {
-          handleClick();
-        }}
-      >
-        {text}
-      </span>
+      <span className={textClasses}>{text}</span>
     </div>
   );
 };
@@ -56,16 +53,24 @@ const Step = ({ number, text, isLast }) => {
   const [checked, setChecked] = useState(false);
   const icon = checked ? faCheckCircle : faCircle;
   const iconClasses = classNames(
-    "w-100 h-100",
+    "w-100 h-100 transition",
     { "text-primary": checked },
     { "text-grey": !checked }
   );
-  const textClasses = classNames("pl-3", { "text-muted": checked });
+  const textClasses = classNames("pl-3", "transition", {
+    "opacity-50": checked,
+  });
   const handleClick = () => {
     setChecked(!checked);
   };
   return (
-    <div className="d-flex position-relative pb-5">
+    <div
+      className="d-flex position-relative pb-5"
+      style={{ cursor: "pointer" }}
+      onClick={() => {
+        handleClick();
+      }}
+    >
       {!isLast && (
         <div
           className="d-flex position-absolute align-items-center justify-content-center"
@@ -90,19 +95,10 @@ const Step = ({ number, text, isLast }) => {
           height: "2.5rem",
           flexShrink: 0,
         }}
-        onClick={() => {
-          handleClick();
-        }}
       >
         <FontAwesomeIcon icon={icon} className={iconClasses} />
       </div>
-      <div
-        className={textClasses}
-        style={{ flexGrow: 1 }}
-        onClick={() => {
-          handleClick();
-        }}
-      >
+      <div className={textClasses} style={{ flexGrow: 1 }}>
         <div className="text-uppercase small font-weight-bolder text-primary">
           Step {number}
         </div>
