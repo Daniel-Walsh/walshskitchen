@@ -9,11 +9,12 @@ import {
 } from "@fortawesome/pro-solid-svg-icons";
 import Seo from "../components/seo";
 import { graphql, Link } from "gatsby";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import Footer from "../components/footer";
 import Section from "../components/section";
 import SectionHeading from "../components/section-heading";
+import Header from "../components/header";
 
 const Ingredient = ({ text }) => {
   const [checked, setChecked] = useState(false);
@@ -123,14 +124,46 @@ const SectionInstructions = ({ text }) => {
 export default function Recipe({ data, location }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
+
+  // const [scrolled, setScrolled] = useState(false);
+  // const scrollRef = useRef(scrolled);
+
+  // const [headerClasses, setHeaderClasses] = useState(
+  //   classNames("position-fixed pl-4 pt-4 w-100")
+  // );
+
+  // useEffect(() => {
+  //   scrollRef.current = scrolled;
+  //   if (scrolled) {
+  //     setHeaderClasses(
+  //       classNames("position-fixed p-3 bg-primary w-100 transition")
+  //     );
+  //   } else {
+  //     setHeaderClasses(classNames("position-fixed pl-4 pt-4 w-100 transition"));
+  //   }
+  // }, [scrolled]);
+
+  // useEffect(() => {
+  //   const onScroll = (event) => {
+  //     if (window.scrollY > 200 && !scrollRef.current) {
+  //       setScrolled(true);
+  //     } else if (window.scrollY < 200 && scrollRef.current) {
+  //       setScrolled(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", onScroll);
+  //   return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
+
   return (
     <>
       <div className="">
-        <div className="position-fixed ml-4 mt-4" style={{ zIndex: 1 }}>
+        <Header />
+        {/* <header className={headerClasses} style={{ zIndex: 1 }}>
           <Link to="/">
             <img src="/logo-round.svg" width="64" heigt="64" />
           </Link>
-        </div>
+        </header> */}
         <div
           className="position-fixed d-none d-lg-block"
           style={{ width: "60%", height: "100vh" }}
@@ -150,7 +183,7 @@ export default function Recipe({ data, location }) {
         <div className="px-4 mx-auto" style={{ maxWidth: "480px" }}>
           <Seo title={`${frontmatter.title} | Recipes`} />
           <div className="row">
-            <div class="col">
+            <div className="col">
               <Section>
                 <h1>{frontmatter.title}</h1>
                 <div
