@@ -3,12 +3,14 @@ date: 2020-01-05
 title: "Pan-Fried Jiaozi"
 image: ./pan-fried-jiaozi.jpg
 ingredients:
-  - 500g chicken mince
-  - 1 carrot, grated
-  - Spring onion, finely chopped
-  - 120g hoisin sauce
-  - 2 packets of Double Merinos Fresh Gow Gee Pastry (30pcs)
-  - Soy sauce and sushi seasoning to serve
+  - heading|Dumplings
+  - item|500g chicken mince
+  - item|1 carrot, grated
+  - item|Spring onion, finely chopped
+  - item|70g hoisin sauce
+  - item|2 packets of Double Merinos Fresh Gow Gee Pastry (30pcs)
+  - heading|Sauce
+  - item|Soy sauce and sushi seasoning to serve
 directions:
   - In a bowl, mix together the chicken, carrot, spring onion and hoisin sauce.
   - In the centre of each pastry, place a teaspoon full of the mixture, line the edge with water, then fold in half and pleat the edges.
