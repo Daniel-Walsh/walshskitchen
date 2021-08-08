@@ -1,15 +1,10 @@
 import Img from "gatsby-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCircle } from "@fortawesome/pro-regular-svg-icons";
-import {
-  faReply,
-  faSalad,
-  faListOl,
-  faCircle as faCircleSolid,
-} from "@fortawesome/pro-solid-svg-icons";
+import { faReply, faSalad, faListOl } from "@fortawesome/pro-solid-svg-icons";
 import Seo from "../components/seo";
 import { graphql, Link } from "gatsby";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 import Footer from "../components/footer";
 import Section from "../components/section";
@@ -125,62 +120,23 @@ export default function Recipe({ data, location }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
 
-  // const [scrolled, setScrolled] = useState(false);
-  // const scrollRef = useRef(scrolled);
-
-  // const [headerClasses, setHeaderClasses] = useState(
-  //   classNames("position-fixed pl-4 pt-4 w-100")
-  // );
-
-  // useEffect(() => {
-  //   scrollRef.current = scrolled;
-  //   if (scrolled) {
-  //     setHeaderClasses(
-  //       classNames("position-fixed p-3 bg-primary w-100 transition")
-  //     );
-  //   } else {
-  //     setHeaderClasses(classNames("position-fixed pl-4 pt-4 w-100 transition"));
-  //   }
-  // }, [scrolled]);
-
-  // useEffect(() => {
-  //   const onScroll = (event) => {
-  //     if (window.scrollY > 200 && !scrollRef.current) {
-  //       setScrolled(true);
-  //     } else if (window.scrollY < 200 && scrollRef.current) {
-  //       setScrolled(false);
-  //     }
-  //   };
-  //   window.addEventListener("scroll", onScroll);
-  //   return () => window.removeEventListener("scroll", onScroll);
-  // }, []);
-
   return (
     <>
       <div className="">
         <Header />
-        {/* <header className={headerClasses} style={{ zIndex: 1 }}>
-          <Link to="/">
-            <img src="/logo-round.svg" width="64" heigt="64" />
-          </Link>
-        </header> */}
-        <div
-          className="position-fixed d-none d-lg-block"
-          style={{ width: "60%", height: "100vh" }}
-        >
+        <div className="fixed hidden lg:block w-3/5 h-screen">
           <Img
             fluid={frontmatter.image.childImageSharp.fluid}
-            className="d-none d-lg-block mw-100 min-vh-100"
+            className="hidden lg:block min-w-full min-h-screen"
           />
         </div>
         <Img
           fluid={frontmatter.image.childImageSharp.fluid}
-          className="mw-100 d-lg-none"
-          style={{ maxHeight: "500px" }}
+          className="min-w-full lg:hidden max-h-96"
         />
       </div>
-      <div id="recipe-content" className="ml-lg-auto bg-white">
-        <div className="px-4 mx-auto" style={{ maxWidth: "480px" }}>
+      <div id="recipe-content" className="bg-white lg:w-2/5 lg:ml-auto">
+        <div className="px-4 mx-auto max-w-md">
           <Seo title={`${frontmatter.title} | Recipes`} />
           <div className="row">
             <div className="col">
@@ -214,12 +170,15 @@ export default function Recipe({ data, location }) {
                       switch (entryType) {
                         case "heading":
                           return (
-                            <div className="lead font-weight-bold mt-3 mb-1">
+                            <div
+                              key={index}
+                              className="lead font-weight-bold mt-3 mb-1"
+                            >
                               {entryText}
                             </div>
                           );
                         case "item":
-                          return <Ingredient text={entryText} />;
+                          return <Ingredient key={index} text={entryText} />;
                       }
                     })}
                   </div>

@@ -12,7 +12,7 @@ const Header = () => {
   const scrollRef = useRef(scrolled);
 
   const [headerClasses, setHeaderClasses] = useState(
-    classNames("position-fixed pl-4 pt-4 w-100")
+    classNames("fixed pl-4 pt-4 w-full")
   );
 
   const [headerIconStyles, setHeaderIconStyles] = useState({});
@@ -21,11 +21,11 @@ const Header = () => {
     scrollRef.current = scrolled;
     if (scrolled) {
       setHeaderClasses(
-        classNames("position-fixed px-4 py-3 bg-primary w-100 transition")
+        classNames("fixed px-4 py-3 bg-primary w-full transition-all")
       );
       setHeaderIconStyles({ height: "40px", width: "40px" });
     } else {
-      setHeaderClasses(classNames("position-fixed pl-4 pt-4 w-100 transition"));
+      setHeaderClasses(classNames("fixed pl-4 pt-4 w-full transition-all"));
       setHeaderIconStyles({});
     }
   }, [scrolled]);
@@ -44,17 +44,17 @@ const Header = () => {
 
   return (
     <header className={headerClasses} style={{ zIndex: 1 }}>
-      <Link to="/">
+      <Link to="/recipes">
         <img
           src="/logo-round.svg"
           width="64"
           heigt="64"
           style={headerIconStyles}
-          className="transition"
+          className="transition-all inline-block"
         />
       </Link>
       {scrolled && (
-        <span className="transition d-lg-none text-white">
+        <span className="transition-all lg:hidden text-white">
           <FontAwesomeIcon icon={faChevronLeft} className="mx-2" />
           Back to recipes
         </span>

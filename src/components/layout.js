@@ -11,7 +11,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 // import Img from "gatsby-image"
 
 // import Header from "./header"
-import "./layout.scss";
+// import "./layout.scss";
 import Logo from "./image";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faUtensils } from "@fortawesome/pro-regular-svg-icons"
