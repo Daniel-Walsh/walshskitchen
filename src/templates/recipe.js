@@ -15,9 +15,9 @@ const Ingredient = ({ text }) => {
   const [checked, setChecked] = useState(false);
   const icon = checked ? faCheckCircle : faCircle;
   const classes = classNames(
-    "transition",
+    "transition w-9 h-9",
     { "text-primary": checked },
-    { "text-grey": !checked }
+    { "text-gray-300": !checked }
   );
   const textClasses = classNames("ml-2", "transition", {
     "opacity-50": checked,
@@ -27,13 +27,13 @@ const Ingredient = ({ text }) => {
   };
   return (
     <div
-      className="d-flex align-items-center py-1"
+      className="flex items-center py-2"
       style={{ cursor: "pointer" }}
       onClick={() => {
         handleClick();
       }}
     >
-      <span className="rounded-circle bg-transparent border-0 lead">
+      <span className="rounded-full bg-transparent border-0 text-lg">
         <FontAwesomeIcon
           className={classes}
           icon={icon}
@@ -49,9 +49,9 @@ const Step = ({ number, text, isLast }) => {
   const [checked, setChecked] = useState(false);
   const icon = checked ? faCheckCircle : faCircle;
   const iconClasses = classNames(
-    "w-100 h-100 transition",
+    "w-full h-full transition",
     { "text-primary": checked },
-    { "text-grey": !checked }
+    { "text-gray-200": !checked }
   );
   const textClasses = classNames("pl-3", "transition", {
     "opacity-50": checked,
@@ -61,7 +61,7 @@ const Step = ({ number, text, isLast }) => {
   };
   return (
     <div
-      className="d-flex position-relative pb-5"
+      className="flex relative pb-12"
       style={{ cursor: "pointer" }}
       onClick={() => {
         handleClick();
@@ -69,33 +69,41 @@ const Step = ({ number, text, isLast }) => {
     >
       {!isLast && (
         <div
-          className="d-flex position-absolute align-items-center justify-content-center"
-          style={{
-            width: "2.5rem",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-          }}
+          className="flex absolute items-center justify-center w-10 inset-0"
+          style={
+            {
+              // width: "2.5rem",
+              // top: 0,
+              // left: 0,
+              // bottom: 0,
+              // right: 0,
+            }
+          }
         >
           <div
-            className="h-100 w-1 bg-grey pointer-events-none"
-            style={{ width: ".25rem" }}
+            className="h-full w-1 bg-gray-200 pointer-events-none"
+            // style={{ width: ".25rem" }}
           ></div>
         </div>
       )}
       <div
-        className="d-inline-flex position-relative rounded-circle bg-white"
-        style={{
-          width: "2.5rem",
-          height: "2.5rem",
-          flexShrink: 0,
-        }}
+        className="inline-flex relative rounded-full bg-white w-10 h-10 flex-shrink-0"
+        style={
+          {
+            // width: "2.5rem",
+            // height: "2.5rem",
+            // flexShrink: 0,
+          }
+        }
       >
-        <FontAwesomeIcon icon={icon} className={iconClasses} />
+        <FontAwesomeIcon
+          icon={icon}
+          className={iconClasses}
+          style={{ width: "100%", height: "100%" }}
+        />
       </div>
       <div className={textClasses} style={{ flexGrow: 1 }}>
-        <div className="text-uppercase small font-weight-bolder text-primary">
+        <div className="uppercase text-sm font-bold text-primary">
           Step {number}
         </div>
         {text}
@@ -106,13 +114,34 @@ const Step = ({ number, text, isLast }) => {
 
 const SectionInstructions = ({ text }) => {
   return (
-    <div className="d-flex align-items-center mb-3 ml-2">
+    <div className="flex items-center mb-4 ml-3">
       <FontAwesomeIcon
         icon={faReply}
-        style={{ transform: "rotate(-90deg)", opacity: 0.4 }}
+        className="text-gray-400 transform -rotate-90 scale-125"
       />
-      <div className="ml-2">{text}</div>
+      <div className="ml-3">{text}</div>
     </div>
+  );
+};
+
+const TagsList = ({ tags }) => {
+  if (!tags || tags.length === 0) {
+    return null;
+  }
+
+  return (
+    <ul id="recipe-tags" className="flex flex-wrap list-none">
+      {tags.map((tag, index) => (
+        <li key={index}>
+          <Link
+            className="inline-block text-primary underline hover:no-underline bg-red-100 hover:bg-red-50 px-2 py-1 mb-2 mr-2 whitespace-nowrap rounded-lg transition-colors"
+            to={`/tags/${tag}`}
+          >
+            #{tag}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 
@@ -121,8 +150,8 @@ export default function Recipe({ data, location }) {
   const { frontmatter, html } = markdownRemark;
 
   return (
-    <>
-      <div className="">
+    <div className="text-gray-800">
+      <div>
         <Header />
         <div className="fixed hidden lg:block w-3/5 h-screen">
           <Img
@@ -136,28 +165,18 @@ export default function Recipe({ data, location }) {
         />
       </div>
       <div id="recipe-content" className="bg-white lg:w-2/5 lg:ml-auto">
-        <div className="px-4 mx-auto max-w-md">
+        <div className="px-5 mx-auto max-w-md">
           <Seo title={`${frontmatter.title} | Recipes`} />
           <div className="row">
             <div className="col">
               <Section>
-                <h1>{frontmatter.title}</h1>
+                <h1 className="font-display text-4xl leading-snug mb-4 pt-10">
+                  {frontmatter.title}
+                </h1>
                 <div
-                  className="lead"
+                  className="text-xl leading-normal mb-6"
                   dangerouslySetInnerHTML={{ __html: html }}
                 ></div>
-
-                {frontmatter.tags && frontmatter.tags.length > 0 && (
-                  <ul id="recipe-tags" className="d-inline list-inline">
-                    {frontmatter.tags.map((tag, index) => (
-                      <li key={index} className="list-inline-item">
-                        <span className="badge badge-pill badge-grey">
-                          <Link to={`/tags/${tag}`}>#{tag}</Link>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </Section>
 
               <Section>
@@ -172,7 +191,7 @@ export default function Recipe({ data, location }) {
                           return (
                             <div
                               key={index}
-                              className="lead font-weight-bold mt-3 mb-1"
+                              className="text-lg font-semibold mt-4 mb-2"
                             >
                               {entryText}
                             </div>
@@ -202,10 +221,17 @@ export default function Recipe({ data, location }) {
                 )}
               </Section>
 
+              <Section>
+                <div className="bg-gray-100 rounded-lg p-4">
+                  <p className="mb-2">Find more recipes tagged under:</p>
+                  <TagsList tags={frontmatter.tags} />
+                </div>
+              </Section>
+
               {frontmatter.servingSuggestion && (
                 <div
                   id="talking-bubble"
-                  className="border border-dark px-4 py-3  font-weight-bold text-uppercase position-relative"
+                  className="border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
                 >
                   {frontmatter.servingSuggestion}
                 </div>
@@ -216,7 +242,7 @@ export default function Recipe({ data, location }) {
         </div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

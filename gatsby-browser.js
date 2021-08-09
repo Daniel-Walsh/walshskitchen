@@ -9,4 +9,5 @@
 // import "bootstrap/dist/js/bootstrap.bundle";
 import "@fontsource/pacifico";
 import "@fontsource/kalam";
+import "@fontsource/open-sans";
 import "./src/styles/global.css";

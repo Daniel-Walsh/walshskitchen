@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@fontsource/kalam": "^4.5.0",
+    "@fontsource/open-sans": "^4.5.0",
     "@fontsource/pacifico": "^4.5.0",
     "@fortawesome/fontawesome-pro": "^5.15.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",

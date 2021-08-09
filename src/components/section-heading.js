@@ -3,7 +3,7 @@ import { faCircle } from "@fortawesome/pro-solid-svg-icons";
 
 const SectionHeading = ({ text, icon }) => {
   return (
-    <h2 className="h3">
+    <h2 className="font-display leading-snug text-3xl mb-2 mt-6">
       <span className="fa-layers fa-fw">
         <FontAwesomeIcon
           icon={faCircle}
