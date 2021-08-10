@@ -8,27 +8,6 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const scrollRef = useRef(scrolled);
 
-  const [headerClasses, setHeaderClasses] = useState(
-    classNames("fixed pl-4 pt-4 w-full")
-  );
-
-  const [headerIconStyles, setHeaderIconStyles] = useState({});
-
-  useEffect(() => {
-    scrollRef.current = scrolled;
-    if (scrolled) {
-      setHeaderClasses(
-        classNames(
-          "fixed px-5 py-3 bg-primary bg-opacity-95 w-full transition-all"
-        )
-      );
-      setHeaderIconStyles({ height: "36px", width: "36px" });
-    } else {
-      setHeaderClasses(classNames("fixed pl-4 pt-4 w-full transition-all"));
-      setHeaderIconStyles({});
-    }
-  }, [scrolled]);
-
   useEffect(() => {
     const onScroll = (event) => {
       if (window.scrollY > 200 && !scrollRef.current) {
@@ -41,15 +20,32 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    scrollRef.current = scrolled;
+  }, [scrolled]);
+
+  const headerClasses = classNames(
+    "fixed px-4 py-4 w-full bg-opacity-95 transition-all",
+    { "px-4 py-4 bg-transparent": !scrolled },
+    {
+      "px-5 py-3 bg-primary lg:px-4 lg:py-4 lg:bg-transparent": scrolled,
+    }
+  );
+
+  const logoClasses = classNames(
+    "transition-all inline-block",
+    { "w-16 h-16": !scrolled },
+    { "w-9 h-9 lg:w-16 lg:h-16": scrolled }
+  );
+
   return (
-    <header className={headerClasses} style={{ zIndex: 1 }}>
+    <header style={{ zIndex: 1 }} className={headerClasses}>
       <Link to="/recipes">
         <img
           src="/logo-round.svg"
           width="64"
           heigt="64"
-          style={headerIconStyles}
-          className="transition-all inline-block"
+          className={logoClasses}
         />
       </Link>
       {scrolled && (

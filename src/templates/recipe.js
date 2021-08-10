@@ -144,18 +144,30 @@ export default function Recipe({ data, location }) {
 
   return (
     <div className="text-gray-800">
-      <div>
+      <div className="relative">
         <Header />
         <div className="fixed hidden lg:block w-3/5 h-screen">
+          <div className="relative">
+            <Img
+              fluid={frontmatter.image.childImageSharp.fluid}
+              className="min-w-full min-h-screen"
+            />
+            <div
+              className="absolute inset-y-0 right-0 w-20 bg-primary opacity-90"
+              style={{ clipPath: "polygon(60% 0, 100% 0, 100% 100%, 0 100%)" }}
+            ></div>
+          </div>
+        </div>
+        <div className="min-w-full lg:hidden">
           <Img
             fluid={frontmatter.image.childImageSharp.fluid}
-            className="hidden lg:block min-w-full min-h-screen"
+            className="max-h-96"
           />
+          <div
+            className="absolute inset-x-0 bottom-0 h-12 bg-primary opacity-90"
+            style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }}
+          ></div>
         </div>
-        <Img
-          fluid={frontmatter.image.childImageSharp.fluid}
-          className="min-w-full lg:hidden max-h-96"
-        />
       </div>
       <div id="recipe-content" className="bg-white lg:w-2/5 lg:ml-auto">
         <div className="px-5 mx-auto max-w-md">
