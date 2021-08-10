@@ -126,17 +126,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   // Create blog-list pages
   const posts = result.data.recipes.edges;
-  const postsPerPage = 6;
+  const postsPerPage = 12;
   const numPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `/recipes` : `/recipes/page/${i + 1}`,
+      path: i === 0 ? `/` : `/page/${i + 1}`,
       component: recipeListTemplate,
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
         numPages,
         currentPage: i + 1,
+        numRecipes: posts.length,
       },
     });
   });

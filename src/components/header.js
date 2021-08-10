@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header style={{ zIndex: 1 }} className={headerClasses}>
-      <Link to="/recipes">
+      <Link to="/">
         <img
           src="/logo-round.svg"
           width="64"
