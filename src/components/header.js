@@ -3,10 +3,7 @@ import { Link } from "gatsby";
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/pro-solid-svg-icons";
-// import PropTypes from "prop-types";
-// import React from "react"
 
-// const Header = ({ siteTitle }) => {
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const scrollRef = useRef(scrolled);
@@ -21,9 +18,11 @@ const Header = () => {
     scrollRef.current = scrolled;
     if (scrolled) {
       setHeaderClasses(
-        classNames("fixed px-4 py-3 bg-primary w-full transition-all")
+        classNames(
+          "fixed px-5 py-3 bg-primary bg-opacity-95 w-full transition-all"
+        )
       );
-      setHeaderIconStyles({ height: "40px", width: "40px" });
+      setHeaderIconStyles({ height: "36px", width: "36px" });
     } else {
       setHeaderClasses(classNames("fixed pl-4 pt-4 w-full transition-all"));
       setHeaderIconStyles({});
@@ -62,13 +61,5 @@ const Header = () => {
     </header>
   );
 };
-
-// Header.propTypes = {
-//   siteTitle: PropTypes.string,
-// };
-
-// Header.defaultProps = {
-//   siteTitle: ``,
-// };
 
 export default Header;

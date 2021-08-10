@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-#talking-bubble {
-  font-family: Kalam;
-}
 #talking-bubble:before {
   content: "";
   width: 0px;

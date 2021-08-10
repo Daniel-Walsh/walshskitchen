@@ -6,12 +6,16 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      animation: {
+        "ping-once": "ping 1s cubic-bezier(0, 0, 0.2, 1) forwards",
+      },
       colors: {
         primary: "#e83333",
       },
       fontFamily: {
         display: ["Pacifico", ...defaultTheme.fontFamily.serif],
         sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
+        comic: ["Pangolin", ...defaultTheme.fontFamily.sans],
       },
     },
   },

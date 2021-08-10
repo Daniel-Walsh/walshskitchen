@@ -11,14 +11,44 @@ import Section from "../components/section";
 import SectionHeading from "../components/section-heading";
 import Header from "../components/header";
 
-const Ingredient = ({ text }) => {
-  const [checked, setChecked] = useState(false);
+const getRandomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+const Checkmark = ({ checked }) => {
   const icon = checked ? faCheckCircle : faCircle;
   const classes = classNames(
-    "transition w-9 h-9",
-    { "text-primary": checked },
-    { "text-gray-300": !checked }
+    "w-9 h-9 text-4xl leading-none",
+    { "text-primary opacity-80 block": checked },
+    { hidden: !checked }
   );
+
+  const translateX = getRandomInt(-5, 5);
+  const translateY = getRandomInt(-5, 5);
+  const rotate = getRandomInt(-10, 10);
+  const randomTransform = {
+    transform: `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`,
+  };
+
+  return (
+    <span className="fa-layers fa-fw w-9 h-9 relative">
+      <FontAwesomeIcon
+        icon={faCircle}
+        className="text-gray-200 text-4xl leading-none w-9 h-9"
+      />
+      <span className="inline-block w-9 h-9" style={randomTransform}>
+        <FontAwesomeIcon
+          icon={faCircle}
+          className={`${classes} animate-ping-once`}
+        />
+        <FontAwesomeIcon icon={icon} className={classes} />
+      </span>
+    </span>
+  );
+};
+
+const Ingredient = ({ text }) => {
+  const [checked, setChecked] = useState(false);
   const textClasses = classNames("ml-2", "transition", {
     "opacity-50": checked,
   });
@@ -34,11 +64,7 @@ const Ingredient = ({ text }) => {
       }}
     >
       <span className="rounded-full bg-transparent border-0 text-lg">
-        <FontAwesomeIcon
-          className={classes}
-          icon={icon}
-          style={{ width: "2.25rem", height: "2.25rem" }}
-        />
+        <Checkmark checked={checked} />
       </span>
       <span className={textClasses}>{text}</span>
     </div>
@@ -47,12 +73,6 @@ const Ingredient = ({ text }) => {
 
 const Step = ({ number, text, isLast }) => {
   const [checked, setChecked] = useState(false);
-  const icon = checked ? faCheckCircle : faCircle;
-  const iconClasses = classNames(
-    "w-full h-full transition",
-    { "text-primary": checked },
-    { "text-gray-200": !checked }
-  );
   const textClasses = classNames("pl-3", "transition", {
     "opacity-50": checked,
   });
@@ -68,39 +88,12 @@ const Step = ({ number, text, isLast }) => {
       }}
     >
       {!isLast && (
-        <div
-          className="flex absolute items-center justify-center w-10 inset-0"
-          style={
-            {
-              // width: "2.5rem",
-              // top: 0,
-              // left: 0,
-              // bottom: 0,
-              // right: 0,
-            }
-          }
-        >
-          <div
-            className="h-full w-1 bg-gray-200 pointer-events-none"
-            // style={{ width: ".25rem" }}
-          ></div>
+        <div className="flex absolute items-center justify-center w-9 inset-0">
+          <div className="h-full w-1 bg-gray-200 pointer-events-none"></div>
         </div>
       )}
-      <div
-        className="inline-flex relative rounded-full bg-white w-10 h-10 flex-shrink-0"
-        style={
-          {
-            // width: "2.5rem",
-            // height: "2.5rem",
-            // flexShrink: 0,
-          }
-        }
-      >
-        <FontAwesomeIcon
-          icon={icon}
-          className={iconClasses}
-          style={{ width: "100%", height: "100%" }}
-        />
+      <div className="inline-flex relative rounded-full bg-white w-9 h-9 flex-shrink-0">
+        <Checkmark checked={checked} />
       </div>
       <div className={textClasses} style={{ flexGrow: 1 }}>
         <div className="uppercase text-sm font-bold text-primary">
@@ -222,21 +215,23 @@ export default function Recipe({ data, location }) {
               </Section>
 
               <Section>
+                {frontmatter.servingSuggestion && (
+                  <div
+                    id="talking-bubble"
+                    className="font-comic border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
+                  >
+                    {frontmatter.servingSuggestion}
+                  </div>
+                )}
+                <img src="/dan.svg" />
+              </Section>
+
+              <Section>
                 <div className="bg-gray-100 rounded-lg p-4">
                   <p className="mb-2">Find more recipes tagged under:</p>
                   <TagsList tags={frontmatter.tags} />
                 </div>
               </Section>
-
-              {frontmatter.servingSuggestion && (
-                <div
-                  id="talking-bubble"
-                  className="border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
-                >
-                  {frontmatter.servingSuggestion}
-                </div>
-              )}
-              <img src="/dan.svg" />
             </div>
           </div>
         </div>

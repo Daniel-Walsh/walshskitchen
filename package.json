@@ -5,9 +5,12 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@fontsource/itim": "^4.5.0",
     "@fontsource/kalam": "^4.5.0",
     "@fontsource/open-sans": "^4.5.0",
     "@fontsource/pacifico": "^4.5.0",
+    "@fontsource/pangolin": "^4.5.0",
+    "@fontsource/roboto": "^4.5.0",
     "@fortawesome/fontawesome-pro": "^5.15.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
