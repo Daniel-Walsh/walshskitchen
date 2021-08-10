@@ -3,18 +3,18 @@ date: 2020-01-20
 title: "Mince and Totties"
 image: ./mince-and-totties.jpg
 ingredients:
-  - 1 kg beef mince
-  - 2 large brown onions, roughly chopped
-  - 2 large carrots, peeled and roughly chopped
-  - 8 large potatoes, peeled and cubed
-  - 4 tbsp curry powder
-  - 1 tbsp mustard powder
-  - 1 cup tomato sauce
-  - 1/4 cup Worcestershire sauce
-  - 2 beef stock cubes
-  - 2 tbsp white vinegar
-  - 2–3 tbsp Gravox traditional powder
-  - 2 tbsp vegetable oil
+  - item|1 kg beef mince
+  - item|2 large brown onions, roughly chopped
+  - item|2 large carrots, peeled and roughly chopped
+  - item|8 large potatoes, peeled and cubed
+  - item|4 tbsp curry powder
+  - item|1 tbsp mustard powder
+  - item|1 cup tomato sauce
+  - item|1/4 cup Worcestershire sauce
+  - item|2 beef stock cubes
+  - item|2 tbsp white vinegar
+  - item|2–3 tbsp Gravox traditional powder
+  - item|2 tbsp vegetable oil
 directions:
   - In a large pot, add the onion and vegetable oil and cook until the onions are soft and translucent. Add the beef mince and cook until browned, breaking it up at you go.
   - Add the curry powder, mustard powder tomato sauce, white vinegar and Worcestershire sauce and stir to combine.

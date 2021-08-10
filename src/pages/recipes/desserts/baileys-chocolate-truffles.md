@@ -3,10 +3,10 @@ date: 2020-12-23
 title: "Baileys Chocolate Truffles"
 image: ./baileys-chocolate-truffles.jpg
 ingredients:
-  - butter|90g butter
-  - milk|1/2 cup thickened cream
-  - chocolate|300g dark chocolate, chopped (at least 70% cocoa solids)
-  - 2-4 tbsp Baileys Irish Cream
+  - item|90g butter
+  - item|1/2 cup thickened cream
+  - item|300g dark chocolate, chopped (at least 70% cocoa solids)
+  - item|2-4 tbsp Baileys Irish Cream
 directions:
   - Place butter and cream in a small pan. Heat until butter melts and mixture boils.
   - Add chocolate. Stir over low heat until melted. Cool, then stir in Baileys Irish Cream. Transfer mixture to a bowl.

@@ -3,14 +3,14 @@ date: 2021-01-31
 title: "Chocolate Chip Cookies"
 image: ./chocolate-chip-cookies.jpg
 ingredients:
-  - 150g butter, room temperature
-  - 1/2 cup (100g) caster sugar
-  - 1/2 cup (80g) packed brown sugar
-  - 1 egg
-  - 1 tsp vanilla extract
-  - 1 3/4 cups (215g) plain flour
-  - 1/2 cup (85g) dark chocolate chips
-  - 1/2 cup (85g) milk chocolate chips
+  - item|150g butter, room temperature
+  - item|1/2 cup (100g) caster sugar
+  - item|1/2 cup (80g) packed brown sugar
+  - item|1 egg
+  - item|1 tsp vanilla extract
+  - item|1 3/4 cups (215g) plain flour
+  - item|1/2 cup (85g) dark chocolate chips
+  - item|1/2 cup (85g) milk chocolate chips
 directions:
   - Preheat oven to 180°C/Gas 4 and line two baking trays with greaseproof paper.
   - Place butter, sugars and vanilla in an electric mixer and beat for 1-2 minutes until smooth and well combined. Add egg and whisk until combined.

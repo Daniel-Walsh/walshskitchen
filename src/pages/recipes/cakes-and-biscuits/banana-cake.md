@@ -3,21 +3,21 @@ date: 2020-01-21
 title: "Banana Cake"
 image: ./banana-cake.jpg
 ingredients:
-  - 125 gram butter, softened
-  - 1/2 cup (110g) brown sugar
-  - 1/2 cup (110g) caster sugar
-  - 2 eggs
-  - 3 (280g) bananas, mashed
-  - 1 teaspoon vanilla extract
-  - 1 1/2 cup (225g) wholemeal self-raising flour
-  - 1/2 teaspoon bicarbonate of soda
-  - pinch of salt
-  - 1 teaspoon ground nutmeg
-  - 1 teaspoon ground cinnamon
-  - 3 tablespoon tablespoons milk
-  - icing sugar, to dust
-  - 1/4 cup (55g) caster sugar to glaze
-  - 1 cup boiling water
+  - item|125 gram butter, softened
+  - item|1/2 cup (110g) brown sugar
+  - item|1/2 cup (110g) caster sugar
+  - item|2 eggs
+  - item|3 (280g) bananas, mashed
+  - item|1 teaspoon vanilla extract
+  - item|1 1/2 cup (225g) wholemeal self-raising flour
+  - item|1/2 teaspoon bicarbonate of soda
+  - item|pinch of salt
+  - item|1 teaspoon ground nutmeg
+  - item|1 teaspoon ground cinnamon
+  - item|3 tablespoon tablespoons milk
+  - item|icing sugar, to dust
+  - item|1/4 cup (55g) caster sugar to glaze
+  - item|1 cup boiling water
 directions:
   - Preheat your oven to 180°C (160°C fan-forced). Grease and line a 22cm cake tin. A loaf cake tin also works really well.
   - Beat the butter and sugars until pale and fluffy. Add the eggs, one at a time, and beat until just combined. Add the mashed banana and vanilla, and mix until combined.

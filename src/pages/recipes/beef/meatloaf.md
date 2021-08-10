@@ -4,23 +4,23 @@ title: "Meatloaf"
 image: ./meatloaf.jpg
 ingredients:
   - heading|Meatloaf
-  - 1 kg beef mince
-  - 1 cup breadcrumbs
-  - 1 large onion
-  - 2 eggs, beaten
-  - 1/2 cup water
-  - 1/2 cup milk
-  - 2 tsp curry powder
-  - 1 cup oats
-  - 2 tbsp parsley (dry or fresh)
-  - Salt & pepper
+  - item|1 kg beef mince
+  - item|1 cup breadcrumbs
+  - item|1 large onion
+  - item|2 eggs, beaten
+  - item|1/2 cup water
+  - item|1/2 cup milk
+  - item|2 tsp curry powder
+  - item|1 cup oats
+  - item|2 tbsp parsley (dry or fresh)
+  - item|Salt & pepper
   - heading|Sauce
-  - 3/4 cup water
-  - 1/2 cup Worcestershire sauce
-  - 3 tsp vinegar
-  - 3 tsp lemon juice
-  - 1/2 cup tomato sauce
-  - 1 tbsp butter, melted
+  - item|3/4 cup water
+  - item|1/2 cup Worcestershire sauce
+  - item|3 tsp vinegar
+  - item|3 tsp lemon juice
+  - item|1/2 cup tomato sauce
+  - item|1 tbsp butter, melted
 directions:
   - Preheat oven to 180°C (fan forced).
   - Combine meat, breadcrumbs, onion, oats, curry powder, salt, pepper and eggs together in a large bowl. Add milk and water. Place in a large baking tray/dish.

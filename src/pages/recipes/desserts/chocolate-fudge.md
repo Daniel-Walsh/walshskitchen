@@ -3,9 +3,9 @@ date: 2020-01-09
 title: "Chocolate Fudge"
 image: ./chocolate-fudge.jpg
 ingredients:
-  - 60g unsalted cooking butter
-  - 375g chocolate melts
-  - 1 tin condensed milk
+  - item|60g unsalted cooking butter
+  - item|375g chocolate melts
+  - item|1 tin condensed milk
 directions:
   - Add all ingredients to a microwave safe container and microwave for three minutes.
   - Stir mixture using a metal spoon until combined and pour into a flat tray lined with baking paper.

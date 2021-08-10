@@ -3,17 +3,17 @@ date: 2020-01-01
 title: "Tuna Fritters"
 image: ./tuna-fritters.png
 ingredients:
-  - rice|3/4 cup rice
-  - tuna|1 (425g) tin of tuna, drained
-  - onion|1 medium onion, chopped
-  - milk|1/4 cup milk
-  - egg|2 eggs, separated
-  - flour|2 tbsp flour
-  - sugar|1 tsp sugar
-  - vinegar|1 tsp vinegar
-  - parsley|1 tbsp parsley, chopped
-  - salt|1/2 tsp salt
-  - pepper|1/4 tsp pepper
+  - item|3/4 cup rice
+  - item|1 (425g) tin of tuna, drained
+  - item|1 medium onion, chopped
+  - item|1/4 cup milk
+  - item|2 eggs, separated
+  - item|2 tbsp flour
+  - item|1 tsp sugar
+  - item|1 tsp vinegar
+  - item|1 tbsp parsley, chopped
+  - item|1/2 tsp salt
+  - item|1/4 tsp pepper
 directions:
   - Cook the rice in boiling salted water for 12 minutes; drain.
   - Combine the rice, drained tuna, chopped onion, milk, flour, sugar, vinegar, parsley, salt and pepper.

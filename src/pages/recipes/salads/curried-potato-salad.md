@@ -3,12 +3,12 @@ date: 2020-01-18
 title: "Curried Potato Salad"
 image: ./curried-potato-salad.jpg
 ingredients:
-  - 2kg potatoes, peeled and cubed
-  - 1 cup spring onion, finely chopped
-  - 470–500ml whole egg mayonaise (preferably Heinz Seriously Good)
-  - 1 tsp vegetable stock powder (preferably Vegeta)
-  - 1 tsp curry powder
-  - 1 tsp soy sauce
+  - item|2kg potatoes, peeled and cubed
+  - item|1 cup spring onion, finely chopped
+  - item|470–500ml whole egg mayonaise (preferably Heinz Seriously Good)
+  - item|1 tsp vegetable stock powder (preferably Vegeta)
+  - item|1 tsp curry powder
+  - item|1 tsp soy sauce
 directions:
   - Cook the potatos in boiling water for 30 minutes or until soft and cooked through. Drain and let cool to room temperature.
   - In a bowl, combine the mayonaise, vegetagble stock poweder, curry powder and soy sauce. Taste and adjust the flavour as necessary.

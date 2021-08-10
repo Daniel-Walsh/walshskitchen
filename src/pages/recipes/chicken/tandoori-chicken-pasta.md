@@ -3,12 +3,12 @@ date: 2020-01-10
 title: "Tandoori Chicken Pasta"
 image: ./tandoori-chicken-pasta.jpg
 ingredients:
-  - 500g chicken breast, diced
-  - 90-100g Sharwood’s Tandoori Paste
-  - 2 tbsp coconut oil
-  - 540-600ml coconut cream
-  - Spring onion, finely chopped
-  - 250g red lentil pasta
+  - item|500g chicken breast, diced
+  - item|90-100g Sharwood’s Tandoori Paste
+  - item|2 tbsp coconut oil
+  - item|540-600ml coconut cream
+  - item|Spring onion, finely chopped
+  - item|250g red lentil pasta
 directions:
   - Set a large pot of water on the stove on a high heat to boil.
   - In a separate pot, add the chicken, tandoori paste and the coconut oil and mix thoroughly. Once combined, cook on a medium-to-high heat until the chicken has cooked through.

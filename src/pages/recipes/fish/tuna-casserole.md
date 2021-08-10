@@ -3,20 +3,20 @@ date: 2020-01-19
 title: "Tuna Casserole"
 image: ./tuna-casserole.jpg
 ingredients:
-  - 425g tin of tuna in oil, drained
-  - 400g dry spiral pasta
-  - 1 large brown onion, finely chopped
-  - 100g butter
-  - 3/4 cup flour
-  - 4–5 cups hot water
-  - 2 Massel Ultrastock cubes, chicken
-  - 2 tbsp tomato paste
-  - 2 tbsp curry powder
-  - 1/4 tsp ground pepper
-  - 1/4 tsp cayenne pepper
-  - 1/2 tsp ground paprika
-  - 200g tasty cheese, grated
-  - 1/2 cup breadcrumbs
+  - item|425g tin of tuna in oil, drained
+  - item|400g dry spiral pasta
+  - item|1 large brown onion, finely chopped
+  - item|100g butter
+  - item|3/4 cup flour
+  - item|4–5 cups hot water
+  - item|2 Massel Ultrastock cubes, chicken
+  - item|2 tbsp tomato paste
+  - item|2 tbsp curry powder
+  - item|1/4 tsp ground pepper
+  - item|1/4 tsp cayenne pepper
+  - item|1/2 tsp ground paprika
+  - item|200g tasty cheese, grated
+  - item|1/2 cup breadcrumbs
 directions:
   - Set a large pot of water on the stove to boil. Pre-heat the oven to 200 degrees (180 for fan forced).
   - Add the onions and butter to a large pot and cook over a medium flame until the onions are golden and soft. Add the flour and combine until a soft dough forms.

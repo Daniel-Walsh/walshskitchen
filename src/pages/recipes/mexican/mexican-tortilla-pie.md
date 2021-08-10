@@ -3,18 +3,18 @@ date: 2020-01-13
 title: "Mexican Tortilla Pie"
 image: ./mexican-tortilla-pie.jpg
 ingredients:
-  - 2 tsp olive oil
-  - 1 large red onion, finely chopped
-  - 2 garlic cloves, crushed
-  - 500g beef mince
-  - 1 small red capsicum, finely chopped
-  - 125g can corn kernels, drained, rinsed
-  - 2 tsp Mexican chilli powder
-  - 415g can diced tomatoes
-  - 1/2 cup torn fresh coriander leaves
-  - 4 salsa-flavoured tortillas
-  - 1 1/2 cups grated tasty cheese
-  - 1 large tomato, deseeded, finely chopped
+  - item|2 tsp olive oil
+  - item|1 large red onion, finely chopped
+  - item|2 garlic cloves, crushed
+  - item|500g beef mince
+  - item|1 small red capsicum, finely chopped
+  - item|125g can corn kernels, drained, rinsed
+  - item|2 tsp Mexican chilli powder
+  - item|415g can diced tomatoes
+  - item|1/2 cup torn fresh coriander leaves
+  - item|4 salsa-flavoured tortillas
+  - item|1 1/2 cups grated tasty cheese
+  - item|1 large tomato, deseeded, finely chopped
 directions:
   - Preheat oven to 180°C. Heat oil in a frying pan over medium-high heat. Reserve two tablespoons of onion. Add garlic and remaining onion to pan. Cook, stirring, for three minutes or until soft. Add mince. Cook, breaking up mince with a wooden spoon, for eight minutes or until browned.
   - Add capsicum, corn and chilli powder. Cook, stir, for three minutes or until capsicum is just tender. Stir in diced tomatoes. Reduce head to medium. Simmer, stirring, for five minutes or until mixture is thick. Add half the coriander. Season with salt. Stir to combine. Set aside for ten minutes to cool.

@@ -3,11 +3,11 @@ date: 2020-11-13
 title: "Roti Bread"
 image: ./roti-bread.jpg
 ingredients:
-  - flour|280g plain flour
-  - water|150g tepid water
-  - sugar|10g caster sugar
-  - ghee|10g ghee
-  - ghee|150ml melted ghee, for folding and cooking
+  - item|280g plain flour
+  - item|150g tepid water
+  - item|10g caster sugar
+  - item|10g ghee
+  - item|150ml melted ghee, for folding and cooking
 directions:
   - Place ingredients into the bowl of a stand mixer fitted with a paddle attachment and mix for three minutes.
   - Divide into roughly 100g balls, oil each one well and roughly flatten between two pieces of baking paper. Set aside on the bench to rest for 15 minutes.

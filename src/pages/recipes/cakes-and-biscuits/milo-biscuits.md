@@ -3,12 +3,12 @@ date: 2020-01-17
 title: "Milo Biscuits"
 image: ./milo-biscuits.jpg
 ingredients:
-  - 125 g butter
-  - 1 cup caster sugar
-  - 1 1/2 cups self-raising flour, sifted
-  - 3/4 cup Milo
-  - 1 egg, beaten
-  - (Optional) 100g white chocolate bits
+  - item|125 g butter
+  - item|1 cup caster sugar
+  - item|1 1/2 cups self-raising flour, sifted
+  - item|3/4 cup Milo
+  - item|1 egg, beaten
+  - item|(Optional) 100g white chocolate bits
 directions:
   - Cream butter and sugar together.
   - Add egg and the Milo, then the flour.

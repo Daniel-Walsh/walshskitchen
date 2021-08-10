@@ -3,14 +3,14 @@ date: 2021-01-31
 title: "Double Choc Chip Cookies"
 image: ./double-choc-chip-cookies.jpg
 ingredients:
-  - 125g butter, room temperature
-  - 1/2 cup (100g) caster sugar
-  - 1/2 cup (80g) packed brown sugar
-  - 1 egg
-  - 1 tsp vanilla extract
-  - 1 1/2 cups (185g) self-raising flour
-  - 1/2 cup (60g) cocoa
-  - 3/4 cup (130g) chocolate chips
+  - item|125g butter, room temperature
+  - item|1/2 cup (100g) caster sugar
+  - item|1/2 cup (80g) packed brown sugar
+  - item|1 egg
+  - item|1 tsp vanilla extract
+  - item|1 1/2 cups (185g) self-raising flour
+  - item|1/2 cup (60g) cocoa
+  - item|3/4 cup (130g) chocolate chips
 directions:
   - Preheat oven to 160°C/Gas 3 and line two baking trays with greaseproof paper.
   - In an electric mixer, cream together butter and sugars until light and fluffy. Add egg and vanilla and whisk until combined.

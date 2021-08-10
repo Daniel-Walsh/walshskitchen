@@ -3,16 +3,16 @@ date: 2020-01-08
 title: "Hamburgers"
 image: ./hamburgers.jpg
 ingredients:
-  - 500g beef mince
-  - 1 onion, finely chopped
-  - 1 carrot, finely chopped
-  - 1 apple, finely chopped
-  - 2 eggs
-  - 2 slices of bread
-  - 2 tbsp soy sauce
-  - 1 tbsp Worcestershire sauce
-  - ½ cup tomato sauce
-  - 2 tsp Vegeta vegetable stock
+  - item|500g beef mince
+  - item|1 onion, finely chopped
+  - item|1 carrot, finely chopped
+  - item|1 apple, finely chopped
+  - item|2 eggs
+  - item|2 slices of bread
+  - item|2 tbsp soy sauce
+  - item|1 tbsp Worcestershire sauce
+  - item|½ cup tomato sauce
+  - item|2 tsp Vegeta vegetable stock
 directions:
   - Peel the apple, carrot and onion.
   - Blend the apple, carrot, onion and bread separately in a food processor.

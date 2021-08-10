@@ -3,12 +3,12 @@ date: 2020-01-14
 title: "Easy Peasy Chocolate Cake"
 image: ./easy-peasy-chocolate-cake.jpg
 ingredients:
-  - 1 cup of self raising flour, sifted
-  - 1/3 cup of cocoa powder, sifted
-  - 1 cup of caster sugar
-  - 1/3 cup of butter, softened
-  - 1/2 cup of milk
-  - 2 eggs, lightly beaten
+  - item|1 cup of self raising flour, sifted
+  - item|1/3 cup of cocoa powder, sifted
+  - item|1 cup of caster sugar
+  - item|1/3 cup of butter, softened
+  - item|1/2 cup of milk
+  - item|2 eggs, lightly beaten
 directions:
   - Preheat the fan forced oven to 180 degrees Celsius.
   - Grease your pan with butter and line it with baking paper.

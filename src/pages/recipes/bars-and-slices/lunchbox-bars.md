@@ -3,13 +3,13 @@ date: 2021-01-31
 title: "Lunchbox Bars"
 image: ./lunchbox-bars.jpg
 ingredients:
-  - 50g soft pitted dates
-  - 2 unripe bananas
-  - 75g coconut oil, melted
-  - 100g rolled oats
-  - 100g ground almonds / almond meal
-  - 50g dried cranberries
-  - 30g cashews, chopped
+  - item|50g soft pitted dates
+  - item|2 unripe bananas
+  - item|75g coconut oil, melted
+  - item|100g rolled oats
+  - item|100g ground almonds / almond meal
+  - item|50g dried cranberries
+  - item|30g cashews, chopped
 directions:
   - Preheat the oven to 200°C/180°C fan/Gas 6. Grease and line a 20cm square baking tin with baking paper.
   - Simmer the dates in 100ml water in a small pan for around 10 minutes, or until they have softened and most of the water has evaporated.

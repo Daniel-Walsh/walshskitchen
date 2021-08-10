@@ -3,11 +3,11 @@ date: 2020-01-11
 title: "Scones"
 image: ./scones.jpg
 ingredients:
-  - 4 cups self-raising flour, sifted
-  - ½ tsp salt
-  - 1 cup pouring cream
-  - 375ml-400ml (or 1½ cups) milk
-  - Double cream and raspberry jam to serve
+  - item|4 cups self-raising flour, sifted
+  - item|½ tsp salt
+  - item|1 cup pouring cream
+  - item|375ml-400ml (or 1½ cups) milk
+  - item|Double cream and raspberry jam to serve
 directions:
   - Preheat fan-forced oven to 230°C. Lightly grease large flat oven tray.
   - Combine flour and salt in a large bowl. Add cream and 375ml milk. Use a flat-bladed knife to stir to a soft dough adding more milk if necessary. Turn onto a lightly floured surface and knead gently until dough comes together.

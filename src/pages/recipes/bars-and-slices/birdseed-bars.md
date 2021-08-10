@@ -3,14 +3,14 @@ date: 2020-12-06
 title: "Birdseed Bars"
 image: ./birdseed-bars.png
 ingredients:
-  - 1 1/2 cup almond meal
-  - 1/2 cup hemp seed
-  - 1/4 cup cacao nibs
-  - 1/4 cup Morlife's Dark Chocolate Goji Berries
-  - 5-7 pitted dates
-  - 2 tbsp coconut oil
-  - pinch of Himalayan salt
-  - dark chocolate to drizzle
+  - item|1 1/2 cup almond meal
+  - item|1/2 cup hemp seed
+  - item|1/4 cup cacao nibs
+  - item|1/4 cup Morlife's Dark Chocolate Goji Berries
+  - item|5-7 pitted dates
+  - item|2 tbsp coconut oil
+  - item|pinch of Himalayan salt
+  - item|dark chocolate to drizzle
 directions:
   - Blitz all ingredients in a food processor or blender until mixture is semi smooth & sticky.
   - Press mixture in a lined tin (15cm square) and set in fridge for a few hours, (overnight is best).

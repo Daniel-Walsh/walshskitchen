@@ -3,13 +3,13 @@ date: 2020-01-07
 title: "Roasted Pumpkin Salad"
 image: ./roasted-pumpkin-salad.jpg
 ingredients:
-  - 1.75kg butternut pumpkin, descended, cut into 2cm thick pieces
-  - Olive oil cooking spray
-  - 1/2 cup pine nuts
-  - 200g baby spinach
-  - 1/4 cup honey
-  - 2 tbsp balsamic vinegar
-  - 1 tbsp olive oil
+  - item|1.75kg butternut pumpkin, descended, cut into 2cm thick pieces
+  - item|Olive oil cooking spray
+  - item|1/2 cup pine nuts
+  - item|200g baby spinach
+  - item|1/4 cup honey
+  - item|2 tbsp balsamic vinegar
+  - item|1 tbsp olive oil
 directions:
   - Preheat oven to 200°C. Line two baking trays with baking paper. Place pumpkin in a single layer on trays. Spray with oil and turn to coat. Season with salt and pepper. Roast pumpkin, turning once, for twenty minutes or until golden and tender. Set aside to cool to room temperature.
   - Meanwhile, heat a small, non-stick frying pan over medium heat. Add pine nuts. Cook, stirring, for three minutes or until golden.

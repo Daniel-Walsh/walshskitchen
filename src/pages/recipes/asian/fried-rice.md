@@ -3,17 +3,17 @@ date: 2020-01-02
 title: "Fried Rice"
 image: ./fried-rice.jpg
 ingredients:
-  - rice|1 1/2 cups plain white rice
-  - onion|1 onion, chopped
-  - carrot|1 carrot, chopped
-  - mushroom|Handful of mushrooms, chopped
-  - ham|Handful of sliced ham, chopped
-  - capsicum|Half a red capsicum, chopped
-  - egg|2 eggs, beaten
-  - spice|1/2 teaspoon Chinese five spice
-  - stock|1 tbsp chicken stock
-  - oil|2 tsp sesame oil
-  - sauce|1 tbsp soy sauce
+  - item|1 1/2 cups plain white rice
+  - item|1 onion, chopped
+  - item|1 carrot, chopped
+  - item|Handful of mushrooms, chopped
+  - item|Handful of sliced ham, chopped
+  - item|Half a red capsicum, chopped
+  - item|2 eggs, beaten
+  - item|1/2 teaspoon Chinese five spice
+  - item|1 tbsp chicken stock
+  - item|2 tsp sesame oil
+  - item|1 tbsp soy sauce
 directions:
   - Wash and steam rice.
   - Pour eggs into hot frypan and cook until set, then chop into pieces and put aside with the other chopped ingredients.

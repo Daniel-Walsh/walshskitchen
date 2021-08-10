@@ -3,18 +3,18 @@ date: 2020-01-15
 title: "Curried Tuna Fritters"
 image: ./curried-tuna-fritters.jpg
 ingredients:
-  - 3/4 cup rice
-  - 1 (425g) tin of tuna, drained
-  - 1 medium onion, chopped
-  - 1/4 cup milk
-  - 2 eggs, separated
-  - 2 tbsp flour
-  - 1 tsp sugar
-  - 1 tsp vinegar
-  - 1 tbsp parsley, chopped
-  - 1/2 tsp salt
-  - 1/4 tsp pepper
-  - 4 tbsp curry powder
+  - item|3/4 cup rice
+  - item|1 (425g) tin of tuna, drained
+  - item|1 medium onion, chopped
+  - item|1/4 cup milk
+  - item|2 eggs, separated
+  - item|2 tbsp flour
+  - item|1 tsp sugar
+  - item|1 tsp vinegar
+  - item|1 tbsp parsley, chopped
+  - item|1/2 tsp salt
+  - item|1/4 tsp pepper
+  - item|4 tbsp curry powder
 directions:
   - Cook the rice in boiling salted water for 12 minutes; drain.
   - Combine the rice, drained tuna, chopped onion, milk, flour, sugar, vinegar, parsley, salt, pepper and curry powder.

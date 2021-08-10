@@ -3,16 +3,16 @@ date: 2020-01-16
 title: "Curried Tuna"
 image: ./curried-tuna.jpg
 ingredients:
-  - 425g tin of tuna in oil, drained
-  - 1 large brown onion, finely chopped
-  - 125g butter
-  - 1 cup flour
-  - 6.5 cups hot water
-  - 2 Massel Ultrastock cubes, chicken
-  - 1 tsp sugar
-  - 3–4 tbsp curry powder
-  - 1/4 tsp ground pepper
-  - 1/4 cup milk
+  - item|425g tin of tuna in oil, drained
+  - item|1 large brown onion, finely chopped
+  - item|125g butter
+  - item|1 cup flour
+  - item|6.5 cups hot water
+  - item|2 Massel Ultrastock cubes, chicken
+  - item|1 tsp sugar
+  - item|3–4 tbsp curry powder
+  - item|1/4 tsp ground pepper
+  - item|1/4 cup milk
 directions:
   - Add the onions and butter to a large pot and cook over a medium flame until the onions are golden and soft. Add the flour and combine until a soft dough forms.
   - Gradually add the hot water, stirring continuously with a whisk. Continue until all of the water has been added and a medium-thick roux (basic white sauce) forms.
