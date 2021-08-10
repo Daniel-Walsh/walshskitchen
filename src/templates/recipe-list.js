@@ -23,8 +23,9 @@ const RecipesPage = ({ data, pageContext }) => {
             <div class="container px-5 my-24 mx-auto flex flex-wrap justify-between">
               <div class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-2/3 content-start sm:pr-10">
                 <div class="w-full sm:p-4 px-4 mb-6">
-                  <h1 class="font-display title-font font-medium text-5xl mb-2 text-gray-900">
-                    Check out what's cookin'!
+                  <h1 class="font-display title-font font-medium text-5xl mb-4 text-gray-700">
+                    <span className="block 2xl:inline">Check out </span>
+                    <span className="block 2xl:inline">what's cookin'!</span>
                   </h1>
                   <div class="leading-relaxed mb-5">
                     Pour-over craft beer pug drinking vinegar live-edge
@@ -81,7 +82,7 @@ const RecipesPage = ({ data, pageContext }) => {
                     }
                     alt={data.recipes.edges[0].node.frontmatter.title}
                   />
-                  <div className="inset-0 from-gray-800 to-transparent bg-opacity-50 text-white absolute bg-gradient-to-t flex items-end p-4 text-xl">
+                  <div className="inset-0 from-gray-500 to-transparent bg-opacity-50 text-white absolute bg-gradient-to-t flex items-end p-4 text-xl hover:from-gray-700 transition-all">
                     {data.recipes.edges[0].node.frontmatter.title}
                   </div>
                 </Link>
