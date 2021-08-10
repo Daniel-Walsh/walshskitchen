@@ -171,7 +171,7 @@ export default function Recipe({ data, location }) {
       </div>
       <div id="recipe-content" className="bg-white lg:w-2/5 lg:ml-auto">
         <div className="px-5 mx-auto max-w-md">
-          <Seo title={`${frontmatter.title} | Recipes`} />
+          <Seo title={frontmatter.title} />
           <div className="row">
             <div className="col">
               <Section>

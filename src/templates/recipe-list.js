@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 // import Header from "../components/header";
 import Navbar from "../components/navbar";
 import { getPathFromFilepath } from "../global-functions";
+import Seo from "../components/seo";
 
 const RecipesPage = ({ data, pageContext }) => {
   const paginationPages = new Array();
@@ -14,6 +15,7 @@ const RecipesPage = ({ data, pageContext }) => {
   console.log(data.recipes.edges);
   return (
     <>
+      <Seo title="Latest recipes" />
       <Navbar />
       <div className="container mx-auto">
         {pageContext.currentPage === 1 && (
