@@ -12,7 +12,7 @@ const RecipesPage = ({ data, pageContext }) => {
     const pageLink = index === 1 ? `/` : `/page/${index}`;
     paginationPages.push(pageLink);
   }
-  console.log(data.recipes.edges);
+
   return (
     <>
       <Seo title="Latest recipes" />
