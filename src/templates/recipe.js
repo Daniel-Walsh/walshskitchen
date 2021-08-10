@@ -25,7 +25,7 @@ const Checkmark = ({ checked }) => {
 
   const translateX = getRandomInt(-5, 5);
   const translateY = getRandomInt(-5, 5);
-  const rotate = getRandomInt(-10, 10);
+  const rotate = getRandomInt(-12, 12);
   const randomTransform = {
     transform: `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`,
   };
@@ -49,7 +49,7 @@ const Checkmark = ({ checked }) => {
 
 const Ingredient = ({ text }) => {
   const [checked, setChecked] = useState(false);
-  const textClasses = classNames("ml-2", "transition", {
+  const textClasses = classNames("ml-2 transition-opacity", {
     "opacity-50": checked,
   });
   const handleClick = () => {
@@ -73,7 +73,7 @@ const Ingredient = ({ text }) => {
 
 const Step = ({ number, text, isLast }) => {
   const [checked, setChecked] = useState(false);
-  const textClasses = classNames("pl-3", "transition", {
+  const textClasses = classNames("pl-3 transition-opacity", {
     "opacity-50": checked,
   });
   const handleClick = () => {
