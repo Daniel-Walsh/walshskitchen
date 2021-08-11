@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCircle } from "@fortawesome/pro-regular-svg-icons";
 import { faReply, faSalad, faListOl } from "@fortawesome/pro-solid-svg-icons";
 import Seo from "../components/seo";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
+import Link from "../components/link";
 import { useState } from "react";
 import classNames from "classnames";
 import Footer from "../components/footer";
@@ -128,7 +129,7 @@ const TagsList = ({ tags }) => {
         <li key={index}>
           <Link
             className="inline-block text-primary underline hover:no-underline bg-red-100 hover:bg-red-50 px-2 py-1 mb-2 mr-2 whitespace-nowrap rounded-lg transition-colors"
-            to={`/tags/${tag}`}
+            to={`/tag/${tag}`}
           >
             #{tag}
           </Link>
@@ -147,7 +148,7 @@ export default function Recipe({ data, location }) {
       <div className="relative">
         <Header />
         <div className="fixed hidden lg:block w-3/5 h-screen">
-          <div className="relative">
+          <div>
             <Img
               fluid={frontmatter.image.childImageSharp.fluid}
               className="min-w-full min-h-screen"

@@ -19,7 +19,7 @@ const TagIndex = ({ data, location, pageContext }) => {
 export default TagIndex;
 
 export const pageQuery = graphql`
-  query($tag: [String]) {
+  query ($tag: [String]) {
     recipes: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { frontmatter: { tags: { in: $tag } } }

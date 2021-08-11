@@ -2,9 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  p {
+    @apply mb-3;
+  }
+
+  a {
+    @apply text-primary underline hover:no-underline hover:text-primary-dark transition;
+  }
+}
+
 @layer components {
   .btn {
-    @apply inline-block px-4 py-2 mb-3 transition rounded-xl whitespace-nowrap;
+    @apply no-underline inline-block px-4 py-2 mb-3 transition rounded-xl whitespace-nowrap;
   }
   .btn-primary {
     @apply btn text-white bg-primary hover:bg-primary-dark;

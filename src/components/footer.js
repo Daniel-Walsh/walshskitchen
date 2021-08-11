@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJsSquare, faCss3Alt } from "@fortawesome/free-brands-svg-icons";
 import { faCloudUpload, faHeart } from "@fortawesome/pro-solid-svg-icons";
-import { Link } from "gatsby";
+import Link from "./link";
 
 const Button = ({ link, text, icon, colour }) => {
   return (
@@ -31,11 +31,11 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            Dan Walsh
+            Dan&nbsp;Walsh
           </a>
           .
         </div>
-        <div className="text-center md:text-right flex flex-col items-center md:items-end mt-6 md:mt-0">
+        <div className="text-center md:text-right flex flex-col items-center md:items-end mt-6 md:mt-0 pl-10">
           <p className="mb-3">Made with:</p>
           <Button
             text="Gatsby"
