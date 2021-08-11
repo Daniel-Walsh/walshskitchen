@@ -145,10 +145,10 @@ export default function Recipe({ data, location }) {
 
   return (
     <div className="text-gray-800">
-      <div className="relative">
+      <div>
         <Header />
         <div className="fixed hidden lg:block w-3/5 h-screen">
-          <div>
+          <div className="relative">
             <Img
               fluid={frontmatter.image.childImageSharp.fluid}
               className="min-w-full min-h-screen"
@@ -159,7 +159,7 @@ export default function Recipe({ data, location }) {
             ></div>
           </div>
         </div>
-        <div className="min-w-full lg:hidden">
+        <div className="min-w-full lg:hidden relative">
           <Img
             fluid={frontmatter.image.childImageSharp.fluid}
             className="max-h-96"
