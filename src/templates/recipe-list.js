@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { getPathFromFilepath } from "../global-functions";
 import Seo from "../components/seo";
+import classNames from "classnames";
 
 const RecipesPage = ({ data, pageContext }) => {
   const paginationPages = new Array();
@@ -20,7 +21,7 @@ const RecipesPage = ({ data, pageContext }) => {
       <div className="container mx-auto">
         {pageContext.currentPage === 1 && (
           <section class="text-gray-600 body-font">
-            <div class="container px-5 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
+            <div class="container px-4 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
               <div class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-3/5 content-start md:pr-10">
                 <div class="w-full sm:p-4 px-4 mb-6">
                   <h1 class="font-display title-font font-medium text-5xl mb-4 text-gray-700">
@@ -90,48 +91,64 @@ const RecipesPage = ({ data, pageContext }) => {
             </div>
           </section>
         )}
-        <div className="flex flex-wrap mt-24">
-          {data.recipes.edges &&
-            data.recipes.edges.map(({ node }, index) => {
-              return (
-                <Link
-                  to={getPathFromFilepath(node.fileAbsolutePath)}
-                  className="sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-5 relative group"
-                >
-                  <div className="rounded-md overflow-hidden mb-1 relative">
-                    <GatsbyImage
-                      className="w-full object-cover h-full object-center block inset-0"
-                      aspectRatio={4 / 3}
-                      image={
-                        node.frontmatter.image.childImageSharp.gatsbyImageData
-                      }
-                    />
-                    <div className="inset-0 bg-black absolute group-hover:opacity-20 opacity-0 transition-opacity"></div>
-                  </div>
-                  <span className="font-semibold text-sm leading-none">
-                    {node.frontmatter.title}
-                  </span>
-                </Link>
-              );
-            })}
-        </div>
-        <section className="my-24 px-4">
-          <p className="mb-4 mt-6">
-            Page{" "}
-            <span className="font-semibold">{pageContext.currentPage}</span> of{" "}
-            <span className="font-semibold">{pageContext.numPages}</span>
-          </p>
-          <ul id="pagination" className="list-none flex">
-            {paginationPages.map((pageLink, index) => {
-              return (
-                <li key={index}>
-                  <Link className="px-4 py-2 border inline-block" to={pageLink}>
+        <section className="my-24">
+          <div className="flex flex-wrap">
+            {data.recipes.edges &&
+              data.recipes.edges.map(({ node }, index) => {
+                return (
+                  <Link
+                    to={getPathFromFilepath(node.fileAbsolutePath)}
+                    className="sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-5 relative group"
+                  >
+                    <div className="rounded-md overflow-hidden mb-1 relative">
+                      <GatsbyImage
+                        className="w-full object-cover h-full object-center block inset-0"
+                        aspectRatio={4 / 3}
+                        image={
+                          node.frontmatter.image.childImageSharp.gatsbyImageData
+                        }
+                      />
+                      <div className="inset-0 bg-black absolute group-hover:opacity-20 opacity-0 transition-opacity"></div>
+                    </div>
+                    <span className="font-semibold text-sm leading-none">
+                      {node.frontmatter.title}
+                    </span>
+                  </Link>
+                );
+              })}
+          </div>
+          <div className="mt-8 px-4">
+            <p className="mb-4 mt-6">
+              Page{" "}
+              <span className="font-semibold">{pageContext.currentPage}</span>{" "}
+              of <span className="font-semibold">{pageContext.numPages}</span>
+            </p>
+            <div className="flex">
+              {paginationPages.map((pageLink, index) => {
+                const activePage = +index + 1 === pageContext.currentPage;
+                const pageLinkClasses = classNames(
+                  "px-4 py-2 mr-2 rounded-xl inline-block",
+                  { "text-primary bg-red-100 font-semibold": activePage },
+                  {
+                    "bg-gray-100 hover:bg-gray-300 transition-colors":
+                      !activePage,
+                  }
+                );
+                if (activePage) {
+                  return (
+                    <div key={index} className={pageLinkClasses}>
+                      {index + 1}
+                    </div>
+                  );
+                }
+                return (
+                  <Link key={index} className={pageLinkClasses} to={pageLink}>
                     {index + 1}
                   </Link>
-                </li>
-              );
-            })}
-          </ul>
+                );
+              })}
+            </div>
+          </div>
         </section>
       </div>
       <Footer />

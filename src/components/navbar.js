@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 
 const Navbar = () => {
   return (
-    <header className="bg-white p-4 mb-4 border-b border-primary">
+    <header className="bg-white p-4 border-b border-primary">
       <Link to="/">
         <img
           src="/logo-notag.svg"
