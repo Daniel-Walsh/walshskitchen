@@ -1,27 +1,39 @@
 import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Footer from "../components/footer";
-// import Header from "../components/header";
 import Navbar from "../components/navbar";
 import { getPathFromFilepath } from "../global-functions";
 import Seo from "../components/seo";
 import classNames from "classnames";
+import { makeTitle } from "../global-functions";
 
 const RecipesPage = ({ data, pageContext }) => {
   const paginationPages = new Array();
+  const paginationBase = pageContext.category
+    ? `/category/${pageContext.category}/`
+    : "/";
   for (let index = 1; index <= pageContext.numPages; index++) {
-    const pageLink = index === 1 ? `/` : `/page/${index}`;
+    const pageLink =
+      index === 1 ? paginationBase : `${paginationBase}page/${index}`;
     paginationPages.push(pageLink);
+  }
+
+  const pageMeta = [];
+  if (pageContext.currentPage > 1) {
+    pageMeta.push({
+      name: `robots`,
+      content: `noindex, nofollow`,
+    });
   }
 
   return (
     <>
-      <Seo title="Latest recipes" />
-      <Navbar />
+      <Seo title="Latest recipes" meta={pageMeta} />
+      <Navbar categories={pageContext.categories} />
       <div className="container mx-auto">
-        {pageContext.currentPage === 1 && (
+        {!pageContext.category && pageContext.currentPage === 1 && (
           <section class="text-gray-600 body-font">
-            <div class="container px-4 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
+            <div class="px-4 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
               <div class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-3/5 content-start md:pr-10">
                 <div class="w-full sm:p-4 px-4 mb-6">
                   <h1 class="font-display title-font font-medium text-5xl mb-4 text-gray-700">
@@ -37,35 +49,11 @@ const RecipesPage = ({ data, pageContext }) => {
                     to={getPathFromFilepath(
                       data.recipes.edges[0].node.fileAbsolutePath
                     )}
-                    class="inline-flex text-white bg-red-500 border-0 py-4 px-8 focus:outline-none hover:bg-red-600 rounded-lg text-xl"
+                    class="btn-primary btn-lg"
                   >
-                    Get the latest recipe
+                    Get the latest recipe!
                   </Link>
                 </div>
-                {/* <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                  <h2 class="title-font font-medium text-3xl text-gray-900">
-                    {pageContext.numRecipes}
-                  </h2>
-                  <p class="leading-relaxed">Recipes</p>
-                </div>
-                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                  <h2 class="title-font font-medium text-3xl text-gray-900">
-                    1.8K
-                  </h2>
-                  <p class="leading-relaxed">Categories</p>
-                </div>
-                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                  <h2 class="title-font font-medium text-3xl text-gray-900">
-                    35
-                  </h2>
-                  <p class="leading-relaxed">Tags</p>
-                </div> */}
-                {/* <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
-                  <h2 class="title-font font-medium text-3xl text-gray-900">
-                    4
-                  </h2>
-                  <p class="leading-relaxed">Products</p>
-                </div> */}
               </div>
               <div class="lg:w-3/5 sm:w-2/5 w-full rounded-lg overflow-hidden hidden sm:block mt-6 sm:mt-0 relative max-w-3xl">
                 <Link
@@ -89,6 +77,18 @@ const RecipesPage = ({ data, pageContext }) => {
                 </Link>
               </div>
             </div>
+          </section>
+        )}
+        {pageContext.category && (
+          <section className="px-4 my-20">
+            <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
+              {makeTitle(pageContext.category)}
+              {pageContext.currentPage > 1 && (
+                <>
+                  , <span className="text-gray-400">cont.</span>
+                </>
+              )}
+            </h1>
           </section>
         )}
         <section className="my-24">
@@ -127,11 +127,10 @@ const RecipesPage = ({ data, pageContext }) => {
               {paginationPages.map((pageLink, index) => {
                 const activePage = +index + 1 === pageContext.currentPage;
                 const pageLinkClasses = classNames(
-                  "px-4 py-2 mr-2 rounded-xl inline-block",
+                  "btn mr-2",
                   { "text-primary bg-red-100 font-semibold": activePage },
                   {
-                    "bg-gray-100 hover:bg-gray-300 transition-colors":
-                      !activePage,
+                    "btn-secondary": !activePage,
                   }
                 );
                 if (activePage) {
@@ -159,10 +158,10 @@ const RecipesPage = ({ data, pageContext }) => {
 export default RecipesPage;
 
 export const pageQuery = graphql`
-  query recipeListQuery($skip: Int!, $limit: Int!) {
+  query recipeListQuery($skip: Int!, $limit: Int!, $glob: String!) {
     recipes: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { fileAbsolutePath: { regex: "/recipes/" } }
+      filter: { fileAbsolutePath: { glob: $glob } }
       limit: $limit
       skip: $skip
     ) {

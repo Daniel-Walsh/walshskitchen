@@ -2,27 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-#talking-bubble:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #343a40;
-  border-bottom: 10px solid transparent;
-  right: 50%;
-  bottom: -22px;
-}
-#talking-bubble:after {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #fff;
-  border-bottom: 10px solid transparent;
-  right: 50%;
-  bottom: -19px;
+@layer components {
+  .btn {
+    @apply inline-block px-4 py-2 mb-3 transition rounded-xl whitespace-nowrap;
+  }
+  .btn-primary {
+    @apply btn text-white bg-primary hover:bg-primary-dark;
+  }
+  .btn-secondary {
+    @apply btn bg-gray-100 hover:bg-gray-300;
+  }
+  .btn-lg {
+    @apply btn px-8 py-4 text-xl;
+  }
+
+  #talking-bubble:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #343a40;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -22px;
+  }
+  #talking-bubble:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -19px;
+  }
 }

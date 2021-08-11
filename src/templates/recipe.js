@@ -235,7 +235,7 @@ export default function Recipe({ data, location }) {
                     {frontmatter.servingSuggestion}
                   </div>
                 )}
-                <img src="/dan.svg" />
+                <img src="/dan-explain.svg" alt="" />
               </Section>
 
               <Section>

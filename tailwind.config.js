@@ -10,7 +10,9 @@ module.exports = {
         "ping-once": "ping 1s cubic-bezier(0, 0, 0.2, 1) forwards",
       },
       colors: {
-        primary: "#e83333",
+        "primary-light": defaultTheme.colors.red[100],
+        primary: defaultTheme.colors.red[500],
+        "primary-dark": defaultTheme.colors.red[700],
       },
       fontFamily: {
         display: ["Pacifico", ...defaultTheme.fontFamily.serif],
@@ -22,5 +24,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

@@ -10,7 +10,7 @@ const { getPathFromFilepath } = require("./src/global-functions");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
-
+  const postsPerPage = 12;
   const pageTemplate = require.resolve(`./src/templates/page.js`);
   //   const releaseTemplate = require.resolve(`./src/templates/release.js`)
   const recipeTemplate = require.resolve(`./src/templates/recipe.js`);
@@ -111,22 +111,58 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   categories = [...new Set(categories)];
 
+  // categories.forEach((category) => {
+  //   createPage({
+  //     path: `/category/${category}`,
+  //     component: recipeCategoryTemplate,
+  //     context: {
+  //       glob: `**/src/pages/recipes/${category}/**`,
+  //       category,
+  //     },
+  //   });
+  // });
+
   categories.forEach((category) => {
-    createPage({
-      path: `/category/${category}`,
-      component: recipeCategoryTemplate,
-      context: {
-        glob: `**/src/pages/recipes/${category}/**`,
-        category,
-      },
+    const categoryRecipes = result.data.recipes.edges.filter((recipe) => {
+      return (
+        recipe.node.fileAbsolutePath.indexOf(`/pages/recipes/${category}/`) > -1
+      );
     });
+    console.log(category, categoryRecipes.length);
+    const numPages = Math.ceil(categoryRecipes.length / postsPerPage);
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path:
+          i === 0
+            ? `/category/${category}`
+            : `/category/${category}/page/${i + 1}`,
+        component: recipeListTemplate,
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+          numRecipes: categoryRecipes.length,
+          categories,
+          category,
+          glob: `**/src/pages/recipes/${category}/**`,
+        },
+      });
+    });
+    // createPage({
+    //   path: `/category-new/${category}`,
+    //   component: recipeListTemplate,
+    //   context: {
+    //     glob: `**/src/pages/recipes/${category}/**`,
+    //     category,
+    //   },
+    // });
   });
 
   // ...
 
   // Create blog-list pages
   const posts = result.data.recipes.edges;
-  const postsPerPage = 12;
   const numPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
@@ -138,6 +174,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         numPages,
         currentPage: i + 1,
         numRecipes: posts.length,
+        categories,
+        glob: `**/src/pages/recipes/**`,
       },
     });
   });
