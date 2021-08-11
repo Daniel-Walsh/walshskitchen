@@ -35,7 +35,7 @@ const Footer = () => {
           </a>
           .
         </div>
-        <div className="text-center md:text-right flex flex-col items-center md:items-end mt-6 md:mt-0 pl-10">
+        <div className="text-center md:text-right flex flex-col items-center md:items-end mt-6 md:mt-0 lg:pl-10">
           <p className="mb-3">Made with:</p>
           <Button
             text="Gatsby"
