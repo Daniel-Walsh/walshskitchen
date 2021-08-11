@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  .tl-wrapper {
+    transform: none !important;
+  }
+
   p {
     @apply mb-3;
   }
