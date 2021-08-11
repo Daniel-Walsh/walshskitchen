@@ -5,6 +5,7 @@ module.exports = {
   purge: {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     safelist: [
+      "tl-wrapper",
       "bg-purple-200",
       "hover:bg-purple-300",
       "text-purple-700",
