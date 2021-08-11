@@ -20,8 +20,8 @@ const RecipesPage = ({ data, pageContext }) => {
       <div className="container mx-auto">
         {pageContext.currentPage === 1 && (
           <section class="text-gray-600 body-font">
-            <div class="container px-5 my-24 mx-auto flex flex-wrap justify-between">
-              <div class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-2/3 content-start sm:pr-10">
+            <div class="container px-5 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
+              <div class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-3/5 content-start md:pr-10">
                 <div class="w-full sm:p-4 px-4 mb-6">
                   <h1 class="font-display title-font font-medium text-5xl mb-4 text-gray-700">
                     <span className="block 2xl:inline">Check out </span>
@@ -66,7 +66,7 @@ const RecipesPage = ({ data, pageContext }) => {
                   <p class="leading-relaxed">Products</p>
                 </div> */}
               </div>
-              <div class="lg:w-3/5 sm:w-1/3 w-full rounded-lg overflow-hidden hidden sm:block mt-6 sm:mt-0 relative">
+              <div class="lg:w-3/5 sm:w-2/5 w-full rounded-lg overflow-hidden hidden sm:block mt-6 sm:mt-0 relative max-w-3xl">
                 <Link
                   to={getPathFromFilepath(
                     data.recipes.edges[0].node.fileAbsolutePath
