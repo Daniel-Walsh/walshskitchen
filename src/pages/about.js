@@ -14,7 +14,7 @@ const NotFoundPage = () => (
           <span className="block sm:inline">About </span>
           <span className="block sm:inline">this site</span>
         </h1>
-        <div className="font-written text-3xl leading-snug my-16 text-gray-600">
+        <div className="font-written text-2xl lg:text-3xl leading-snug my-16 text-gray-600 bg-yellow-100 shadow-lg p-6">
           <p>To my dear family,</p>
           <p className="mt-10">
             Way back when, I was originally going to write a family recipe cook
@@ -22,14 +22,14 @@ const NotFoundPage = () => (
             <span className="underline">website</span> is so much easier than
             publishing a physical book.
           </p>
-          <p>
+          <p className="mt-6">
             The recipes enshrined here are a collection of some of our family’s{" "}
             <span className="text-primary">happiest moments</span> shared around
             the dinner table. Some are "Walsh Originals" while others are
             favourites that have been clipped from magazines and websites and
             adopted into our regular meal rotations.
           </p>
-          <p>
+          <p className="mt-6">
             This is for my amazing, crazy, loving family&mdash;whom none of
             which have any idea why a weirdo with food issues like me would want
             to write a book about food.
