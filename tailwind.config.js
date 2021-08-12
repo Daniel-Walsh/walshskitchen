@@ -39,6 +39,7 @@ module.exports = {
         display: ["Pacifico", ...defaultTheme.fontFamily.serif],
         sans: ["Open Sans", ...defaultTheme.fontFamily.sans],
         comic: ["Pangolin", ...defaultTheme.fontFamily.sans],
+        written: ["Caveat", ...defaultTheme.fontFamily.sans],
       },
     },
   },

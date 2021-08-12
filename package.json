@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@fontsource/caveat": "^4.5.0",
     "@fontsource/itim": "^4.5.0",
     "@fontsource/kalam": "^4.5.0",
     "@fontsource/open-sans": "^4.5.0",
