@@ -14,7 +14,7 @@ const NotFoundPage = () => (
           <span className="block sm:inline">About </span>
           <span className="block sm:inline">this site</span>
         </h1>
-        <div className="font-written text-3xl leading-snug my-16">
+        <div className="font-written text-3xl leading-snug my-16 text-gray-600">
           <p>To my dear family,</p>
           <p className="mt-10">
             Way back when, I was originally going to write a family recipe cook
