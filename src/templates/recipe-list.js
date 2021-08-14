@@ -56,9 +56,12 @@ const RecipesPage = ({ data, pageContext }) => {
                       <span className="block 2xl:inline">what's cookin'!</span>
                     </h1>
                     <div className="leading-relaxed mb-5">
-                      Pour-over craft beer pug drinking vinegar live-edge
-                      gastropub, keytar neutra sustainable fingerstache
-                      kickstarter.
+                      All your family favourites in one place,{" "}
+                      <span className="font-semibold">Walsh's Kitchen</span> is
+                      here to save you from
+                      recipe-memory-fatigue&mdash;reminding you how many cups of
+                      flour you need <span className="italic">before</span> you
+                      mess up your pancakes, again.
                     </div>
                     <Link
                       to={getPathFromFilepath(

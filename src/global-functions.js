@@ -5,6 +5,10 @@ exports.getPathFromFilepath = (filepath) => {
   return path;
 };
 
+exports.getPath = (fileAbsolutePath, splitOn) => {
+  return fileAbsolutePath.split(`/${splitOn.join("/")}/`)[1].replace(".md", "");
+};
+
 exports.makeTitle = (slug) => {
   return slug.charAt(0).toUpperCase() + slug.split("-").join(" ").slice(1);
 };

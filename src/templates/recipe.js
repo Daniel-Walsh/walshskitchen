@@ -1,11 +1,16 @@
 import Img from "gatsby-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCircle } from "@fortawesome/pro-regular-svg-icons";
-import { faReply, faSalad, faListOl } from "@fortawesome/pro-solid-svg-icons";
+import {
+  faReply,
+  faSalad,
+  faListOl,
+  faChevronCircleLeft,
+} from "@fortawesome/pro-solid-svg-icons";
 import Seo from "../components/seo";
 import { graphql } from "gatsby";
 import Link from "../components/link";
-import { useState } from "react";
+import { useMemo, useReducer, useRef, useState } from "react";
 import classNames from "classnames";
 import Footer from "../components/footer";
 import Section from "../components/section";
@@ -32,77 +37,88 @@ const Checkmark = ({ checked }) => {
   };
 
   return (
-    <span className="fa-layers fa-fw w-9 h-9 relative">
-      <FontAwesomeIcon
-        icon={faCircle}
-        className="text-gray-200 text-4xl leading-none w-9 h-9"
-      />
-      <span className="inline-block w-9 h-9" style={randomTransform}>
-        <FontAwesomeIcon
-          icon={faCircle}
-          className={`${classes} animate-ping-once`}
-        />
-        <FontAwesomeIcon icon={icon} className={classes} />
-      </span>
-    </span>
+    <>
+      {useMemo(() => {
+        return (
+          <span className="fa-layers fa-fw w-9 h-9 relative">
+            <FontAwesomeIcon
+              icon={faCircle}
+              className="text-gray-200 text-4xl leading-none w-9 h-9"
+            />
+            <span className="inline-block w-9 h-9" style={randomTransform}>
+              <FontAwesomeIcon
+                icon={faCircle}
+                className={`${classes} animate-ping-once`}
+              />
+              <FontAwesomeIcon icon={icon} className={classes} />
+            </span>
+          </span>
+        );
+      }, [checked])}
+    </>
   );
 };
 
-const Ingredient = ({ text }) => {
-  const [checked, setChecked] = useState(false);
+const Ingredient = ({ text, checked, callback }) => {
   const textClasses = classNames("ml-2 transition-opacity", {
     "opacity-50": checked,
   });
-  const handleClick = () => {
-    setChecked(!checked);
-  };
+
   return (
-    <div
-      className="flex items-center py-2"
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        handleClick();
-      }}
-    >
-      <span className="rounded-full bg-transparent border-0 text-lg">
-        <Checkmark checked={checked} />
-      </span>
-      <span className={textClasses}>{text}</span>
-    </div>
+    <>
+      {useMemo(() => {
+        return (
+          <div
+            className="flex items-center py-2"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              callback();
+            }}
+          >
+            <span className="rounded-full bg-transparent border-0 text-lg">
+              <Checkmark checked={checked} />
+            </span>
+            <span className={textClasses}>{text}</span>
+          </div>
+        );
+      }, [checked])}
+    </>
   );
 };
 
-const Step = ({ number, text, isLast }) => {
-  const [checked, setChecked] = useState(false);
+const Step = ({ number, text, checked, callback, isLast }) => {
   const textClasses = classNames("pl-3 transition-opacity", {
     "opacity-50": checked,
   });
-  const handleClick = () => {
-    setChecked(!checked);
-  };
   return (
-    <div
-      className="flex relative pb-12"
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        handleClick();
-      }}
-    >
-      {!isLast && (
-        <div className="flex absolute items-center justify-center w-9 inset-0">
-          <div className="h-full w-1 bg-gray-200 pointer-events-none"></div>
-        </div>
-      )}
-      <div className="inline-flex relative rounded-full bg-white w-9 h-9 flex-shrink-0">
-        <Checkmark checked={checked} />
-      </div>
-      <div className={textClasses} style={{ flexGrow: 1 }}>
-        <div className="uppercase text-sm font-bold text-primary">
-          Step {number}
-        </div>
-        {text}
-      </div>
-    </div>
+    <>
+      {useMemo(() => {
+        return (
+          <div
+            className="flex relative pb-12"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              callback();
+            }}
+          >
+            {!isLast && (
+              <div className="flex absolute items-center justify-center w-9 inset-0">
+                <div className="h-full w-1 bg-gray-200 pointer-events-none"></div>
+              </div>
+            )}
+            <div className="inline-flex relative rounded-full bg-white w-9 h-9 flex-shrink-0">
+              <Checkmark checked={checked} />
+            </div>
+            <div className={textClasses} style={{ flexGrow: 1 }}>
+              <div className="uppercase text-sm font-bold text-primary">
+                Step {number}
+              </div>
+              {text}
+            </div>
+          </div>
+        );
+      }, [checked])}
+    </>
   );
 };
 
@@ -139,9 +155,66 @@ const TagsList = ({ tags }) => {
   );
 };
 
+const checklistReducer = (state, action) => {
+  switch (action.type) {
+    case "toggle checked":
+      const newState = [...state];
+      newState[action.index]["checked"] = action.value;
+      return newState;
+
+    case "reset list":
+      const resetState = state.map((item) => {
+        return {
+          ...item,
+          checked: false,
+        };
+      });
+      return resetState;
+  }
+};
+
 export default function Recipe({ data, location }) {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
+  const [ingredients, ingredientsDispatch] = useReducer(
+    checklistReducer,
+    frontmatter.ingredients.map((ingredient) => {
+      const [entryType, entryText] = ingredient.split("|");
+      return { entryType, entryText, checked: false };
+    })
+  );
+  const [directions, directionsDispatch] = useReducer(
+    checklistReducer,
+    frontmatter.directions.map((step) => {
+      return {
+        entryText: step,
+        checked: false,
+      };
+    })
+  );
+
+  const resetClasses =
+    "flex items-center justify-center transition-all duration-300 overflow-hidden";
+
+  const ingredientsResetClasses = classNames(
+    resetClasses,
+    {
+      "h-0 opacity-0": ingredients.filter((i) => i.checked).length === 0,
+    },
+    {
+      "h-24 opacity-100": ingredients.filter((i) => i.checked).length > 0,
+    }
+  );
+
+  const directionsResetClasses = classNames(
+    resetClasses,
+    {
+      "h-0 opacity-0": directions.filter((i) => i.checked).length === 0,
+    },
+    {
+      "h-24 opacity-100": directions.filter((i) => i.checked).length > 0,
+    }
+  );
 
   return (
     <div className="text-gray-800">
@@ -187,44 +260,86 @@ export default function Recipe({ data, location }) {
 
               <Section>
                 {frontmatter.ingredients.length > 0 && (
-                  <div id="recipe-ingredients">
+                  <div id="recipe-ingredients" className="mb-5">
                     <SectionHeading text="Ingredients" icon={faSalad} />
                     <SectionInstructions text="Check off each of your ingredients before you get started!" />
-                    {frontmatter.ingredients.map((ingredient, index) => {
-                      const [entryType, entryText] = ingredient.split("|");
-                      switch (entryType) {
+                    {ingredients.map((ingredient, index) => {
+                      switch (ingredient.entryType) {
                         case "heading":
                           return (
                             <div
                               key={index}
                               className="text-lg font-semibold mt-4 mb-2"
                             >
-                              {entryText}
+                              {ingredient.entryText}
                             </div>
                           );
                         case "item":
-                          return <Ingredient key={index} text={entryText} />;
+                          return (
+                            <Ingredient
+                              key={index}
+                              text={ingredient.entryText}
+                              checked={ingredient.checked}
+                              callback={() => {
+                                ingredientsDispatch({
+                                  type: "toggle checked",
+                                  index,
+                                  value: !ingredient.checked,
+                                });
+                              }}
+                            />
+                          );
                       }
                     })}
+                    <div className={ingredientsResetClasses}>
+                      <button
+                        className="btn-secondary mb-0"
+                        onClick={() => {
+                          ingredientsDispatch({ type: "reset list" });
+                        }}
+                      >
+                        Reset ingredients
+                      </button>
+                    </div>
                   </div>
                 )}
+                <hr />
               </Section>
 
               <Section>
-                {frontmatter.directions.length > 0 && (
+                {directions.length > 0 && (
                   <div id="recipe-directions">
                     <SectionHeading text="Directions" icon={faListOl} />
                     <SectionInstructions text="Time to get your hands dirty! Check off each step so you don’t lose you place." />
-                    {frontmatter.directions.map((step, index) => (
+                    {directions.map((step, index) => (
                       <Step
                         key={index}
-                        text={step}
+                        text={step.entryText}
                         number={index + 1}
+                        checked={step.checked}
+                        callback={() => {
+                          directionsDispatch({
+                            type: "toggle checked",
+                            index,
+                            value: !step.checked,
+                          });
+                        }}
                         isLast={index === frontmatter.directions.length - 1}
                       />
                     ))}
                   </div>
                 )}
+                <div className={directionsResetClasses}>
+                  <button
+                    className="btn-secondary"
+                    onClick={() => {
+                      directionsDispatch({ type: "reset list" });
+                    }}
+                  >
+                    Reset directions
+                  </button>
+                </div>
+                <hr />
               </Section>
 
               <Section>
@@ -236,13 +351,25 @@ export default function Recipe({ data, location }) {
                     {frontmatter.servingSuggestion}
                   </div>
                 )}
-                <img src="/dan-explain.svg" alt="" />
+                <img className="ml-8" src="/dan-explain.svg" alt="" />
               </Section>
 
               <Section>
                 <div className="bg-gray-100 rounded-lg p-4">
                   <p className="mb-2">Find more recipes tagged under:</p>
                   <TagsList tags={frontmatter.tags} />
+                </div>
+              </Section>
+
+              <Section>
+                <div className="text-center">
+                  <Link to="/" className="btn-primary">
+                    <FontAwesomeIcon
+                      className="mr-3"
+                      icon={faChevronCircleLeft}
+                    />
+                    Head back to the recipe list
+                  </Link>
                 </div>
               </Section>
             </div>

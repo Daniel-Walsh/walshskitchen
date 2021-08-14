@@ -4,17 +4,35 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-const { getPathFromFilepath, makeTitle } = require("./src/global-functions");
+const {
+  getPathFromFilepath,
+  makeTitle,
+  getPath,
+} = require("./src/global-functions");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions;
-  const pageTemplate = require.resolve(`./src/templates/page.js`);
+  const pageDefaultTemplate = require.resolve(
+    `./src/templates/page-default.js`
+  );
+  const pageNoteTemplate = require.resolve(`./src/templates/page-note.js`);
   const recipeTemplate = require.resolve(`./src/templates/recipe.js`);
   const recipeListTemplate = require.resolve(`./src/templates/recipe-list.js`);
 
   const result = await graphql(`
     {
+      pages: allMarkdownRemark(
+        filter: { fileAbsolutePath: { glob: "**/pages/*.md" } }
+        limit: 1000
+      ) {
+        edges {
+          node {
+            fileAbsolutePath
+          }
+        }
+      }
       recipes: allMarkdownRemark(
+        filter: { fileAbsolutePath: { glob: "**/pages/recipes/**" } }
         sort: { order: DESC, fields: [frontmatter___date] }
         limit: 1000
       ) {
@@ -24,7 +42,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      tags: allMarkdownRemark(filter: { frontmatter: { tags: { ne: null } } }) {
+      recipesWithTags: allMarkdownRemark(
+        filter: { frontmatter: { tags: { ne: null } } }
+        limit: 1000
+      ) {
         edges {
           node {
             fileAbsolutePath
@@ -37,8 +58,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   `);
 
+  const pages = result.data.pages.edges;
   const recipes = result.data.recipes.edges;
-  const recipesWithTags = result.data.tags.edges;
+  const recipesWithTags = result.data.recipesWithTags.edges;
 
   // Handle errors
   if (result.errors) {
@@ -87,16 +109,26 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   };
 
-  // Create content and recipe pages
-  recipes.forEach(({ node }) => {
-    const path = getPathFromFilepath(node.fileAbsolutePath);
-    let component = pageTemplate;
-    if (path.indexOf("/recipes/") === 0) {
-      component = recipeTemplate;
-    }
+  // Create content pages
+  pages.forEach(({ node }) => {
+    const component = node.fileAbsolutePath.includes("/about.md")
+      ? pageNoteTemplate
+      : pageDefaultTemplate;
     createPage({
-      path: path,
-      component: component,
+      path: getPath(node.fileAbsolutePath, ["src", "pages"]),
+      component,
+      context: {
+        categories,
+        fileAbsolutePath: node.fileAbsolutePath,
+      },
+    });
+  });
+
+  // Create recipe pages
+  recipes.forEach(({ node }) => {
+    createPage({
+      path: getPathFromFilepath(node.fileAbsolutePath),
+      component: recipeTemplate,
       context: {
         fileAbsolutePath: node.fileAbsolutePath,
       },
