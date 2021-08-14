@@ -1,10 +1,74 @@
+const siteUrl = process.env.URL || `https://walshskitchen.com`;
+
 module.exports = {
   siteMetadata: {
     title: `Walsh's Kitchen`,
     description: `A collection of some of our family’s happiest moments shared around the dinner table.`,
     author: `@_Deedubbs`,
+    siteUrl,
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+                context {
+                  fileAbsolutePath
+                }
+              }
+            }
+            allFile {
+              edges {
+                node {
+                  modifiedTime
+                  absolutePath
+                }
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: () => siteUrl,
+        resolvePages: ({ site, allSitePage, allFile: { edges: files } }) => {
+          const currentDate = new Date().toISOString();
+          return allSitePage.nodes
+            .filter((pageNode) => !pageNode.path.includes("/page/"))
+            .map((pageNode) => {
+              const modifiedFile = files.filter(({ node: fileNode }) => {
+                if (
+                  fileNode.absolutePath === pageNode.context.fileAbsolutePath
+                ) {
+                  return true;
+                }
+              });
+
+              const modified =
+                modifiedFile.length > 0
+                  ? modifiedFile[0].node.modifiedTime
+                  : currentDate;
+
+              return {
+                path: pageNode.path,
+                modified,
+              };
+            });
+        },
+        serialize: ({ path, modified }) => {
+          return {
+            url: `${siteUrl}${path}`,
+            lastmod: modified,
+          };
+        },
+      },
+    },
     `gatsby-plugin-netlify`,
     "gatsby-plugin-image",
     `gatsby-plugin-sharp`,
