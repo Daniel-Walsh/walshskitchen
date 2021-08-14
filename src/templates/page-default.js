@@ -3,10 +3,9 @@ import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 
-const Recipe = ({ data, pageContext }) => {
+const PageDefault = ({ data, pageContext }) => {
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
-  console.log(markdownRemark);
   return (
     <>
       <Seo title={frontmatter.title} />
@@ -27,7 +26,7 @@ const Recipe = ({ data, pageContext }) => {
   );
 };
 
-export default Recipe;
+export default PageDefault;
 
 export const pageQuery = graphql`
   query ($fileAbsolutePath: String!) {
