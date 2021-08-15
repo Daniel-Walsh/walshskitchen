@@ -12,11 +12,11 @@ const Navbar = ({ categories }) => {
     <header className="bg-white p-4 border-b border-primary">
       <div className="container mx-auto flex justify-between">
         <div>
-          <Link to="/">
+          <Link to="/" aria>
             <img
               src="/logo-notag.svg"
               className="h-10"
-              alt=""
+              alt="Walsh's Kitchen logo"
               //   width="64"
               //   width=
               //   height="100"

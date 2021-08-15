@@ -223,6 +223,7 @@ export default function Recipe({ data, location }) {
         <div className="fixed hidden lg:block w-3/5 h-screen">
           <div className="relative">
             <Img
+              alt={frontmatter.title}
               fluid={frontmatter.image.childImageSharp.fluid}
               className="min-w-full min-h-screen"
             />
@@ -234,6 +235,7 @@ export default function Recipe({ data, location }) {
         </div>
         <div className="min-w-full lg:hidden relative">
           <Img
+            alt={frontmatter.title}
             fluid={frontmatter.image.childImageSharp.fluid}
             className="max-h-96"
           />
