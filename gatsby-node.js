@@ -11,7 +11,7 @@ const {
 } = require("./src/global-functions");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
   const pageDefaultTemplate = require.resolve(
     `./src/templates/page-default.js`
   );
@@ -126,13 +126,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   // Create recipe pages
   recipes.forEach(({ node }) => {
+    // Get the old recipe URL to set up 301 redirects with
+    const fromPath = `/${
+      getPathFromFilepath(node.fileAbsolutePath).split("/")[2]
+    }`;
+
+    const path = getPathFromFilepath(node.fileAbsolutePath);
     createPage({
-      path: getPathFromFilepath(node.fileAbsolutePath),
+      path,
       component: recipeTemplate,
       context: {
         fileAbsolutePath: node.fileAbsolutePath,
       },
     });
+    createRedirect({ fromPath, toPath: path, isPermanent: true });
   });
 
   // Create category index pages
@@ -161,10 +168,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       tag,
       glob: `**/src/pages/recipes/**`,
     });
+    createRedirect({
+      fromPath: `/tags/${tag}`,
+      toPath: `/tag/${tag}`,
+      isPermanent: true,
+    });
   });
 
   // Create recipe index pages
   createIndexPages(recipes, `/`, "Latest recipes", {
     glob: `**/src/pages/recipes/**`,
   });
+
+  createRedirect({ fromPath: `/recipes`, toPath: `/`, isPermanent: true });
 };
