@@ -176,7 +176,7 @@ const checklistReducer = (state, action) => {
 };
 
 export default function Recipe({ data, location }) {
-  const { markdownRemark } = data; // data.markdownRemark holds your post data
+  const { markdownRemark, site } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
   const [ingredients, ingredientsDispatch] = useReducer(
     checklistReducer,
@@ -218,7 +218,7 @@ export default function Recipe({ data, location }) {
     }
   );
 
-  const metaImageUrl = `${location.origin}${frontmatter.metaImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
+  const metaImageUrl = `${site.siteMetadata.siteUrl}${frontmatter.metaImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const schema = {
     "@context": "http://schema.org/",
@@ -280,7 +280,7 @@ export default function Recipe({ data, location }) {
         meta={[
           {
             property: "og:url",
-            content: location.href,
+            content: `${site.siteMetadata.siteUrl}${location.pathname}`,
           },
           {
             property: "og:locale",
@@ -476,6 +476,11 @@ export default function Recipe({ data, location }) {
 
 export const pageQuery = graphql`
   query ($fileAbsolutePath: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     markdownRemark(fileAbsolutePath: { eq: $fileAbsolutePath }) {
       html
       frontmatter {

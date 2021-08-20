@@ -157,6 +157,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       path,
       component: recipeTemplate,
       context: {
+        pathName: path,
         fileAbsolutePath: node.fileAbsolutePath,
       },
     });
