@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: ""
+excerpt: ""
 date: 2020-01-14
 title: "Easy Peasy Chocolate Cake"
 image: ./easy-peasy-chocolate-cake.jpg

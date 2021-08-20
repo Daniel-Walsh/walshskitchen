@@ -1,6 +1,9 @@
 ---
-date: 2021-07-30
 title: Quick Cinnamon Rolls
+date: 2021-07-30
+category: Cakes and Biscuits
+cuisine: ""
+excerpt: Quick and easy cinnamon rolls from scratch, with no yeast, proofing, or kneading necessary!
 image: ./quick-cinnamon-rolls.jpg
 ingredients:
   - item|¼ cup butter, divided (Optional)
@@ -40,11 +43,12 @@ directions:
     vanilla extract together in a bowl until frosting is smooth. Top hot
     cinnamon rolls with cream cheese frosting.
 servingSuggestion: Devour them hot, straight from the oven!
-category: Cakes and Biscuits
 tags:
   - cakes & biscuits
+  - cinnamon
 prepTime: 20
 cookTime: 20
+yield: ""
 ---
 
 Quick and easy cinnamon rolls from scratch, with no yeast, proofing, or kneading necessary!

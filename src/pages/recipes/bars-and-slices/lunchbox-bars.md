@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: ""
+excerpt: ""
 date: 2021-01-31
 title: "Lunchbox Bars"
 image: ./lunchbox-bars.jpg

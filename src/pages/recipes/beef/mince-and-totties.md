@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: ""
+excerpt: ""
 date: 2020-01-20
 title: "Mince and Totties"
 image: ./mince-and-totties.jpg

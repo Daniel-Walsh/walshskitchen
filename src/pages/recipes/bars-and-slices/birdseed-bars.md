@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: ""
+excerpt: ""
 date: 2020-12-06
 title: "Birdseed Bars"
 image: ./birdseed-bars.png

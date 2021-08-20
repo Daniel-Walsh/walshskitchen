@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: ""
+excerpt: ""
 date: 2021-01-31
 title: "Chocolate Chip Cookies"
 image: ./chocolate-chip-cookies.jpg

@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: "Asian"
+excerpt: "Why buy take out when you can whip up your own fried rice with all the best bits? This is a great recipe for using up whatever is on hand."
 date: 2020-01-02
 title: "Fried Rice"
 image: ./fried-rice.jpg

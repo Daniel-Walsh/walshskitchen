@@ -16,6 +16,8 @@ import Footer from "../components/footer";
 import Section from "../components/section";
 import SectionHeading from "../components/section-heading";
 import Header from "../components/header";
+import { Helmet } from "react-helmet";
+import moment from "moment";
 
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -216,170 +218,259 @@ export default function Recipe({ data, location }) {
     }
   );
 
+  const metaImageUrl = `${location.origin}${frontmatter.metaImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
+
+  const schema = {
+    "@context": "http://schema.org/",
+    "@type": "Recipe",
+    name: frontmatter.title,
+    image: [metaImageUrl],
+    author: {
+      "@type": "Organization",
+      name: "Walsh's Kitchen",
+    },
+    datePublished: moment(frontmatter.date).format("YYYY-MM-DD"),
+    description: frontmatter.excerpt,
+    // nutrition: {
+    //   "@type": "NutritionInformation",
+    //   calories: "270 calories",
+    // },
+    recipeIngredient: ingredients.map((ingredient) => ingredient.entryText),
+    recipeInstructions: directions.map((step) => ({
+      "@type": "HowToStep",
+      text: step.entryText,
+    })),
+  };
+
+  if (frontmatter.tags && frontmatter.tags.length > 0) {
+    schema["keywords"] = frontmatter.tags.join(", ");
+  }
+
+  if (frontmatter.yield) {
+    schema["recipeYield"] = frontmatter.yield;
+  }
+
+  if (frontmatter.category) {
+    schema["recipeCategory"] = frontmatter.category;
+  }
+
+  if (frontmatter.cuisine) {
+    schema["recipeCuisine"] = frontmatter.cuisine;
+  }
+
+  const prepTime = +frontmatter.prepTime;
+  const cookTime = +frontmatter.cookTime;
+  const totalTime = prepTime + cookTime;
+
+  if (totalTime > 0) {
+    schema["prepTime"] = moment.duration(prepTime, "minutes").toISOString();
+    schema["cookTime"] = moment.duration(cookTime, "minutes").toISOString();
+    schema["totalTime"] = moment.duration(totalTime, "minutes").toISOString();
+  }
+
   return (
-    <div className="text-gray-800">
-      <div>
-        <Header />
-        <div className="fixed hidden lg:block w-3/5 h-screen">
-          <div className="relative">
+    <>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      </Helmet>
+      <Seo
+        title={frontmatter.title}
+        description={frontmatter.excerpt}
+        type="article"
+        meta={[
+          {
+            property: "og:url",
+            content: location.href,
+          },
+          {
+            property: "og:locale",
+            content: "en_AU",
+          },
+          {
+            property: "og:image",
+            content: metaImageUrl,
+          },
+          {
+            property: "og:image:width",
+            content:
+              frontmatter.metaImage.childImageSharp.gatsbyImageData.width,
+          },
+          {
+            property: "og:image:height",
+            content:
+              frontmatter.metaImage.childImageSharp.gatsbyImageData.height,
+          },
+          {
+            name: `twitter:image`,
+            content: metaImageUrl,
+          },
+        ]}
+      />
+      <div className="text-gray-800">
+        <div>
+          <Header />
+          <div className="fixed hidden lg:block w-3/5 h-screen">
+            <div className="relative">
+              <Img
+                alt={frontmatter.title}
+                fluid={frontmatter.image.childImageSharp.fluid}
+                className="min-w-full min-h-screen"
+              />
+              <div
+                className="absolute inset-y-0 right-0 w-20 bg-primary opacity-90"
+                style={{
+                  clipPath: "polygon(60% 0, 100% 0, 100% 100%, 0 100%)",
+                }}
+              ></div>
+            </div>
+          </div>
+          <div className="min-w-full lg:hidden relative">
             <Img
               alt={frontmatter.title}
               fluid={frontmatter.image.childImageSharp.fluid}
-              className="min-w-full min-h-screen"
+              className="max-h-96"
             />
             <div
-              className="absolute inset-y-0 right-0 w-20 bg-primary opacity-90"
-              style={{ clipPath: "polygon(60% 0, 100% 0, 100% 100%, 0 100%)" }}
+              className="absolute inset-x-0 bottom-0 h-12 bg-primary opacity-90"
+              style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }}
             ></div>
           </div>
         </div>
-        <div className="min-w-full lg:hidden relative">
-          <Img
-            alt={frontmatter.title}
-            fluid={frontmatter.image.childImageSharp.fluid}
-            className="max-h-96"
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 h-12 bg-primary opacity-90"
-            style={{ clipPath: "polygon(0 40%, 100% 0, 100% 100%, 0 100%)" }}
-          ></div>
-        </div>
-      </div>
-      <div id="recipe-content" className="bg-white lg:w-2/5 lg:ml-auto">
-        <div className="px-5 mx-auto max-w-md">
-          <Seo title={frontmatter.title} />
-          <div className="row">
-            <div className="col">
-              <Section>
-                <h1 className="font-display text-4xl leading-snug mb-4 pt-10">
-                  {frontmatter.title}
-                </h1>
-                <div
-                  className="text-xl leading-normal mb-6"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                ></div>
-              </Section>
-
-              <Section>
-                {frontmatter.ingredients.length > 0 && (
-                  <div id="recipe-ingredients" className="mb-5">
-                    <SectionHeading text="Ingredients" icon={faSalad} />
-                    <SectionInstructions text="Check off each of your ingredients before you get started!" />
-                    {ingredients.map((ingredient, index) => {
-                      switch (ingredient.entryType) {
-                        case "heading":
-                          return (
-                            <div
-                              key={index}
-                              className="text-lg font-semibold mt-4 mb-2"
-                            >
-                              {ingredient.entryText}
-                            </div>
-                          );
-                        case "item":
-                          return (
-                            <Ingredient
-                              key={index}
-                              text={ingredient.entryText}
-                              checked={ingredient.checked}
-                              callback={() => {
-                                ingredientsDispatch({
-                                  type: "toggle checked",
-                                  index,
-                                  value: !ingredient.checked,
-                                });
-                              }}
-                            />
-                          );
-                      }
-                    })}
-                    <div className={ingredientsResetClasses}>
-                      <button
-                        className="btn-secondary mb-0"
-                        onClick={() => {
-                          ingredientsDispatch({ type: "reset list" });
-                        }}
-                      >
-                        Reset ingredients
-                      </button>
-                    </div>
-                  </div>
-                )}
-                <hr />
-              </Section>
-
-              <Section>
-                {directions.length > 0 && (
-                  <div id="recipe-directions">
-                    <SectionHeading text="Directions" icon={faListOl} />
-                    <SectionInstructions text="Time to get your hands dirty! Check off each step so you don’t lose you place." />
-                    {directions.map((step, index) => (
-                      <Step
-                        key={index}
-                        text={step.entryText}
-                        number={index + 1}
-                        checked={step.checked}
-                        callback={() => {
-                          directionsDispatch({
-                            type: "toggle checked",
-                            index,
-                            value: !step.checked,
-                          });
-                        }}
-                        isLast={index === frontmatter.directions.length - 1}
-                      />
-                    ))}
-                  </div>
-                )}
-                <div className={directionsResetClasses}>
-                  <button
-                    className="btn-secondary"
-                    onClick={() => {
-                      directionsDispatch({ type: "reset list" });
-                    }}
-                  >
-                    Reset directions
-                  </button>
-                </div>
-                <hr />
-              </Section>
-
-              <Section>
-                {frontmatter.servingSuggestion && (
+        <div id="recipe-content" className="bg-white lg:w-2/5 lg:ml-auto">
+          <div className="px-5 mx-auto max-w-md">
+            <div className="row">
+              <div className="col">
+                <Section>
+                  <h1 className="font-display text-4xl leading-snug mb-4 pt-10">
+                    {frontmatter.title}
+                  </h1>
                   <div
-                    id="talking-bubble"
-                    className="font-comic border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
-                  >
-                    {frontmatter.servingSuggestion}
+                    className="text-xl leading-normal mb-6"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  ></div>
+                </Section>
+
+                <Section>
+                  {frontmatter.ingredients.length > 0 && (
+                    <div id="recipe-ingredients" className="mb-5">
+                      <SectionHeading text="Ingredients" icon={faSalad} />
+                      <SectionInstructions text="Check off each of your ingredients before you get started!" />
+                      {ingredients.map((ingredient, index) => {
+                        switch (ingredient.entryType) {
+                          case "heading":
+                            return (
+                              <div
+                                key={index}
+                                className="text-lg font-semibold mt-4 mb-2"
+                              >
+                                {ingredient.entryText}
+                              </div>
+                            );
+                          case "item":
+                            return (
+                              <Ingredient
+                                key={index}
+                                text={ingredient.entryText}
+                                checked={ingredient.checked}
+                                callback={() => {
+                                  ingredientsDispatch({
+                                    type: "toggle checked",
+                                    index,
+                                    value: !ingredient.checked,
+                                  });
+                                }}
+                              />
+                            );
+                        }
+                      })}
+                      <div className={ingredientsResetClasses}>
+                        <button
+                          className="btn-secondary mb-0"
+                          onClick={() => {
+                            ingredientsDispatch({ type: "reset list" });
+                          }}
+                        >
+                          Reset ingredients
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <hr />
+                </Section>
+
+                <Section>
+                  {directions.length > 0 && (
+                    <div id="recipe-directions">
+                      <SectionHeading text="Directions" icon={faListOl} />
+                      <SectionInstructions text="Time to get your hands dirty! Check off each step so you don’t lose you place." />
+                      {directions.map((step, index) => (
+                        <Step
+                          key={index}
+                          text={step.entryText}
+                          number={index + 1}
+                          checked={step.checked}
+                          callback={() => {
+                            directionsDispatch({
+                              type: "toggle checked",
+                              index,
+                              value: !step.checked,
+                            });
+                          }}
+                          isLast={index === frontmatter.directions.length - 1}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  <div className={directionsResetClasses}>
+                    <button
+                      className="btn-secondary"
+                      onClick={() => {
+                        directionsDispatch({ type: "reset list" });
+                      }}
+                    >
+                      Reset directions
+                    </button>
                   </div>
-                )}
-                <img className="ml-8" src="/dan-explain.svg" alt="" />
-              </Section>
+                  <hr />
+                </Section>
 
-              <Section>
-                <div className="bg-gray-100 rounded-lg p-4">
-                  <p className="mb-2">Find more recipes tagged under:</p>
-                  <TagsList tags={frontmatter.tags} />
-                </div>
-              </Section>
+                <Section>
+                  {frontmatter.servingSuggestion && (
+                    <div
+                      id="talking-bubble"
+                      className="font-comic border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
+                    >
+                      {frontmatter.servingSuggestion}
+                    </div>
+                  )}
+                  <img className="ml-8" src="/dan-explain.svg" alt="" />
+                </Section>
 
-              <Section>
-                <div className="text-center">
-                  <Link to="/" className="btn-primary">
-                    <FontAwesomeIcon
-                      className="mr-3"
-                      icon={faChevronCircleLeft}
-                    />
-                    Head back to the recipe list
-                  </Link>
-                </div>
-              </Section>
+                <Section>
+                  <div className="bg-gray-100 rounded-lg p-4">
+                    <p className="mb-2">Find more recipes tagged under:</p>
+                    <TagsList tags={frontmatter.tags} />
+                  </div>
+                </Section>
+
+                <Section>
+                  <div className="text-center">
+                    <Link to="/" className="btn-primary">
+                      <FontAwesomeIcon
+                        className="mr-3"
+                        icon={faChevronCircleLeft}
+                      />
+                      Head back to the recipe list
+                    </Link>
+                  </div>
+                </Section>
+              </div>
             </div>
           </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
-    </div>
+    </>
   );
 }
 
@@ -390,15 +481,34 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        excerpt
+        category
+        cuisine
         ingredients
         directions
         servingSuggestion
         tags
+        prepTime
+        cookTime
         image {
           childImageSharp {
             fluid(maxWidth: 450, maxHeight: 450, cropFocus: CENTER) {
               ...GatsbyImageSharpFluid
             }
+            original {
+              src
+            }
+          }
+        }
+        metaImage: image {
+          childImageSharp {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              width: 600
+              height: 600
+              transformOptions: { fit: COVER }
+              formats: JPG
+            )
           }
         }
       }

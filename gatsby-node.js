@@ -10,6 +10,27 @@ const {
   getPath,
 } = require("./src/global-functions");
 
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions;
+//   const typeDefs = `
+//     type Recipe implements Node
+//       @childOf(types: ["File"], mimeTypes: ["text/markdown", "text/x-markdown"]) {
+//       title: String!
+//       date: Date
+//       category: String
+//       cuisine: String
+//       excerpt: String
+//       ingredients: [String]!
+//       directions: [String]!
+//       servingSuggestion: String
+//       tags: [String]
+//       prepTime: Int
+//       cookTime: Int
+//     }
+//   `;
+//   createTypes(typeDefs);
+// };
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions;
   const pageDefaultTemplate = require.resolve(

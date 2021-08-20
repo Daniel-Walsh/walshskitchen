@@ -1,4 +1,10 @@
 ---
+yield: ""
+prepTime: 0
+cookTime: 0
+category: ""
+cuisine: ""
+excerpt: ""
 date: 2021-01-31
 title: "Double Choc Chip Cookies"
 image: ./double-choc-chip-cookies.jpg
