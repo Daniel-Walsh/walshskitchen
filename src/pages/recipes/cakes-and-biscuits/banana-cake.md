@@ -32,7 +32,7 @@ directions:
   - Just before the cake is ready to remove from the oven, dissolve the 1/4 cup caster sugar in the boiling water to create the sugar glaze.
   - Remove the cake from the oven and baste generously with the sugar glaze. Stand for 5 minutes in the tin before turning it onto a wire rack to cool down completely.
   - If you’re feeling particularly sweet-toothed, dust the cake with icing sugar before serve.
-servingSuggestion: "Best served on its own and soaked up with some fresh, buttered crusty bread. Alternatively, keep the potatoes separate and mash them as a side dish instead."
+servingSuggestion: "Best eaten still warm from the oven, with your afternoon tea or coffee."
 tags:
   - cakes & biscuits
   - banana
