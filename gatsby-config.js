@@ -63,7 +63,7 @@ module.exports = {
         },
         serialize: ({ path, modified }) => {
           return {
-            url: `${siteUrl}${path}`,
+            url: `${siteUrl}${path}`.replace(/\/$/, ""),
             lastmod: modified,
           };
         },

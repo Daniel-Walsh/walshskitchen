@@ -10,27 +10,6 @@ const {
   getPath,
 } = require("./src/global-functions");
 
-// exports.createSchemaCustomization = ({ actions }) => {
-//   const { createTypes } = actions;
-//   const typeDefs = `
-//     type Recipe implements Node
-//       @childOf(types: ["File"], mimeTypes: ["text/markdown", "text/x-markdown"]) {
-//       title: String!
-//       date: Date
-//       category: String
-//       cuisine: String
-//       excerpt: String
-//       ingredients: [String]!
-//       directions: [String]!
-//       servingSuggestion: String
-//       tags: [String]
-//       prepTime: Int
-//       cookTime: Int
-//     }
-//   `;
-//   createTypes(typeDefs);
-// };
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions;
   const pageDefaultTemplate = require.resolve(
@@ -112,8 +91,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const postsPerPage = 12;
     const numPages = Math.ceil(includedRecipes.length / postsPerPage);
     Array.from({ length: numPages }).forEach((_, i) => {
+      let path = i === 0 ? basePath : `${basePath}page/${i + 1}`;
+      if (path.endsWith("/") && path !== "/") {
+        path = path.replace(/\/$/, "");
+      }
       createPage({
-        path: i === 0 ? basePath : `${basePath}page/${i + 1}`,
+        path,
         component: recipeListTemplate,
         context: {
           limit: postsPerPage,
@@ -127,6 +110,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           ...additionalContext,
         },
       });
+      // createRedirect({
+      //   fromPath: encodeURI(`${path}/`),
+      //   toPath: encodeURI(path),
+      //   isPermanent: true,
+      // });
     });
   };
 
@@ -135,14 +123,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const component = node.fileAbsolutePath.includes("/about.md")
       ? pageNoteTemplate
       : pageDefaultTemplate;
+    const path = getPath(node.fileAbsolutePath, ["src", "pages"]);
     createPage({
-      path: getPath(node.fileAbsolutePath, ["src", "pages"]),
+      path,
       component,
       context: {
         categories,
         fileAbsolutePath: node.fileAbsolutePath,
       },
     });
+    // createRedirect({
+    //   fromPath: encodeURI(`${path}/`),
+    //   toPath: encodeURI(path),
+    //   isPermanent: true,
+    // });
   });
 
   // Create recipe pages
@@ -161,7 +155,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         fileAbsolutePath: node.fileAbsolutePath,
       },
     });
-    createRedirect({ fromPath, toPath: path, isPermanent: true });
+    createRedirect({
+      fromPath: encodeURI(fromPath),
+      toPath: encodeURI(path),
+      isPermanent: true,
+    });
+    // createRedirect({
+    //   fromPath: encodeURI(`${path}/`),
+    //   toPath: encodeURI(path),
+    //   isPermanent: true,
+    // });
   });
 
   // Create category index pages
@@ -191,8 +194,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       glob: `**/src/pages/recipes/**`,
     });
     createRedirect({
-      fromPath: `/tags/${tag}`,
-      toPath: `/tag/${tag}`,
+      fromPath: encodeURI(`/tags/${tag}`),
+      toPath: encodeURI(`/tag/${tag}`),
       isPermanent: true,
     });
   });

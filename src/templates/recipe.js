@@ -178,6 +178,8 @@ const checklistReducer = (state, action) => {
 export default function Recipe({ data, location }) {
   const { markdownRemark, site } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
+  const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
+
   const [ingredients, ingredientsDispatch] = useReducer(
     checklistReducer,
     frontmatter.ingredients.map((ingredient) => {
@@ -276,16 +278,9 @@ export default function Recipe({ data, location }) {
       <Seo
         title={frontmatter.title}
         description={frontmatter.excerpt}
+        pageUrl={pageUrl}
         type="article"
         meta={[
-          {
-            property: "og:url",
-            content: `${site.siteMetadata.siteUrl}${location.pathname}`,
-          },
-          {
-            property: "og:locale",
-            content: "en_AU",
-          },
           {
             property: "og:image",
             content: metaImageUrl,

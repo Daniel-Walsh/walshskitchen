@@ -8,7 +8,9 @@ import classNames from "classnames";
 import { makeTitle } from "../global-functions";
 import Link from "../components/link";
 
-const RecipesPage = ({ data, pageContext }) => {
+const RecipesPage = ({ data, pageContext, location }) => {
+  const { site } = data;
+  const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
   const paginationPages = new Array();
 
   for (let index = 1; index <= pageContext.numPages; index++) {
@@ -41,7 +43,7 @@ const RecipesPage = ({ data, pageContext }) => {
 
   return (
     <>
-      <Seo title={pageContext.pageTitle} meta={pageMeta} />
+      <Seo title={pageContext.pageTitle} meta={pageMeta} pageUrl={pageUrl} />
       <Navbar categories={pageContext.categories} />
       <div className="container mx-auto">
         {!pageContext.category &&
@@ -215,6 +217,11 @@ export const pageQuery = graphql`
     $glob: String!
     $tag: [String]
   ) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     recipes: allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: {

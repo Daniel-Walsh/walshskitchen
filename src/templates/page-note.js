@@ -3,12 +3,13 @@ import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 
-const PageNote = ({ data, pageContext }) => {
-  const { markdownRemark } = data; // data.markdownRemark holds your post data
+const PageNote = ({ data, pageContext, location }) => {
+  const { markdownRemark, site } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
+  const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
   return (
     <>
-      <Seo title={frontmatter.title} />
+      <Seo title={frontmatter.title} pageUrl={pageUrl} />
       <Navbar categories={pageContext.categories} />
       <section className="container mx-auto my-24 px-4 md:max-w-xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
@@ -30,6 +31,11 @@ export default PageNote;
 
 export const pageQuery = graphql`
   query ($fileAbsolutePath: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     markdownRemark(fileAbsolutePath: { eq: $fileAbsolutePath }) {
       html
       frontmatter {
