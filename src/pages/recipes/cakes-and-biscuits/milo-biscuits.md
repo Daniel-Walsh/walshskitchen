@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Have your Milo, but why not in the form of soft, melting milo biscuits! These crumbly cookies are a sure-fire hit on your lazy Sunday afternoon."
 date: 2020-01-17
 title: "Milo Biscuits"
 image: ./milo-biscuits.jpg

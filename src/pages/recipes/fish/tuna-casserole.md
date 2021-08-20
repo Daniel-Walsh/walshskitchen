@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "A very “more-ish” comfort dish, tuna casserole is perfect on cold winter nights."
 date: 2020-01-19
 title: "Tuna Casserole"
 image: ./tuna-casserole.jpg

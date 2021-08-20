@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Quite possibly the best banana cake recipe I’ve come across (sorry Mum!). And with a couple of little tweaks, it’s become a staple in our house when there are over-ripe bananas lying around."
 date: 2020-01-21
 title: "Banana Cake"
 image: ./banana-cake.jpg

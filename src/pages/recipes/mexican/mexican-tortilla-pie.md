@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Long remembered as “In the Mex” or the “Tortilla Stack”, this is the one you’ve been waiting for!"
 date: 2020-01-13
 title: "Mexican Tortilla Pie"
 image: ./mexican-tortilla-pie.jpg

@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "This chocolate cake recipe is perfect for afternoon tea (or just because!)."
 date: 2020-01-14
 title: "Easy Peasy Chocolate Cake"
 image: ./easy-peasy-chocolate-cake.jpg

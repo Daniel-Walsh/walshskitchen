@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "There’s no better burger than a homemade burger. They’re never dry, never break apart when cooking on the grill, they’re simply fresh and delicious."
 date: 2020-01-08
 title: "Hamburgers"
 image: ./hamburgers.jpg

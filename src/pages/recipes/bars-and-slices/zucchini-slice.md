@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "This easy, savoury slice is the perfect way to incorporate more vegetables into your meal. The tasty egg, bacon and cheese will keep the kids coming back for more."
 date: 2020-01-12
 title: "Zucchini Slice"
 image: ./zucchini-slice.jpg

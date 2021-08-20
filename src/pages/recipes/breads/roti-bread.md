@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Super simple roti bread that you'd swear you picked up in your local restaurant! The perfect accompaniment to all your homemade curries."
 date: 2020-11-13
 title: "Roti Bread"
 image: ./roti-bread.jpg
@@ -21,10 +21,10 @@ directions:
   - Once it's as flat as possible, carefully hold the edges and stretch the dough outwards until it is tissue-thin all over. Drizzle with two teaspoons of melted ghee.
   - Perform a letter fold—fold one edge in towards the centre, drizzle with melted ghee, then fold the opposite edge over to make a rough square with three layers. Flatter out as thinly as possible then set aside and repeat with remaining portions.
   - Heat a medium non-stock frying-pan over a medium heat with 1tsp ghee. Cook the roti, turning once the underside is very crispy and golden brown. Remove from the pan, season with salt and cover loosely with foil to keep warm. Cook remaining roti.
-servingSuggestion: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Vestibulum ullamcorper mauris at ligula."
+servingSuggestion: "Best eaten by mopping up your vindaloo, dipping in your tikka masala, or using it as a vehicle for your satay chicken."
 tags:
   - bread
   - sides
 ---
 
-Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Etiam imperdiet imperdiet orci. Nullam nulla eros.
+Super simple roti bread that you'd swear you picked up in your local restaurant! The perfect accompaniment to all your homemade curries.

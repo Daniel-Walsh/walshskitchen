@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "All the way from Port Glasgow in Scotland, mince and totties is a cheap winter dish that can be easily multiplied to feed the masses. Every family has their own take on this classic Scottish dish, and this is ours."
 date: 2020-01-20
 title: "Mince and Totties"
 image: ./mince-and-totties.jpg

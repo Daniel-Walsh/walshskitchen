@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Super simple and super delicious, these chocolate chip cookies will melt in your mouth and keep you coming back for more!"
 date: 2021-01-31
 title: "Chocolate Chip Cookies"
 image: ./chocolate-chip-cookies.jpg

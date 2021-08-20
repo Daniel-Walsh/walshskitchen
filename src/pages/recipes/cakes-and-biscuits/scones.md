@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "No rubbing the butter into the flour, no lemonade; this fool-proof recipe makes perfect scones every time."
 date: 2020-01-11
 title: "Scones"
 image: ./scones.jpg

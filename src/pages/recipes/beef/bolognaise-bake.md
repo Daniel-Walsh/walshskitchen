@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Guilt-free, protein-packed pasta bake, without the mountains of white pasta to weigh you down. Just don't mention the added dose of veg to the kids!"
 date: 2020-11-20
 title: "Bolognaise Bake"
 image: ./bolognese-bake.jpg

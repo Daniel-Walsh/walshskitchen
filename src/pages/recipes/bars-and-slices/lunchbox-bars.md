@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Perfect to take to work for lunch or grab as an occassional breakfast substitute if you're running late."
 date: 2021-01-31
 title: "Lunchbox Bars"
 image: ./lunchbox-bars.jpg

@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Brandy, whisky and some other spirit or liqueur may be used in place of Baileys Irish Cream."
 date: 2020-12-23
 title: "Baileys Chocolate Truffles"
 image: ./baileys-chocolate-truffles.jpg

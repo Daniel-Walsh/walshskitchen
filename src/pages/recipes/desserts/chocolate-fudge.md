@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Chocolate fudge in five minutes with only three ingredients? So yum you won’t want to share!"
 date: 2020-01-09
 title: "Chocolate Fudge"
 image: ./chocolate-fudge.jpg

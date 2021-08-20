@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "An Aussie twist on a German recipe, this curried potato salad dish is the perfect “moreish” salad to go with your summer barbeque hamburgers."
 date: 2020-01-18
 title: "Curried Potato Salad"
 image: ./curried-potato-salad.jpg

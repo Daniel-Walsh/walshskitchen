@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Fluffy, pan-fried fritters with tuna and rice. They go well with any combination of sides from steamed veggies to packet pastas."
 date: 2020-01-01
 title: "Tuna Fritters"
 image: ./tuna-fritters.png

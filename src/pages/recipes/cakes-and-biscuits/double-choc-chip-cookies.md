@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "The perfect accompanyment to your afternoon coffee, these double choc chip cookies are the sugar pick-me-up you need to power through your lazy Sunday afternoon."
 date: 2021-01-31
 title: "Double Choc Chip Cookies"
 image: ./double-choc-chip-cookies.jpg

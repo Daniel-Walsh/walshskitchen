@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "The meatloaf of meatloaves – perfectly seasoned beef slow cooked in the oven for over an hour, regularly glazed for a rich and slightly spicy outer layer. You can add any kind of vegetables to this meatloaf recipe to mix things up."
 date: 2020-01-04
 title: "Meatloaf"
 image: ./meatloaf.jpg

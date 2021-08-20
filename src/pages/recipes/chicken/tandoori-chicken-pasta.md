@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Mild or super spicy? However you like it, this is an easy pasta dish you can throw together quickly, and devour slowly."
 date: 2020-01-10
 title: "Tandoori Chicken Pasta"
 image: ./tandoori-chicken-pasta.jpg

@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "We all know chocolate is the 'good mood' food - but here's a bonus, the simple superfood goji berries, called the 'happy berry'. The goji is nutritionally dense and ideal for wellness. Both dark chocolate and goji berries have high levels of cell protecting antioxidants, a big nutritional bonus!"
 date: 2020-12-06
 title: "Birdseed Bars"
 image: ./birdseed-bars.png

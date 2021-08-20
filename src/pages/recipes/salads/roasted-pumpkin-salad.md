@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Oven-roasted pumpkin, baby spinach and toasted pine nuts, all dressed gently in a honey and balsamic glaze."
 date: 2020-01-07
 title: "Roasted Pumpkin Salad"
 image: ./roasted-pumpkin-salad.jpg

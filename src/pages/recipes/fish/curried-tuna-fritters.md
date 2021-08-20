@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "The delicious brain child of the age old question: do we have Curried Tuna or Tuna Fritters for dinner tonight? Why not have both? Just don’t expect there to be leftovers!"
 date: 2020-01-15
 title: "Curried Tuna Fritters"
 image: ./curried-tuna-fritters.jpg

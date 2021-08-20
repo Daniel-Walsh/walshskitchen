@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "It might not look like much, but curried tuna poured over a bowl of steamed rice is a delicious winter warmer, and easy to cook in bulk."
 date: 2020-01-16
 title: "Curried Tuna"
 image: ./curried-tuna.jpg

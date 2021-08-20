@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Perfect for breakfast or dessert (or just because!), fluffy, golden pancakes should be a staple in everyones cooking repertoire."
 date: 2020-01-06
 title: "Pancakes"
 image: ./pancakes.jpg

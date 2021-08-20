@@ -4,7 +4,7 @@ prepTime: 0
 cookTime: 0
 category: ""
 cuisine: ""
-excerpt: ""
+excerpt: "Chicken, carrot and spring onion filled Chinese dumplings, twice pan-fried and steamed to perfection. Make sure you get the whole family involved – the more hands helping, the sooner you can eat them!"
 date: 2020-01-05
 title: "Pan-Fried Jiaozi"
 image: ./pan-fried-jiaozi.jpg
