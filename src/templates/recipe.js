@@ -237,11 +237,14 @@ export default function Recipe({ data, location }) {
     //   "@type": "NutritionInformation",
     //   calories: "270 calories",
     // },
+    nutrition: null,
+    aggregateRating: null,
     recipeIngredient: ingredients.map((ingredient) => ingredient.entryText),
     recipeInstructions: directions.map((step) => ({
       "@type": "HowToStep",
       text: step.entryText,
     })),
+    video: [],
   };
 
   if (frontmatter.tags && frontmatter.tags.length > 0) {
@@ -252,13 +255,13 @@ export default function Recipe({ data, location }) {
     schema["recipeYield"] = frontmatter.yield;
   }
 
-  if (frontmatter.category) {
-    schema["recipeCategory"] = frontmatter.category;
-  }
+  // if (frontmatter.category) {
+  schema["recipeCategory"] = frontmatter.category;
+  // }
 
-  if (frontmatter.cuisine) {
-    schema["recipeCuisine"] = frontmatter.cuisine;
-  }
+  // if (frontmatter.cuisine) {
+  schema["recipeCuisine"] = frontmatter.cuisine;
+  // }
 
   const prepTime = +frontmatter.prepTime;
   const cookTime = +frontmatter.cookTime;
@@ -268,6 +271,10 @@ export default function Recipe({ data, location }) {
     schema["prepTime"] = moment.duration(prepTime, "minutes").toISOString();
     schema["cookTime"] = moment.duration(cookTime, "minutes").toISOString();
     schema["totalTime"] = moment.duration(totalTime, "minutes").toISOString();
+  } else {
+    schema["prepTime"] = null;
+    schema["cookTime"] = null;
+    schema["totalTime"] = null;
   }
 
   return (
