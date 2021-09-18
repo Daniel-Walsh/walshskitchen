@@ -4,11 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-const {
-  getPathFromFilepath,
-  makeTitle,
-  getPath,
-} = require("./src/global-functions");
+const { getPathFromFilepath, getPath } = require("./src/global-functions");
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions;
@@ -21,6 +17,23 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
+      recipes: allStrapiRecipe {
+        edges {
+          node {
+            id
+            title
+            slug
+          }
+        }
+      }
+      categories: allStrapiCategory {
+        edges {
+          node {
+            name
+            slug
+          }
+        }
+      }
       pages: allMarkdownRemark(
         filter: { fileAbsolutePath: { glob: "**/pages/*.md" } }
         limit: 1000
@@ -31,7 +44,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      recipes: allMarkdownRemark(
+      recipesX: allMarkdownRemark(
         filter: { fileAbsolutePath: { glob: "**/pages/recipes/**" } }
         sort: { order: DESC, fields: [frontmatter___date] }
         limit: 1000
@@ -69,12 +82,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   // Get list of unique categories
-  let categories = recipes.map((recipe) => {
-    return recipe.node.fileAbsolutePath
-      .split("/src/pages/recipes/")[1]
-      .split("/")[0];
-  });
-  categories = [...new Set(categories)];
+  const categories = result.data.categories.edges;
+  // let categories = recipes.map((recipe) => {
+  //   return recipe.node.fileAbsolutePath
+  //     .split("/src/pages/recipes/")[1]
+  //     .split("/")[0];
+  // });
+  // categories = [...new Set(categories)];
 
   // Get list of unique tags
   let tags = recipesWithTags
@@ -142,17 +156,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // Create recipe pages
   recipes.forEach(({ node }) => {
     // Get the old recipe URL to set up 301 redirects with
-    const fromPath = `/${
-      getPathFromFilepath(node.fileAbsolutePath).split("/")[2]
-    }`;
+    // const fromPath = `/${
+    //   getPathFromFilepath(node.fileAbsolutePath).split("/")[2]
+    // }`;
+    const fromPath = `/${node.slug}`;
+    const path = `/recipes/${node.slug}`;
 
-    const path = getPathFromFilepath(node.fileAbsolutePath);
+    // const path = getPathFromFilepath(node.fileAbsolutePath);
+
     createPage({
       path,
       component: recipeTemplate,
       context: {
+        id: node.id,
         pathName: path,
-        fileAbsolutePath: node.fileAbsolutePath,
+        // fileAbsolutePath: node.fileAbsolutePath,
       },
     });
     createRedirect({
@@ -160,29 +178,26 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       toPath: encodeURI(path),
       isPermanent: true,
     });
-    // createRedirect({
-    //   fromPath: encodeURI(`${path}/`),
-    //   toPath: encodeURI(path),
-    //   isPermanent: true,
-    // });
   });
 
   // Create category index pages
-  categories.forEach((category) => {
-    const categoryRecipes = recipes.filter(
-      (recipe) =>
-        recipe.node.fileAbsolutePath.indexOf(`/pages/recipes/${category}/`) > -1
-    );
-    createIndexPages(
-      categoryRecipes,
-      `/category/${category}/`,
-      `${makeTitle(category)} | Recipes`,
-      {
-        category,
-        glob: `**/src/pages/recipes/${category}/**`,
-      }
-    );
-  });
+  // categories.forEach((category) => {
+  //   const categoryRecipes = recipes.filter(
+  //     (recipe) =>
+  //       recipe.node.fileAbsolutePath.indexOf(
+  //         `/pages/recipes/${category.node.slug}/`
+  //       ) > -1
+  //   );
+  //   createIndexPages(
+  //     categoryRecipes,
+  //     `/category/${category.node.slug}/`,
+  //     `${category.node.name} | Recipes`,
+  //     {
+  //       category: category.node.name,
+  //       glob: `**/src/pages/recipes/${category.node.slug}/**`,
+  //     }
+  //   );
+  // });
 
   // Create tag index pages
   tags.forEach((tag) => {

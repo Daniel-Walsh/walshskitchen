@@ -1,4 +1,11 @@
+// Package imports
+import { useMemo, useReducer } from "react";
+import { Helmet } from "react-helmet";
+import ReactMarkdown from "react-markdown";
+import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import classNames from "classnames";
+import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCircle } from "@fortawesome/pro-regular-svg-icons";
 import {
@@ -7,17 +14,14 @@ import {
   faListOl,
   faChevronCircleLeft,
 } from "@fortawesome/pro-solid-svg-icons";
+
+// Local imports
 import Seo from "../components/seo";
-import { graphql } from "gatsby";
 import Link from "../components/link";
-import { useMemo, useReducer, useRef, useState } from "react";
-import classNames from "classnames";
 import Footer from "../components/footer";
 import Section from "../components/section";
 import SectionHeading from "../components/section-heading";
 import Header from "../components/header";
-import { Helmet } from "react-helmet";
-import moment from "moment";
 
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -115,7 +119,7 @@ const Step = ({ number, text, checked, callback, isLast }) => {
               <div className="uppercase text-sm font-bold text-primary">
                 Step {number}
               </div>
-              {text}
+              <ReactMarkdown>{text}</ReactMarkdown>
             </div>
           </div>
         );
@@ -176,22 +180,26 @@ const checklistReducer = (state, action) => {
 };
 
 export default function Recipe({ data, location }) {
-  const { markdownRemark, site } = data; // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark;
+  // const { markdownRemark, site } = data; // data.markdownRemark holds your post data
+  const { recipe, site } = data;
+  // const { frontmatter, html } = markdownRemark;
   const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
 
   const [ingredients, ingredientsDispatch] = useReducer(
     checklistReducer,
-    frontmatter.ingredients.map((ingredient) => {
-      const [entryType, entryText] = ingredient.split("|");
-      return { entryType, entryText, checked: false };
+    recipe.ingredients.map((ingredient) => {
+      return {
+        entryType: ingredient.type,
+        entryText: ingredient.item,
+        checked: false,
+      };
     })
   );
   const [directions, directionsDispatch] = useReducer(
     checklistReducer,
-    frontmatter.directions.map((step) => {
+    recipe.directions.map((direction) => {
       return {
-        entryText: step,
+        entryText: direction.step,
         checked: false,
       };
     })
@@ -220,19 +228,19 @@ export default function Recipe({ data, location }) {
     }
   );
 
-  const metaImageUrl = `${site.siteMetadata.siteUrl}${frontmatter.metaImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
+  const metaImageUrl = `${site.siteMetadata.siteUrl}${recipe.metaImage.localFile.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const schema = {
     "@context": "http://schema.org/",
     "@type": "Recipe",
-    name: frontmatter.title,
+    name: recipe.title,
     image: [metaImageUrl],
     author: {
       "@type": "Organization",
       name: "Walsh's Kitchen",
     },
-    datePublished: moment(frontmatter.date).format("YYYY-MM-DD"),
-    description: frontmatter.excerpt,
+    datePublished: moment(recipe.publishOn).format("YYYY-MM-DD"),
+    description: recipe.excerpt,
     // nutrition: {
     //   "@type": "NutritionInformation",
     //   calories: "270 calories",
@@ -247,24 +255,24 @@ export default function Recipe({ data, location }) {
     video: [],
   };
 
-  if (frontmatter.tags && frontmatter.tags.length > 0) {
-    schema["keywords"] = frontmatter.tags.join(", ");
-  }
+  // if (frontmatter.tags && frontmatter.tags.length > 0) {
+  //   schema["keywords"] = frontmatter.tags.join(", ");
+  // }
 
-  if (frontmatter.yield) {
-    schema["recipeYield"] = frontmatter.yield;
+  if (recipe.yield) {
+    schema["recipeYield"] = recipe.yield;
   }
 
   // if (frontmatter.category) {
-  schema["recipeCategory"] = frontmatter.category;
+  schema["recipeCategory"] = recipe.category.name;
   // }
 
   // if (frontmatter.cuisine) {
-  schema["recipeCuisine"] = frontmatter.cuisine;
+  // schema["recipeCuisine"] = frontmatter.cuisine;
   // }
 
-  const prepTime = +frontmatter.prepTime;
-  const cookTime = +frontmatter.cookTime;
+  const prepTime = +recipe.prepTime;
+  const cookTime = +recipe.cookTime;
   const totalTime = prepTime + cookTime;
 
   if (totalTime > 0) {
@@ -283,8 +291,8 @@ export default function Recipe({ data, location }) {
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       <Seo
-        title={frontmatter.title}
-        description={frontmatter.excerpt}
+        title={recipe.title}
+        description={recipe.excerpt}
         pageUrl={pageUrl}
         type="article"
         meta={[
@@ -295,12 +303,12 @@ export default function Recipe({ data, location }) {
           {
             property: "og:image:width",
             content:
-              frontmatter.metaImage.childImageSharp.gatsbyImageData.width,
+              recipe.metaImage.localFile.childImageSharp.gatsbyImageData.width,
           },
           {
             property: "og:image:height",
             content:
-              frontmatter.metaImage.childImageSharp.gatsbyImageData.height,
+              recipe.metaImage.localFile.childImageSharp.gatsbyImageData.height,
           },
           {
             name: `twitter:image`,
@@ -314,8 +322,8 @@ export default function Recipe({ data, location }) {
           <div className="fixed hidden lg:block w-3/5 h-screen">
             <div className="relative">
               <Img
-                alt={frontmatter.title}
-                fluid={frontmatter.image.childImageSharp.fluid}
+                alt={recipe.featuredPhoto.alternativeText || recipe.title}
+                fluid={recipe.featuredPhoto.localFile.childImageSharp.fluid}
                 className="min-w-full min-h-screen"
               />
               <div
@@ -328,8 +336,8 @@ export default function Recipe({ data, location }) {
           </div>
           <div className="min-w-full lg:hidden relative">
             <Img
-              alt={frontmatter.title}
-              fluid={frontmatter.image.childImageSharp.fluid}
+              alt={recipe.featuredPhoto.alternativeText || recipe.title}
+              fluid={recipe.featuredPhoto.localFile.childImageSharp.fluid}
               className="max-h-96"
             />
             <div
@@ -344,22 +352,21 @@ export default function Recipe({ data, location }) {
               <div className="col">
                 <Section>
                   <h1 className="font-display text-4xl leading-snug mb-4 pt-10">
-                    {frontmatter.title}
+                    {recipe.title}
                   </h1>
-                  <div
-                    className="text-xl leading-normal mb-6"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                  ></div>
+                  <ReactMarkdown className="text-xl leading-normal mb-6">
+                    {recipe.content}
+                  </ReactMarkdown>
                 </Section>
 
                 <Section>
-                  {frontmatter.ingredients.length > 0 && (
+                  {recipe.ingredients.length > 0 && (
                     <div id="recipe-ingredients" className="mb-5">
                       <SectionHeading text="Ingredients" icon={faSalad} />
                       <SectionInstructions text="Check off each of your ingredients before you get started!" />
                       {ingredients.map((ingredient, index) => {
                         switch (ingredient.entryType) {
-                          case "heading":
+                          case "Heading":
                             return (
                               <div
                                 key={index}
@@ -368,7 +375,7 @@ export default function Recipe({ data, location }) {
                                 {ingredient.entryText}
                               </div>
                             );
-                          case "item":
+                          case "Ingredient":
                             return (
                               <Ingredient
                                 key={index}
@@ -418,7 +425,7 @@ export default function Recipe({ data, location }) {
                               value: !step.checked,
                             });
                           }}
-                          isLast={index === frontmatter.directions.length - 1}
+                          isLast={index === recipe.directions.length - 1}
                         />
                       ))}
                     </div>
@@ -436,24 +443,24 @@ export default function Recipe({ data, location }) {
                   <hr />
                 </Section>
 
-                <Section>
-                  {frontmatter.servingSuggestion && (
+                {recipe.servingSuggestion && (
+                  <Section>
                     <div
                       id="talking-bubble"
                       className="font-comic border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
                     >
-                      {frontmatter.servingSuggestion}
+                      {recipe.servingSuggestion}
                     </div>
-                  )}
-                  <img className="ml-8" src="/dan-explain.svg" alt="" />
-                </Section>
+                    <img className="ml-8" src="/dan-explain.svg" alt="" />
+                  </Section>
+                )}
 
-                <Section>
+                {/* <Section>
                   <div className="bg-gray-100 rounded-lg p-4">
                     <p className="mb-2">Find more recipes tagged under:</p>
                     <TagsList tags={frontmatter.tags} />
                   </div>
-                </Section>
+                </Section> */}
 
                 <Section>
                   <div className="text-center">
@@ -477,27 +484,25 @@ export default function Recipe({ data, location }) {
 }
 
 export const pageQuery = graphql`
-  query ($fileAbsolutePath: String!) {
+  query ($id: String!) {
     site {
       siteMetadata {
         siteUrl
       }
     }
-    markdownRemark(fileAbsolutePath: { eq: $fileAbsolutePath }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        title
-        excerpt
-        category
-        cuisine
-        ingredients
-        directions
-        servingSuggestion
-        tags
-        prepTime
-        cookTime
-        image {
+    recipe: strapiRecipe(id: { eq: $id }) {
+      title
+      slug
+      excerpt
+      content
+      publishOn
+      category {
+        name
+      }
+      featuredPhoto {
+        url
+        alternativeText
+        localFile {
           childImageSharp {
             fluid(maxWidth: 450, maxHeight: 450, cropFocus: CENTER) {
               ...GatsbyImageSharpFluid
@@ -507,7 +512,9 @@ export const pageQuery = graphql`
             }
           }
         }
-        metaImage: image {
+      }
+      metaImage: featuredPhoto {
+        localFile {
           childImageSharp {
             gatsbyImageData(
               layout: CONSTRAINED
@@ -519,6 +526,64 @@ export const pageQuery = graphql`
           }
         }
       }
+      prepTime
+      cookTime
+      yield
+      ingredients {
+        item
+        type
+      }
+      directions {
+        step
+      }
+      servingSuggestion
     }
   }
 `;
+
+// export const pageQuery = graphql`
+//   query ($fileAbsolutePath: String!) {
+//     site {
+//       siteMetadata {
+//         siteUrl
+//       }
+//     }
+//     markdownRemark(fileAbsolutePath: { eq: $fileAbsolutePath }) {
+//       html
+//       frontmatter {
+//         date(formatString: "MMMM DD, YYYY")
+//         title
+//         excerpt
+//         category
+//         cuisine
+//         ingredients
+//         directions
+//         servingSuggestion
+//         tags
+//         prepTime
+//         cookTime
+//         image {
+//           childImageSharp {
+//             fluid(maxWidth: 450, maxHeight: 450, cropFocus: CENTER) {
+//               ...GatsbyImageSharpFluid
+//             }
+//             original {
+//               src
+//             }
+//           }
+//         }
+//         metaImage: image {
+//           childImageSharp {
+//             gatsbyImageData(
+//               layout: CONSTRAINED
+//               width: 600
+//               height: 600
+//               transformOptions: { fit: COVER }
+//               formats: JPG
+//             )
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;

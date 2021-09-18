@@ -5,7 +5,6 @@ import Navbar from "../components/navbar";
 import { getPathFromFilepath } from "../global-functions";
 import Seo from "../components/seo";
 import classNames from "classnames";
-import { makeTitle } from "../global-functions";
 import Link from "../components/link";
 
 const RecipesPage = ({ data, pageContext, location }) => {
@@ -34,7 +33,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
     pageContext.category !== undefined || pageContext.tag !== undefined;
 
   if (pageContext.category) {
-    taxonomyHeading = makeTitle(pageContext.category);
+    taxonomyHeading = pageContext.category;
   }
 
   if (pageContext.tag) {

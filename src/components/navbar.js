@@ -1,5 +1,4 @@
 import { Link, navigate } from "gatsby";
-import { makeTitle } from "../global-functions";
 
 const Navbar = ({ categories }) => {
   const handleMenuChange = (event) => {
@@ -35,8 +34,8 @@ const Navbar = ({ categories }) => {
             {categories &&
               categories.map((category, index) => {
                 return (
-                  <option key={index} value={category}>
-                    {makeTitle(category)}
+                  <option key={index} value={category.node.slug}>
+                    {category.node.name}
                   </option>
                 );
               })}

@@ -78,6 +78,16 @@ module.exports = {
     `gatsby-plugin-transition-link`,
     "gatsby-plugin-postcss",
     {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `https://immense-fjord-35218.herokuapp.com`,
+        queryLimit: 1000, // Defaults to 100
+        collectionTypes: [`recipe`, `collection`, `cuisine`, `category`, `tag`],
+        // collectionTypes: [`article`, `user`],
+        // singleTypes: [`home-page`, `contact`],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,
