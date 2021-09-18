@@ -1,14 +1,17 @@
+// Package imports
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import classNames from "classnames";
+
+// Local imports
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import { getPathFromFilepath } from "../global-functions";
 import Seo from "../components/seo";
-import classNames from "classnames";
 import Link from "../components/link";
 
 const RecipesPage = ({ data, pageContext, location }) => {
-  const { site } = data;
+  const { recipes, site } = data;
+  const { collections } = pageContext;
   const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
   const paginationPages = new Array();
 
@@ -43,7 +46,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
   return (
     <>
       <Seo title={pageContext.pageTitle} meta={pageMeta} pageUrl={pageUrl} />
-      <Navbar categories={pageContext.categories} />
+      <Navbar collections={collections} categories={pageContext.categories} />
       <div className="container mx-auto">
         {!pageContext.category &&
           !pageContext.tag &&
@@ -65,9 +68,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
                       mess up your pancakes, again.
                     </div>
                     <Link
-                      to={getPathFromFilepath(
-                        data.recipes.edges[0].node.fileAbsolutePath
-                      )}
+                      to={`/recipes/${recipes.edges[0].recipe.slug}`}
                       className="btn-primary btn-lg"
                     >
                       Get the latest recipe!
@@ -75,22 +76,18 @@ const RecipesPage = ({ data, pageContext, location }) => {
                   </div>
                 </div>
                 <div className="lg:w-3/5 sm:w-2/5 w-full rounded-lg overflow-hidden hidden sm:block mt-6 sm:mt-0 relative max-w-3xl">
-                  <Link
-                    to={getPathFromFilepath(
-                      data.recipes.edges[0].node.fileAbsolutePath
-                    )}
-                  >
+                  <Link to={`/recipes/${recipes.edges[0].recipe.slug}`}>
                     <GatsbyImage
                       className="object-cover object-center w-full h-full"
                       aspectRatio={4 / 3}
                       image={
-                        data.recipes.edges[0].node.frontmatter.image
+                        recipes.edges[0].recipe.featuredPhoto.localFile
                           .childImageSharp.gatsbyImageData
                       }
-                      alt={data.recipes.edges[0].node.frontmatter.title}
+                      alt={recipes.edges[0].recipe.title}
                     />
                     <div className="inset-0 from-gray-500 to-transparent bg-opacity-50 text-white absolute bg-gradient-to-t flex items-end p-4 text-xl hover:from-gray-700 transition-all">
-                      {data.recipes.edges[0].node.frontmatter.title}
+                      {recipes.edges[0].recipe.title}
                     </div>
                   </Link>
                 </div>
@@ -144,26 +141,27 @@ const RecipesPage = ({ data, pageContext, location }) => {
         <section className="my-24">
           <div className="flex flex-wrap">
             {data.recipes.edges &&
-              data.recipes.edges.map(({ node }, index) => {
+              data.recipes.edges.map(({ recipe }, index) => {
                 return (
                   <Link
                     key={index}
-                    to={getPathFromFilepath(node.fileAbsolutePath)}
+                    to={`/recipes/${recipe.slug}`}
                     className="sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-5 relative group"
                   >
                     <div className="rounded-md overflow-hidden mb-1 relative">
                       <GatsbyImage
-                        alt={node.frontmatter.title}
+                        alt={recipe.title}
                         className="w-full object-cover h-full object-center block inset-0"
                         aspectRatio={4 / 3}
                         image={
-                          node.frontmatter.image.childImageSharp.gatsbyImageData
+                          recipe.featuredPhoto.localFile.childImageSharp
+                            .gatsbyImageData
                         }
                       />
                       <div className="inset-0 bg-black absolute group-hover:opacity-20 opacity-0 transition-opacity"></div>
                     </div>
                     <span className="font-semibold text-sm leading-none">
-                      {node.frontmatter.title}
+                      {recipe.title}
                     </span>
                   </Link>
                 );
@@ -210,44 +208,77 @@ const RecipesPage = ({ data, pageContext, location }) => {
 export default RecipesPage;
 
 export const pageQuery = graphql`
-  query recipeListQuery(
-    $skip: Int!
-    $limit: Int!
-    $glob: String!
-    $tag: [String]
-  ) {
+  query recipeListQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         siteUrl
       }
     }
-    recipes: allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: {
-        fileAbsolutePath: { glob: $glob }
-        frontmatter: { tags: { in: $tag } }
-      }
-      limit: $limit
+    recipes: allStrapiRecipe(
       skip: $skip
+      limit: $limit
+      sort: { order: DESC, fields: publishOn }
     ) {
       edges {
-        node {
+        recipe: node {
           id
-          excerpt(pruneLength: 250)
-          html
-          frontmatter {
-            date(formatString: "DD/MM/YYYY")
-            title
-            tags
-            image {
+          excerpt
+          content
+          publishOn(formatString: "DD/MM/YYYY")
+          title
+          slug
+          featuredPhoto {
+            localFile {
               childImageSharp {
                 gatsbyImageData(layout: CONSTRAINED, width: 600, height: 400)
               }
             }
           }
-          fileAbsolutePath
         }
       }
     }
   }
 `;
+
+// export const pageQuery = graphql`
+//   query recipeListQuery(
+//     $skip: Int!
+//     $limit: Int!
+//     $glob: String!
+//     $tag: [String]
+//   ) {
+//     site {
+//       siteMetadata {
+//         siteUrl
+//       }
+//     }
+//     recipes: allMarkdownRemark(
+//       sort: { order: DESC, fields: [frontmatter___date] }
+//       filter: {
+//         fileAbsolutePath: { glob: $glob }
+//         frontmatter: { tags: { in: $tag } }
+//       }
+//       limit: $limit
+//       skip: $skip
+//     ) {
+//       edges {
+//         node {
+//           id
+//           excerpt(pruneLength: 250)
+//           html
+//           frontmatter {
+//             date(formatString: "DD/MM/YYYY")
+//             title
+//             tags
+//             image {
+//               childImageSharp {
+//                 gatsbyImageData(layout: CONSTRAINED, width: 600, height: 400)
+//               }
+//             }
+//           }
+//           fileAbsolutePath
+//         }
+//       }
+//     }
+//   }
+// `;

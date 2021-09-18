@@ -496,8 +496,9 @@ export const pageQuery = graphql`
       excerpt
       content
       publishOn
-      category {
+      categories {
         name
+        slug
       }
       featuredPhoto {
         url

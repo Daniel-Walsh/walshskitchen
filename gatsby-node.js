@@ -26,11 +26,23 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           }
         }
       }
-      categories: allStrapiCategory {
+      collections: allStrapiCollection {
         edges {
-          node {
+          collection: node {
             name
             slug
+          }
+        }
+      }
+      categories: allStrapiCategory {
+        edges {
+          category: node {
+            name
+            slug
+            type: categoryType {
+              name
+              slug
+            }
           }
         }
       }
@@ -82,6 +94,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   // Get list of unique categories
+  const collections = result.data.collections.edges;
   const categories = result.data.categories.edges;
   // let categories = recipes.map((recipe) => {
   //   return recipe.node.fileAbsolutePath
@@ -119,6 +132,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           currentPage: i + 1,
           numRecipes: includedRecipes.length,
           categories,
+          collections,
           basePath,
           pageTitle,
           ...additionalContext,

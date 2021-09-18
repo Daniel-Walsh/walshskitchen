@@ -82,7 +82,14 @@ module.exports = {
       options: {
         apiURL: `https://immense-fjord-35218.herokuapp.com`,
         queryLimit: 1000, // Defaults to 100
-        collectionTypes: [`recipe`, `collection`, `cuisine`, `category`, `tag`],
+        collectionTypes: [
+          `recipe`,
+          `collection`,
+          `cuisine`,
+          `category`,
+          `category-types`,
+          `tag`,
+        ],
         // collectionTypes: [`article`, `user`],
         // singleTypes: [`home-page`, `contact`],
       },
