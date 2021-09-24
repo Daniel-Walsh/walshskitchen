@@ -8,8 +8,7 @@ import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 
 const CategoriesPage = ({ data }) => {
-  const { categories, categoryTypes } = data;
-  console.log(categoryTypes);
+  const { categoryTypes } = data;
   return (
     <>
       <Seo title="Categories" />

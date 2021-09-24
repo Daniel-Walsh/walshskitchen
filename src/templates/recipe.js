@@ -14,6 +14,7 @@ import {
   faListOl,
   faChevronCircleLeft,
 } from "@fortawesome/pro-solid-svg-icons";
+import { globalHistory } from "@reach/router";
 
 // Local imports
 import Seo from "../components/seo";
@@ -179,7 +180,7 @@ const checklistReducer = (state, action) => {
   }
 };
 
-export default function Recipe({ data, location }) {
+export default function Recipe({ data }) {
   // const { markdownRemark, site } = data; // data.markdownRemark holds your post data
   const { recipe, categoryTypes, site } = data;
 
@@ -192,7 +193,7 @@ export default function Recipe({ data, location }) {
   // console.log(recipe.categories);
   // console.log(categoryTypes);
   // const { frontmatter, html } = markdownRemark;
-  const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
+  const pageUrl = `${site.siteMetadata.siteUrl}${globalHistory.location.pathname}`;
 
   const [ingredients, ingredientsDispatch] = useReducer(
     checklistReducer,

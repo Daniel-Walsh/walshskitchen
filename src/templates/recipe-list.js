@@ -14,7 +14,7 @@ import Link from "../components/link";
 import { getTotalTime } from "../global-functions";
 import FadeOverlay from "../components/fade-overlay";
 
-const RecipesPage = ({ data, pageContext, location }) => {
+const RecipesPage = ({ data, pageContext }) => {
   const { recipes, site } = data;
   const {
     categories,
@@ -26,7 +26,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
     basePath,
     pageTitle,
   } = pageContext;
-  const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
+  const pageUrl = `${site.siteMetadata.siteUrl}${globalHistory.location.pathname}`;
   const paginationPages = new Array();
 
   for (let index = 1; index <= numPages; index++) {
