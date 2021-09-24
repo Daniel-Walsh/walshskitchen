@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/pro-regular-svg-icons";
+import { globalHistory } from "@reach/router";
 
 // Local imports
 import Footer from "../components/footer";
@@ -55,7 +56,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
   return (
     <>
       <Seo title={pageTitle} meta={pageMeta} pageUrl={pageUrl} />
-      <Navbar location={location} />
+      <Navbar location={globalHistory.location} />
       <div className="container mx-auto">
         {!category && !tag && currentPage === 1 && (
           <section className="text-gray-600 body-font">

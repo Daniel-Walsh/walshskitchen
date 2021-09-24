@@ -1,5 +1,6 @@
 import { graphql } from "gatsby";
 import pluralize from "pluralize";
+import { globalHistory } from "@reach/router";
 
 import Link from "../components/link";
 import Footer from "../components/footer";
@@ -12,7 +13,7 @@ const CategoriesPage = ({ data }) => {
   return (
     <>
       <Seo title="Categories" />
-      <Navbar location={location} />
+      <Navbar location={globalHistory.location} />
       <section className="container mx-auto my-24 px-4 md:max-w-4xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
           <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
