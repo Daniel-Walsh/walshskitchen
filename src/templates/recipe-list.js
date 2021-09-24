@@ -55,7 +55,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
   return (
     <>
       <Seo title={pageTitle} meta={pageMeta} pageUrl={pageUrl} />
-      <Navbar categories={categories} />
+      <Navbar location={location} />
       <div className="container mx-auto">
         {!category && !tag && currentPage === 1 && (
           <section className="text-gray-600 body-font">

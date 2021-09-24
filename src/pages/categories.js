@@ -1,17 +1,19 @@
 import { graphql } from "gatsby";
+import pluralize from "pluralize";
+
 import Link from "../components/link";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 
 const CategoriesPage = ({ data }) => {
-  const { categoryTypes } = data;
+  const { categories, categoryTypes } = data;
   console.log(categoryTypes);
   return (
     <>
       <Seo title="Categories" />
-      {/* <Navbar categories={pageContext.categories} /> */}
-      <section className="container mx-auto my-24 px-4 md:max-w-xl">
+      <Navbar location={location} />
+      <section className="container mx-auto my-24 px-4 md:max-w-4xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
           <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
             {/* {frontmatter.title} */}
@@ -23,15 +25,34 @@ const CategoriesPage = ({ data }) => {
           ></div> */}
           {categoryTypes.edges.map(({ type }, index) => (
             <div key={index} className="mb-6">
-              <h2 className="mb-3 font-semibold text-xl">{type.name}</h2>
-              <ul className="flex">
-                {type.categories.map((category) => (
-                  <li>
-                    <Link to={`/category/${type.slug}/${category.slug}`}>
-                      {category.name}
-                    </Link>
-                  </li>
-                ))}
+              <h2 className="mb-3 font-semibold text-xl">
+                {pluralize(type.name)}
+              </h2>
+              <ul className="flex flex-wrap">
+                {type.categories
+                  .sort((a, b) => {
+                    if (a.name < b.name) {
+                      return -1;
+                    }
+                    if (a.name > b.name) {
+                      return 1;
+                    }
+                    return 0;
+                  })
+                  .map((category) => (
+                    <li>
+                      <Link
+                        to={`/category/${type.slug}/${category.slug}`}
+                        className="flex flex-col items-center mr-4 mb-4 no-underline"
+                      >
+                        <div className="h-24 w-24 bg-gray-200 rounded-full"></div>
+                        <span className="w-24 text-center">
+                          {" "}
+                          {category.name}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
               </ul>
             </div>
           ))}
