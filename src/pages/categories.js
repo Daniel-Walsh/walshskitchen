@@ -39,8 +39,8 @@ const CategoriesPage = ({ data }) => {
                     }
                     return 0;
                   })
-                  .map((category) => (
-                    <li>
+                  .map((category, index) => (
+                    <li key={index}>
                       <Link
                         to={`/category/${type.slug}/${category.slug}`}
                         className="flex flex-col items-center mr-4 mb-4 no-underline"
