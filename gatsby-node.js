@@ -23,25 +23,25 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             id
             title
             slug
-          }
-        }
-      }
-      collections: allStrapiCollection {
-        edges {
-          collection: node {
-            name
-            slug
+            categories {
+              id
+              name
+              slug
+              categoryType
+            }
           }
         }
       }
       categories: allStrapiCategory {
         edges {
           category: node {
+            strapiId
             name
             slug
             type: categoryType {
               name
               slug
+              id
             }
           }
         }
@@ -83,6 +83,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
   `);
 
+  // console.log(result);
+
   const pages = result.data.pages.edges;
   const recipes = result.data.recipes.edges;
   const recipesWithTags = result.data.recipesWithTags.edges;
@@ -94,7 +96,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   // Get list of unique categories
-  const collections = result.data.collections.edges;
+  // const collections = result.data.collections.edges;
   const categories = result.data.categories.edges;
   // let categories = recipes.map((recipe) => {
   //   return recipe.node.fileAbsolutePath
@@ -132,7 +134,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           currentPage: i + 1,
           numRecipes: includedRecipes.length,
           categories,
-          collections,
+          // collections,
           basePath,
           pageTitle,
           ...additionalContext,
@@ -195,23 +197,24 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   });
 
   // Create category index pages
-  // categories.forEach((category) => {
-  //   const categoryRecipes = recipes.filter(
-  //     (recipe) =>
-  //       recipe.node.fileAbsolutePath.indexOf(
-  //         `/pages/recipes/${category.node.slug}/`
-  //       ) > -1
-  //   );
-  //   createIndexPages(
-  //     categoryRecipes,
-  //     `/category/${category.node.slug}/`,
-  //     `${category.node.name} | Recipes`,
-  //     {
-  //       category: category.node.name,
-  //       glob: `**/src/pages/recipes/${category.node.slug}/**`,
-  //     }
-  //   );
-  // });
+  categories.forEach(({ category }) => {
+    const categoryRecipes = recipes.filter((recipe) => {
+      let matchFound = false;
+      recipe.node.categories.forEach((recipeCategory) => {
+        if (recipeCategory.id === category.strapiId) {
+          matchFound = true;
+        }
+      });
+      return matchFound;
+    });
+
+    createIndexPages(
+      categoryRecipes,
+      `/category/${category.type.slug}/${category.slug}`,
+      `${category.name} | ${category.type.name} | Recipes`,
+      { category, categoryId: category.strapiId }
+    );
+  });
 
   // Create tag index pages
   tags.forEach((tag) => {

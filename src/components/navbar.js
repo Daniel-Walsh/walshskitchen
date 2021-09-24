@@ -20,7 +20,7 @@ const Navbar = ({ collections }) => {
           </Link>
         </div>
         <div>
-          <select
+          {/* <select
             onChange={(event) => handleMenuChange(event.target.value)}
             className="
               block 
@@ -41,7 +41,7 @@ const Navbar = ({ collections }) => {
                 {collection.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
       </div>
     </header>

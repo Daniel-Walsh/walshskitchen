@@ -181,7 +181,16 @@ const checklistReducer = (state, action) => {
 
 export default function Recipe({ data, location }) {
   // const { markdownRemark, site } = data; // data.markdownRemark holds your post data
-  const { recipe, site } = data;
+  const { recipe, categoryTypes, site } = data;
+
+  const getCategoryTypeById = (strapiId) => {
+    return categoryTypes.edges.filter(
+      (item) => item.type.strapiId === strapiId
+    )[0].type;
+  };
+
+  // console.log(recipe.categories);
+  // console.log(categoryTypes);
   // const { frontmatter, html } = markdownRemark;
   const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
 
@@ -263,9 +272,9 @@ export default function Recipe({ data, location }) {
     schema["recipeYield"] = recipe.yield;
   }
 
-  // if (frontmatter.category) {
-  schema["recipeCategory"] = recipe.category.name;
-  // }
+  if (recipe.category) {
+    schema["recipeCategory"] = recipe.category.name;
+  }
 
   // if (frontmatter.cuisine) {
   // schema["recipeCuisine"] = frontmatter.cuisine;
@@ -449,18 +458,37 @@ export default function Recipe({ data, location }) {
                       id="talking-bubble"
                       className="font-comic border-2 max-w-xs text-center border-gray-600 px-4 py-3 uppercase font-weight-bold text-uppercase relative rounded-3xl"
                     >
-                      {recipe.servingSuggestion}
+                      Serving suggestion&mdash;{recipe.servingSuggestion}
                     </div>
                     <img className="ml-8" src="/dan-explain.svg" alt="" />
                   </Section>
                 )}
 
-                {/* <Section>
-                  <div className="bg-gray-100 rounded-lg p-4">
-                    <p className="mb-2">Find more recipes tagged under:</p>
-                    <TagsList tags={frontmatter.tags} />
-                  </div>
-                </Section> */}
+                {recipe.categories.length > 0 && (
+                  <Section>
+                    <div className="bg-gray-100 rounded-lg p-4">
+                      <p className="mb-2">
+                        Find more recipes categorised under:
+                      </p>
+                      <ul id="recipe-tags" className="flex flex-wrap list-none">
+                        {recipe.categories.map(
+                          ({ name, slug, categoryType }, index) => (
+                            <li key={index}>
+                              <Link
+                                className="inline-block text-primary underline hover:no-underline bg-red-100 hover:bg-red-50 px-2 py-1 mb-2 mr-2 whitespace-nowrap rounded-lg transition-colors"
+                                to={`/category/${
+                                  getCategoryTypeById(categoryType).slug
+                                }/${slug}`}
+                              >
+                                {name}
+                              </Link>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  </Section>
+                )}
 
                 <Section>
                   <div className="text-center">
@@ -490,6 +518,15 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
+    categoryTypes: allStrapiCategoryTypes {
+      edges {
+        type: node {
+          name
+          slug
+          strapiId
+        }
+      }
+    }
     recipe: strapiRecipe(id: { eq: $id }) {
       title
       slug
@@ -499,6 +536,7 @@ export const pageQuery = graphql`
       categories {
         name
         slug
+        categoryType
       }
       featuredPhoto {
         url

@@ -44,7 +44,15 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    // The 'group-hover' variant will be generated in addition to the defaults
+    extend: {
+      ringColor: ["group-hover"],
+      ringOffsetColor: ["group-hover"],
+      ringOffsetWidth: ["group-hover"],
+      ringOpacity: ["group-hover"],
+      ringWidth: ["group-hover"],
+      scale: ["group-hover"],
+    },
   },
   plugins: [require("@tailwindcss/forms")],
 };

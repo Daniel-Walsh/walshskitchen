@@ -84,13 +84,14 @@ module.exports = {
         queryLimit: 1000, // Defaults to 100
         collectionTypes: [
           `recipe`,
-          `collection`,
-          `cuisine`,
+          // `collection`,
+          // `cuisine`,
           `category`,
           `category-types`,
-          `tag`,
+          // `tag`,
+          // `article`,
+          // `user`,
         ],
-        // collectionTypes: [`article`, `user`],
         // singleTypes: [`home-page`, `contact`],
       },
     },

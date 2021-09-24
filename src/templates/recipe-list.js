@@ -2,29 +2,39 @@
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import classNames from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/pro-regular-svg-icons";
 
 // Local imports
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 import Link from "../components/link";
+import { getTotalTime } from "../global-functions";
+import FadeOverlay from "../components/fade-overlay";
 
 const RecipesPage = ({ data, pageContext, location }) => {
   const { recipes, site } = data;
-  const { collections } = pageContext;
+  const {
+    categories,
+    category,
+    tag,
+    numPages,
+    numRecipes,
+    currentPage,
+    basePath,
+    pageTitle,
+  } = pageContext;
   const pageUrl = `${site.siteMetadata.siteUrl}${location.pathname}`;
   const paginationPages = new Array();
 
-  for (let index = 1; index <= pageContext.numPages; index++) {
-    const pageLink =
-      index === 1
-        ? pageContext.basePath
-        : `${pageContext.basePath}page/${index}`;
+  for (let index = 1; index <= numPages; index++) {
+    const pageLink = index === 1 ? basePath : `${basePath}page/${index}`;
     paginationPages.push(pageLink);
   }
 
   const pageMeta = [];
-  if (pageContext.currentPage > 1) {
+  if (currentPage > 1) {
     pageMeta.push({
       name: `robots`,
       content: `noindex, nofollow`,
@@ -32,85 +42,84 @@ const RecipesPage = ({ data, pageContext, location }) => {
   }
 
   let taxonomyHeading = "";
-  const isTaxonomyPage =
-    pageContext.category !== undefined || pageContext.tag !== undefined;
+  const isTaxonomyPage = category !== undefined || tag !== undefined;
 
-  if (pageContext.category) {
-    taxonomyHeading = pageContext.category;
+  if (category) {
+    taxonomyHeading = category.name;
   }
 
-  if (pageContext.tag) {
-    taxonomyHeading = `#${pageContext.tag}`;
+  if (tag) {
+    taxonomyHeading = `#${tag}`;
   }
 
   return (
     <>
-      <Seo title={pageContext.pageTitle} meta={pageMeta} pageUrl={pageUrl} />
-      <Navbar collections={collections} categories={pageContext.categories} />
+      <Seo title={pageTitle} meta={pageMeta} pageUrl={pageUrl} />
+      <Navbar categories={categories} />
       <div className="container mx-auto">
-        {!pageContext.category &&
-          !pageContext.tag &&
-          pageContext.currentPage === 1 && (
-            <section className="text-gray-600 body-font">
-              <div className="px-4 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
-                <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-3/5 content-start md:pr-10">
-                  <div className="w-full sm:p-4 px-4 mb-6">
-                    <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
-                      <span className="block 2xl:inline">Check out </span>
-                      <span className="block 2xl:inline">what's cookin'!</span>
-                    </h1>
-                    <div className="leading-relaxed mb-5">
-                      All your family favourites in one place,{" "}
-                      <span className="font-semibold">Walsh's Kitchen</span> is
-                      here to save you from
-                      recipe-memory-fatigue&mdash;reminding you how many cups of
-                      flour you need <span className="italic">before</span> you
-                      mess up your pancakes, again.
-                    </div>
-                    <Link
-                      to={`/recipes/${recipes.edges[0].recipe.slug}`}
-                      className="btn-primary btn-lg"
-                    >
-                      Get the latest recipe!
-                    </Link>
+        {!category && !tag && currentPage === 1 && (
+          <section className="text-gray-600 body-font">
+            <div className="px-4 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
+              <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-3/5 content-start md:pr-10">
+                <div className="w-full sm:p-4 px-4 mb-6">
+                  <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
+                    <span className="block 2xl:inline">Check out </span>
+                    <span className="block 2xl:inline">what's cookin'!</span>
+                  </h1>
+                  <div className="leading-relaxed mb-5">
+                    All your family favourites in one place,{" "}
+                    <span className="font-semibold">Walsh's Kitchen</span> is
+                    here to save you from recipe-memory-fatigue&mdash;reminding
+                    you how many cups of flour you need{" "}
+                    <span className="italic">before</span> you mess up your
+                    pancakes, again.
                   </div>
-                </div>
-                <div className="lg:w-3/5 sm:w-2/5 w-full rounded-lg overflow-hidden hidden sm:block mt-6 sm:mt-0 relative max-w-3xl">
-                  <Link to={`/recipes/${recipes.edges[0].recipe.slug}`}>
-                    <GatsbyImage
-                      className="object-cover object-center w-full h-full"
-                      aspectRatio={4 / 3}
-                      image={
-                        recipes.edges[0].recipe.featuredPhoto.localFile
-                          .childImageSharp.gatsbyImageData
-                      }
-                      alt={recipes.edges[0].recipe.title}
-                    />
-                    <div className="inset-0 from-gray-500 to-transparent bg-opacity-50 text-white absolute bg-gradient-to-t flex items-end p-4 text-xl hover:from-gray-700 transition-all">
-                      {recipes.edges[0].recipe.title}
-                    </div>
+                  <Link
+                    to={`/recipes/${recipes.edges[0].recipe.slug}`}
+                    className="btn-primary btn-lg"
+                  >
+                    Get the latest recipe!
                   </Link>
                 </div>
               </div>
-            </section>
-          )}
+              <div className="lg:w-3/5 sm:w-2/5 w-full rounded-lg overflow-hidden hidden sm:block mt-6 sm:mt-0 relative max-w-3xl">
+                <Link
+                  to={`/recipes/${recipes.edges[0].recipe.slug}`}
+                  className="group"
+                >
+                  <GatsbyImage
+                    className="object-cover object-center w-full h-full group-hover:scale-105 transition-all transform"
+                    aspectRatio={4 / 3}
+                    image={
+                      recipes.edges[0].recipe.featuredPhoto.localFile
+                        .childImageSharp.gatsbyImageData
+                    }
+                    alt={recipes.edges[0].recipe.title}
+                  />
+                  <FadeOverlay />
+                  <div className="inset-0 from-gray-700 opacity-90 to-transparent bg-opacity-50 text-white absolute bg-gradient-to-t flex items-end p-4 text-xl group-hover:opacity-100 transition-all">
+                    {recipes.edges[0].recipe.title}
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
         {isTaxonomyPage && (
           <section className="px-4 my-20">
             <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
               {taxonomyHeading}
-              {pageContext.currentPage > 1 && (
+              {currentPage > 1 && (
                 <>
                   , <span className="text-gray-400">cont.</span>
                 </>
               )}
             </h1>
-            {pageContext.category && (
+            {category && (
               <>
                 <p>
                   So far we've got{" "}
-                  <span className="font-semibold">
-                    {pageContext.numRecipes} recipes
-                  </span>{" "}
+                  <span className="font-semibold">{numRecipes} recipes</span>{" "}
                   categorised under{" "}
                   <span className="font-semibold">{taxonomyHeading}</span>.
                 </p>
@@ -120,15 +129,12 @@ const RecipesPage = ({ data, pageContext, location }) => {
                 </p>
               </>
             )}
-            {pageContext.tag && (
+            {tag && (
               <>
                 <p>
                   Looks like we found{" "}
-                  <span className="font-semibold">
-                    {pageContext.numRecipes} recipes
-                  </span>{" "}
-                  tagged with{" "}
-                  <span className="font-semibold">#{pageContext.tag}</span>.
+                  <span className="font-semibold">{numRecipes} recipes</span>{" "}
+                  tagged with <span className="font-semibold">#{tag}</span>.
                 </p>
                 <p>
                   Otherwise, head back to the home page for the{" "}
@@ -143,39 +149,58 @@ const RecipesPage = ({ data, pageContext, location }) => {
             {data.recipes.edges &&
               data.recipes.edges.map(({ recipe }, index) => {
                 return (
-                  <Link
+                  <div
                     key={index}
                     to={`/recipes/${recipe.slug}`}
                     className="sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-5 relative group"
                   >
-                    <div className="rounded-md overflow-hidden mb-1 relative">
-                      <GatsbyImage
-                        alt={recipe.title}
-                        className="w-full object-cover h-full object-center block inset-0"
-                        aspectRatio={4 / 3}
-                        image={
-                          recipe.featuredPhoto.localFile.childImageSharp
-                            .gatsbyImageData
-                        }
-                      />
-                      <div className="inset-0 bg-black absolute group-hover:opacity-20 opacity-0 transition-opacity"></div>
-                    </div>
-                    <span className="font-semibold text-sm leading-none">
-                      {recipe.title}
-                    </span>
-                  </Link>
+                    <Link
+                      to={`/recipes/${recipe.slug}`}
+                      className="no-underline"
+                    >
+                      <div className="rounded-md overflow-hidden mb-1 relative transition-all">
+                        <GatsbyImage
+                          alt={recipe.title}
+                          className="w-full object-cover h-full object-center block inset-0 group-hover:scale-105 transform transition-all"
+                          aspectRatio={4 / 3}
+                          image={
+                            recipe.featuredPhoto.localFile.childImageSharp
+                              .gatsbyImageData
+                          }
+                        />
+                        <FadeOverlay />
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-sm leading-none">
+                          {recipe.title}
+                        </span>
+                        <div className="ml-4 text-black text-sm leading-none flex items-center">
+                          {recipe.prepTime && recipe.cookTime && (
+                            <>
+                              <FontAwesomeIcon
+                                icon={faClock}
+                                className="text-gray-500"
+                              />
+                              <span className="ml-1 text-gray-500">
+                                {getTotalTime(recipe.prepTime, recipe.cookTime)}
+                              </span>{" "}
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
                 );
               })}
           </div>
           <div className="mt-8 px-4">
             <p className="mb-4 mt-6">
-              Page{" "}
-              <span className="font-semibold">{pageContext.currentPage}</span>{" "}
-              of <span className="font-semibold">{pageContext.numPages}</span>
+              Page <span className="font-semibold">{currentPage}</span> of{" "}
+              <span className="font-semibold">{numPages}</span>
             </p>
             <div className="flex">
               {paginationPages.map((pageLink, index) => {
-                const activePage = +index + 1 === pageContext.currentPage;
+                const activePage = +index + 1 === currentPage;
                 const pageLinkClasses = classNames(
                   "btn mr-2",
                   { "text-primary bg-red-100 font-semibold": activePage },
@@ -208,7 +233,7 @@ const RecipesPage = ({ data, pageContext, location }) => {
 export default RecipesPage;
 
 export const pageQuery = graphql`
-  query recipeListQuery($skip: Int!, $limit: Int!) {
+  query recipeListQuery($skip: Int!, $limit: Int!, $categoryId: Int) {
     site {
       siteMetadata {
         siteUrl
@@ -218,6 +243,7 @@ export const pageQuery = graphql`
       skip: $skip
       limit: $limit
       sort: { order: DESC, fields: publishOn }
+      filter: { categories: { elemMatch: { id: { eq: $categoryId } } } }
     ) {
       edges {
         recipe: node {
@@ -227,6 +253,8 @@ export const pageQuery = graphql`
           publishOn(formatString: "DD/MM/YYYY")
           title
           slug
+          prepTime
+          cookTime
           featuredPhoto {
             localFile {
               childImageSharp {
