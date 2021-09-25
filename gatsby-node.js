@@ -6,6 +6,18 @@
 
 const { getPathFromFilepath, getPath } = require("./src/global-functions");
 
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions;
+
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      pagePath: page.path,
+    },
+  });
+};
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions;
   const pageDefaultTemplate = require.resolve(
@@ -128,6 +140,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         path,
         component: recipeListTemplate,
         context: {
+          pagePath: path,
           limit: postsPerPage,
           skip: i * postsPerPage,
           numPages,
@@ -158,6 +171,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       path,
       component,
       context: {
+        pagePath: path,
         categories,
         fileAbsolutePath: node.fileAbsolutePath,
       },
@@ -184,8 +198,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       path,
       component: recipeTemplate,
       context: {
+        pagePath: path,
         id: node.id,
-        pathName: path,
+        // pathName: path,
         // fileAbsolutePath: node.fileAbsolutePath,
       },
     });

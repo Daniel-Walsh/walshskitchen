@@ -180,9 +180,10 @@ const checklistReducer = (state, action) => {
   }
 };
 
-export default function Recipe({ data }) {
+export default function Recipe({ data, pageContext }) {
   // const { markdownRemark, site } = data; // data.markdownRemark holds your post data
   const { recipe, categoryTypes, site } = data;
+  const { pagePath } = pageContext;
 
   const getCategoryTypeById = (strapiId) => {
     return categoryTypes.edges.filter(
@@ -328,7 +329,7 @@ export default function Recipe({ data }) {
       />
       <div className="text-gray-800">
         <div>
-          <Header />
+          <Header pagePath={pagePath} />
           <div className="fixed hidden lg:block w-3/5 h-screen">
             <div className="relative">
               <Img

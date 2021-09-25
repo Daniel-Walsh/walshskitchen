@@ -1,10 +1,13 @@
-import classNames from "classnames";
-import Link from "./link";
 import { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/pro-solid-svg-icons";
+import classNames from "classnames";
 
-const Header = () => {
+import Link from "./link";
+import NavButtons from "./navbuttons";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faChevronLeft } from "@fortawesome/pro-solid-svg-icons";
+
+const Header = ({ pagePath }) => {
   const [scrolled, setScrolled] = useState(false);
   const scrollRef = useRef(scrolled);
 
@@ -25,7 +28,8 @@ const Header = () => {
   }, [scrolled]);
 
   const headerClasses = classNames(
-    "fixed px-4 py-4 w-full bg-opacity-95 transition-all",
+    // "fixed px-4 py-4 w-full bg-opacity-95 transition-all",
+    "fixed px-4 py-4 w-full bg-opacity-100 transition-all",
     { "px-4 py-4 bg-transparent": !scrolled },
     {
       "px-5 py-3 bg-primary lg:px-4 lg:py-4 lg:bg-transparent": scrolled,
@@ -40,20 +44,25 @@ const Header = () => {
 
   return (
     <header style={{ zIndex: 1 }} className={headerClasses}>
-      <Link to="/">
-        <img
-          src="/logo-round.svg"
-          width="64"
-          heigt="64"
-          className={logoClasses}
-        />
-      </Link>
-      {scrolled && (
+      <div className="flex justify-between lg:justify-start items-center">
+        <Link to="/">
+          <img
+            src="/logo-round.svg"
+            width="64"
+            heigt="64"
+            className={logoClasses}
+          />
+        </Link>
+        {/* {scrolled && (
         <span className="transition-all lg:hidden text-white">
           <FontAwesomeIcon icon={faChevronLeft} className="mx-2" />
           Back to recipes
         </span>
-      )}
+      )} */}
+        <div>
+          <NavButtons pagePath={pagePath} />
+        </div>
+      </div>
     </header>
   );
 };

@@ -4,7 +4,6 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/pro-regular-svg-icons";
-import { globalHistory } from "@reach/router";
 
 // Local imports
 import Footer from "../components/footer";
@@ -15,6 +14,7 @@ import { getTotalTime } from "../global-functions";
 import FadeOverlay from "../components/fade-overlay";
 
 const RecipesPage = ({ data, pageContext }) => {
+  console.log("pageContext", pageContext);
   const { recipes, site } = data;
   const {
     categories,
@@ -25,8 +25,9 @@ const RecipesPage = ({ data, pageContext }) => {
     currentPage,
     basePath,
     pageTitle,
+    pagePath,
   } = pageContext;
-  const pageUrl = `${site.siteMetadata.siteUrl}${globalHistory.location.pathname}`;
+  const pageUrl = `${site.siteMetadata.siteUrl}${pagePath}`;
   const paginationPages = new Array();
 
   for (let index = 1; index <= numPages; index++) {
@@ -56,7 +57,7 @@ const RecipesPage = ({ data, pageContext }) => {
   return (
     <>
       <Seo title={pageTitle} meta={pageMeta} pageUrl={pageUrl} />
-      <Navbar location={globalHistory.location} />
+      <Navbar pagePath={pagePath} />
       <div className="container mx-auto">
         {!category && !tag && currentPage === 1 && (
           <section className="text-gray-600 body-font">

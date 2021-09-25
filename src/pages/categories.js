@@ -7,12 +7,14 @@ import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 
-const CategoriesPage = ({ data }) => {
+const CategoriesPage = ({ data, pageContext }) => {
   const { categoryTypes } = data;
+  const { pagePath } = pageContext;
+  console.log(pagePath);
   return (
     <>
       <Seo title="Categories" />
-      <Navbar location={globalHistory.location} />
+      <Navbar pagePath={pagePath} />
       <section className="container mx-auto my-24 px-4 md:max-w-4xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
           <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
