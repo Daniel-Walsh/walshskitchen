@@ -10,7 +10,7 @@ import Seo from "../components/seo";
 const CategoriesPage = ({ data, pageContext }) => {
   const { categoryTypes } = data;
   const { pagePath } = pageContext;
-  console.log(pagePath);
+
   return (
     <>
       <Seo title="Categories" />

@@ -14,10 +14,8 @@ import { getTotalTime } from "../global-functions";
 import FadeOverlay from "../components/fade-overlay";
 
 const RecipesPage = ({ data, pageContext }) => {
-  console.log("pageContext", pageContext);
   const { recipes, site } = data;
   const {
-    categories,
     category,
     tag,
     numPages,

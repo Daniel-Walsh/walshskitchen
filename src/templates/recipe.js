@@ -1,5 +1,5 @@
 // Package imports
-import { useMemo, useReducer } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
 import ReactMarkdown from "react-markdown";
 import { graphql } from "gatsby";
@@ -14,7 +14,6 @@ import {
   faListOl,
   faChevronCircleLeft,
 } from "@fortawesome/pro-solid-svg-icons";
-import { globalHistory } from "@reach/router";
 
 // Local imports
 import Seo from "../components/seo";
@@ -141,27 +140,6 @@ const SectionInstructions = ({ text }) => {
   );
 };
 
-const TagsList = ({ tags }) => {
-  if (!tags || tags.length === 0) {
-    return null;
-  }
-
-  return (
-    <ul id="recipe-tags" className="flex flex-wrap list-none">
-      {tags.map((tag, index) => (
-        <li key={index}>
-          <Link
-            className="inline-block text-primary underline hover:no-underline bg-red-100 hover:bg-red-50 px-2 py-1 mb-2 mr-2 whitespace-nowrap rounded-lg transition-colors"
-            to={`/tag/${tag}`}
-          >
-            #{tag}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
 const checklistReducer = (state, action) => {
   switch (action.type) {
     case "toggle checked":
@@ -181,7 +159,6 @@ const checklistReducer = (state, action) => {
 };
 
 export default function Recipe({ data, pageContext }) {
-  // const { markdownRemark, site } = data; // data.markdownRemark holds your post data
   const { recipe, categoryTypes, site } = data;
   const { pagePath } = pageContext;
 
@@ -191,10 +168,7 @@ export default function Recipe({ data, pageContext }) {
     )[0].type;
   };
 
-  // console.log(recipe.categories);
-  // console.log(categoryTypes);
-  // const { frontmatter, html } = markdownRemark;
-  const pageUrl = `${site.siteMetadata.siteUrl}${globalHistory.location.pathname}`;
+  const pageUrl = `${site.siteMetadata.siteUrl}${pagePath}`;
 
   const [ingredients, ingredientsDispatch] = useReducer(
     checklistReducer,
@@ -296,6 +270,24 @@ export default function Recipe({ data, pageContext }) {
     schema["totalTime"] = null;
   }
 
+  // const [scrollY, setScrollY] = useState(0);
+
+  // useEffect(() => {
+  //   const updateScroll = () => {
+  //     setScrollY(window.scrollY);
+  //   };
+
+  //   window.addEventListener("scroll", updateScroll);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", updateScroll);
+  //   };
+  // }, []);
+
+  // const imageStyles = {
+  //   transform: `translateY(${scrollY * -1})`,
+  // };
+
   return (
     <>
       <Helmet>
@@ -345,7 +337,10 @@ export default function Recipe({ data, pageContext }) {
               ></div>
             </div>
           </div>
-          <div className="min-w-full lg:hidden relative">
+          <div
+            className="min-w-full lg:hidden relative"
+            // style={imageStyles}
+          >
             <Img
               alt={recipe.featuredPhoto.alternativeText || recipe.title}
               fluid={recipe.featuredPhoto.localFile.childImageSharp.fluid}
