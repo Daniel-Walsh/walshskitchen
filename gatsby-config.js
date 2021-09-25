@@ -136,15 +136,16 @@ module.exports = {
         short_name: `Walsh's Kitchen`,
         start_url: `/`,
         background_color: `#f8f9fa`,
-        theme_color: `#e83333`,
-        display: `minimal-ui`,
+        theme_color: `#ef4444`,
+        // display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
         icon_options: {
           // For all the options available,
           // please see the section "Additional Resources" below.
           purpose: `any maskable`,
         },
-        cache_busting_mode: "none",
+        // cache_busting_mode: "none",
       },
     },
     {
