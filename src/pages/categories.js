@@ -1,6 +1,5 @@
 import { graphql } from "gatsby";
 import pluralize from "pluralize";
-import { globalHistory } from "@reach/router";
 
 import Link from "../components/link";
 import Footer from "../components/footer";
@@ -8,8 +7,31 @@ import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 
 const CategoriesPage = ({ data, pageContext }) => {
-  const { categoryTypes } = data;
+  const { categories, categoryTypes } = data;
   const { pagePath } = pageContext;
+
+  // Loop through all category types...
+  categoryTypes.edges.forEach(({ type }) => {
+    // Loop through all categories for the given category type...
+    type.categories.forEach((category, index) => {
+      // Count the total recipes for the given category...
+      const categoryRecipeCount = categories.edges.filter(
+        ({ category: typeCategory }) => typeCategory.strapiId === category.id
+      )[0].category.recipes.length;
+      // Remove the category if it has zero recipes...
+      if (categoryRecipeCount === 0) {
+        delete type.categories[index];
+      }
+    });
+  });
+
+  // Loop through all category types once more...
+  categoryTypes.edges.forEach(({ type }, index) => {
+    // Remove the category type if it has zero categories...
+    if (type.categories.length === 0) {
+      delete categoryTypes.edges[index];
+    }
+  });
 
   return (
     <>
@@ -17,14 +39,9 @@ const CategoriesPage = ({ data, pageContext }) => {
       <Navbar pagePath={pagePath} />
       <section className="container mx-auto my-24 px-4 md:max-w-4xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
-          <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
-            {/* {frontmatter.title} */}
+          <h1 className="font-display title-font font-medium text-5xl mb-20 text-gray-700">
             Categories
           </h1>
-          {/* <div
-            className="font-written text-2xl lg:text-3xl leading-snug my-16 text-gray-600 bg-yellow-100 shadow-lg p-6"
-            dangerouslySetInnerHTML={{ __html: html }}
-          ></div> */}
           {categoryTypes.edges.map(({ type }, index) => (
             <div key={index} className="mb-6">
               <h2 className="mb-3 font-semibold text-xl">
@@ -49,7 +66,6 @@ const CategoriesPage = ({ data, pageContext }) => {
                       >
                         <div className="h-24 w-24 bg-gray-200 rounded-full"></div>
                         <span className="w-24 text-center">
-                          {" "}
                           {category.name}
                         </span>
                       </Link>
@@ -69,6 +85,16 @@ export default CategoriesPage;
 
 export const pageQuery = graphql`
   query MyQuery {
+    categories: allStrapiCategory {
+      edges {
+        category: node {
+          strapiId
+          recipes {
+            id
+          }
+        }
+      }
+    }
     categoryTypes: allStrapiCategoryTypes {
       edges {
         type: node {
@@ -77,6 +103,7 @@ export const pageQuery = graphql`
           categories {
             name
             slug
+            id
           }
         }
       }
