@@ -37,9 +37,9 @@ const CategoriesPage = ({ data, pageContext }) => {
     <>
       <Seo title="Categories" />
       <Navbar pagePath={pagePath} />
-      <section className="container mx-auto my-24 px-4 md:max-w-4xl">
+      <section className="container mx-auto my-12 md:my-24 px-4 md:max-w-4xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
-          <h1 className="font-display title-font font-medium text-5xl mb-20 text-gray-700">
+          <h1 className="font-display title-font font-medium text-5xl mb-10 md:mb-20 text-gray-700">
             Categories
           </h1>
           {categoryTypes.edges.map(({ type }, index) => (
@@ -47,7 +47,7 @@ const CategoriesPage = ({ data, pageContext }) => {
               <h2 className="mb-3 font-semibold text-xl">
                 {pluralize(type.name)}
               </h2>
-              <ul className="flex flex-wrap">
+              <ul className="flex md:flex-wrap flex-col md:flex-row">
                 {type.categories
                   .sort((a, b) => {
                     if (a.name < b.name) {
@@ -62,10 +62,10 @@ const CategoriesPage = ({ data, pageContext }) => {
                     <li key={index}>
                       <Link
                         to={`/category/${type.slug}/${category.slug}`}
-                        className="flex flex-col items-center mr-4 mb-4 no-underline"
+                        className="flex md:flex-col items-center mr-4 mb-4 md:mb-6 no-underline"
                       >
-                        <div className="h-24 w-24 bg-gray-200 rounded-full"></div>
-                        <span className="w-24 text-center">
+                        <div className="h-14 w-14 md:h-32 md:w-32 md:mb-2 mr-3 md:mr-0 bg-gray-200 rounded-full"></div>
+                        <span className="md:w-32 text-center md:text-sm">
                           {category.name}
                         </span>
                       </Link>

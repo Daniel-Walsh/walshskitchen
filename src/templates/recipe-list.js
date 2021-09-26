@@ -59,9 +59,9 @@ const RecipesPage = ({ data, pageContext }) => {
       <div className="container mx-auto">
         {!category && !tag && currentPage === 1 && (
           <section className="text-gray-600 body-font">
-            <div className="px-4 my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
+            <div className="px-4 my-12 md:my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
               <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-2/5 sm:w-3/5 content-start md:pr-10">
-                <div className="w-full sm:p-4 px-4 mb-6">
+                <div className="w-full sm:p-4 px-4 md:mb-6">
                   <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
                     <span className="block 2xl:inline">Check out </span>
                     <span className="block 2xl:inline">what's cookin'!</span>
@@ -106,7 +106,7 @@ const RecipesPage = ({ data, pageContext }) => {
           </section>
         )}
         {isTaxonomyPage && (
-          <section className="px-4 my-20">
+          <section className="px-4 my-12 md:my-24">
             <h1 className="font-display title-font font-medium text-5xl mb-4 text-gray-700">
               {taxonomyHeading}
               {currentPage > 1 && (
@@ -125,7 +125,9 @@ const RecipesPage = ({ data, pageContext }) => {
                 </p>
                 <p>
                   In the mood for something else? Jump to the home page for the{" "}
-                  <Link to="/">latest recipes</Link>.
+                  <Link to="/">latest recipes</Link>, or head back to the{" "}
+                  <Link to="/categories">category list</Link> for more recipe
+                  inspiration.
                 </p>
               </>
             )}
@@ -144,7 +146,7 @@ const RecipesPage = ({ data, pageContext }) => {
             )}
           </section>
         )}
-        <section className="my-24">
+        <section className="my-12 md:my-24">
           <div className="flex flex-wrap">
             {data.recipes.edges &&
               data.recipes.edges.map(({ recipe }, index) => {
