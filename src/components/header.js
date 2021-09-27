@@ -29,28 +29,42 @@ const Header = ({ pagePath }) => {
 
   const headerClasses = classNames(
     // "fixed px-4 py-4 w-full bg-opacity-95 transition-all",
-    "fixed px-4 py-4 w-full bg-opacity-100 transition-all",
-    { "px-4 py-4 bg-transparent": !scrolled },
+    "fixed px-4 py-2 w-full bg-opacity-100 transition-all",
+    // { "px-4 py-4 bg-transparent": !scrolled },
+    { "bg-transparent": !scrolled },
     {
-      "px-5 py-3 bg-primary lg:px-4 lg:py-4 lg:bg-transparent": scrolled,
+      // "px-5 py-3 bg-primary lg:px-4 lg:py-4 lg:bg-transparent": scrolled,
+      "bg-primary lg:px-4 lg:py-4 lg:bg-transparent": scrolled,
     }
   );
 
   const logoClasses = classNames(
-    "transition-all inline-block",
-    { "w-16 h-16": !scrolled },
-    { "w-9 h-9 lg:w-16 lg:h-16": scrolled }
+    "transition-all inline-block inset-0 absolute",
+    { "opacity-100": !scrolled },
+    { "opacity-0 lg:opacity-100": scrolled }
+  );
+
+  const logoDarkClasses = classNames(
+    "transition-all inline-block inset-0 absolute",
+    { "opacity-0": !scrolled },
+    { "opacity-100 lg:opacity-0": scrolled }
   );
 
   return (
     <header style={{ zIndex: 1 }} className={headerClasses}>
       <div className="flex justify-between lg:justify-start items-center">
-        <Link to="/">
+        <Link to="/" className="relative w-16 h-16 inline-block">
           <img
             src="/logo-round.svg"
             width="64"
             heigt="64"
             className={logoClasses}
+          />
+          <img
+            src="/logo-round-dark.svg"
+            width="64"
+            heigt="64"
+            className={logoDarkClasses}
           />
         </Link>
         {/* {scrolled && (
