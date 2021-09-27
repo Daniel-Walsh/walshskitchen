@@ -16,6 +16,9 @@ import "@fontsource/caveat";
 import "./src/styles/global.css";
 import smoothscroll from "smoothscroll-polyfill";
 
-exports.onClientEntry = () => {
+export function onClientEntry() {
   smoothscroll.polyfill();
-};
+}
+
+// exports.onClientEntry = () => {
+// };
