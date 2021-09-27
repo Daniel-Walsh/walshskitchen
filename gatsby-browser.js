@@ -19,6 +19,3 @@ import smoothscroll from "smoothscroll-polyfill";
 export function onClientEntry() {
   smoothscroll.polyfill();
 }
-
-// exports.onClientEntry = () => {
-// };

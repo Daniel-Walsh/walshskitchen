@@ -11,7 +11,6 @@ import Navbar from "../components/navbar";
 import Seo from "../components/seo";
 import Link from "../components/link";
 import { getTotalTime } from "../global-functions";
-import FadeOverlay from "../components/fade-overlay";
 import Breakpoints from "../components/breakpoints";
 
 const RecipesPage = ({ data, pageContext }) => {
@@ -57,7 +56,6 @@ const RecipesPage = ({ data, pageContext }) => {
   const scrollTo = (event, id) => {
     event.preventDefault();
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    // document.getElementById(id).scroll({ top: 0, left: 0, behavior: "smooth" });
   };
 
   return (
@@ -108,9 +106,10 @@ const RecipesPage = ({ data, pageContext }) => {
                 to={`/recipes/${featuredRecipe.slug}`}
                 className="no-underline group w-full sm:mx-12 md:mx-20 lg:mx-0 lg:w-3/5 mt-6 sm:mt-0  max-w-3xl "
               >
-                <div className="relative rounded-3xl shadow-lg overflow-hidden">
+                <div className="rounded-3xl shadow-lg overflow-hidden transform">
                   <GatsbyImage
-                    className=" object-cover object-center w-full h-full group-hover:scale-105 transition-all transform duration-500"
+                    // className="rounded-3xl shadow-lg overflow-hidden object-cover object-center w-full h-full group-hover:scale-105 transition-all transform duration-500"
+                    className="w-full object-cover h-full object-center block inset-0 group-hover:scale-105 transition-all transform duration-500"
                     image={
                       featuredRecipe.featuredPhoto.localFile.childImageSharp
                         .gatsbyImageData
@@ -139,6 +138,7 @@ const RecipesPage = ({ data, pageContext }) => {
                         <FontAwesomeIcon
                           icon={faClock}
                           className="mr-1 md:mr-2"
+                          size="1x"
                         />
                         Ready in{" "}
                         {getTotalTime(
@@ -150,6 +150,7 @@ const RecipesPage = ({ data, pageContext }) => {
                         <FontAwesomeIcon
                           icon={faCalculator}
                           className="mr-1 md:mr-2"
+                          size="1x"
                         />
                         Makes {featuredRecipe.yield}
                       </div>
@@ -220,6 +221,7 @@ const RecipesPage = ({ data, pageContext }) => {
                                   <FontAwesomeIcon
                                     icon={faClock}
                                     className="text-gray-500"
+                                    size="1x"
                                   />
                                   <span className="ml-1 text-gray-500">
                                     {getTotalTime(

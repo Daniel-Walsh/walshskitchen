@@ -20,7 +20,12 @@ const NavButtons = ({ pagePath }) => {
         to={navButton.to}
         className="btn border border-white text-white hover:text-primary hover:bg-white mb-0 ml-4 px-3 sm:px-4"
       >
-        <FontAwesomeIcon icon={navButton.icon} className="" fixedWidth />
+        <FontAwesomeIcon
+          icon={navButton.icon}
+          className=""
+          fixedWidth
+          size="1x"
+        />
         <span className="ml-2 hidden sm:inline">{navButton.label}</span>
       </Link>
     </>

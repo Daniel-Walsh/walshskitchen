@@ -48,15 +48,17 @@ const Checkmark = ({ checked }) => {
         return (
           <span className="fa-layers fa-fw w-9 h-9 relative">
             <FontAwesomeIcon
+              size="1x"
               icon={faCircle}
               className="text-gray-200 text-4xl leading-none w-9 h-9"
             />
             <span className="inline-block w-9 h-9" style={randomTransform}>
               <FontAwesomeIcon
+                size="1x"
                 icon={faCircle}
                 className={`${classes} animate-ping-once`}
               />
-              <FontAwesomeIcon icon={icon} className={classes} />
+              <FontAwesomeIcon size="1x" icon={icon} className={classes} />
             </span>
           </span>
         );
@@ -132,6 +134,7 @@ const SectionInstructions = ({ text }) => {
   return (
     <div className="flex items-center mb-4 ml-3">
       <FontAwesomeIcon
+        size="1x"
         icon={faReply}
         className="text-gray-400 transform -rotate-90 scale-125"
       />
@@ -491,6 +494,7 @@ export default function Recipe({ data, pageContext }) {
                   <div className="text-center">
                     <Link to="/" className="btn-primary">
                       <FontAwesomeIcon
+                        size="1x"
                         className="mr-3"
                         icon={faChevronCircleLeft}
                       />
