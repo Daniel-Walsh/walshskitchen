@@ -13,7 +13,12 @@ const Button = ({ link, text, icon, colour }) => {
         rel="noreferrer noopener"
       >
         <span>{text}</span>
-        <FontAwesomeIcon className="text-lg ml-1" icon={icon} fixedWidth />
+        <FontAwesomeIcon
+          size="1x"
+          className="text-lg ml-1"
+          icon={icon}
+          fixedWidth
+        />
       </a>
     </div>
   );
@@ -60,7 +65,12 @@ const Footer = () => {
               className={`btn bg-gray-200 hover:bg-gray-300 text-gray-400 hover:text-primary`}
               to="/about"
             >
-              <FontAwesomeIcon className="text-lg" icon={faHeart} fixedWidth />
+              <FontAwesomeIcon
+                size="1x"
+                className="text-lg"
+                icon={faHeart}
+                fixedWidth
+              />
             </Link>
           </div>
         </div>
