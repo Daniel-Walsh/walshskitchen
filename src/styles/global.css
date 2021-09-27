@@ -54,4 +54,8 @@
     right: 50%;
     bottom: -19px;
   }
+
+  [data-gatsby-image-wrapper][class*="rounded-full"] * {
+    @apply rounded-full;
+  }
 }

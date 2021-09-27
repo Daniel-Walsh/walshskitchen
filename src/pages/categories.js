@@ -1,10 +1,12 @@
 import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import pluralize from "pluralize";
 
 import Link from "../components/link";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import Seo from "../components/seo";
+import FadeOverlay from "../components/fade-overlay";
 
 const CategoriesPage = ({ data, pageContext }) => {
   const { categories, categoryTypes } = data;
@@ -58,19 +60,36 @@ const CategoriesPage = ({ data, pageContext }) => {
                     }
                     return 0;
                   })
-                  .map((category, index) => (
-                    <li key={index}>
-                      <Link
-                        to={`/category/${type.slug}/${category.slug}`}
-                        className="flex md:flex-col items-center mr-4 mb-4 md:mb-6 no-underline"
-                      >
-                        <div className="h-14 w-14 md:h-32 md:w-32 md:mb-2 mr-3 md:mr-0 bg-gray-200 rounded-full"></div>
-                        <span className="md:w-32 text-center md:text-sm">
-                          {category.name}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
+                  .map((category, index) => {
+                    const image =
+                      category.featuredPhoto &&
+                      getImage(category.featuredPhoto.localFile);
+
+                    return (
+                      <li key={index}>
+                        <Link
+                          to={`/category/${type.slug}/${category.slug}`}
+                          className="flex md:flex-col items-center mr-4 mb-4 md:mb-6 no-underline group"
+                        >
+                          <div className="h-14 w-14 md:h-32 md:w-32 md:mb-2 mr-3 md:mr-0 bg-gray-200 rounded-full overflow-hidden relative">
+                            {category.featuredPhoto && (
+                              <>
+                                <GatsbyImage
+                                  image={image}
+                                  alt={category.name}
+                                  className="rounded-full"
+                                />
+                                <FadeOverlay />
+                              </>
+                            )}
+                          </div>
+                          <span className="md:w-32 text-center md:text-sm font-semibold">
+                            {category.name}
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           ))}
@@ -104,6 +123,18 @@ export const pageQuery = graphql`
             name
             slug
             id
+            featuredPhoto {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 128
+                    height: 128
+                    placeholder: BLURRED
+                    transformOptions: { fit: COVER, cropFocus: CENTER }
+                  )
+                }
+              }
+            }
           }
         }
       }
