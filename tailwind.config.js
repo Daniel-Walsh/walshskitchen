@@ -46,6 +46,7 @@ module.exports = {
   variants: {
     // The 'group-hover' variant will be generated in addition to the defaults
     extend: {
+      translate: ["group-hover"],
       ringColor: ["group-hover"],
       ringOffsetColor: ["group-hover"],
       ringOffsetWidth: ["group-hover"],
