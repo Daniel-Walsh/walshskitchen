@@ -14,3 +14,8 @@ import "@fontsource/open-sans/700.css";
 import "@fontsource/pangolin";
 import "@fontsource/caveat";
 import "./src/styles/global.css";
+import smoothscroll from "smoothscroll-polyfill";
+
+exports.onClientEntry = () => {
+  smoothscroll.polyfill();
+};

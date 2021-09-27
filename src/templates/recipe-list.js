@@ -4,7 +4,6 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCalculator } from "@fortawesome/pro-regular-svg-icons";
-import smoothscroll from "smoothscroll-polyfill";
 
 // Local imports
 import Footer from "../components/footer";
@@ -16,8 +15,6 @@ import FadeOverlay from "../components/fade-overlay";
 import Breakpoints from "../components/breakpoints";
 
 const RecipesPage = ({ data, pageContext }) => {
-  smoothscroll.polyfill();
-
   const {
     allStrapiRecipe: { allRecipes },
     site,
