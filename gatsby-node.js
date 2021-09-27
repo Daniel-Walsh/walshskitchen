@@ -232,20 +232,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   });
 
   // Create tag index pages
-  tags.forEach((tag) => {
-    const tagRecipes = recipesWithTags.filter((recipe) => {
-      return recipe.node.frontmatter.tags.includes(tag);
-    });
-    createIndexPages(tagRecipes, `/tag/${tag}/`, `#${tag} | Recipes`, {
-      tag,
-      glob: `**/src/pages/recipes/**`,
-    });
-    createRedirect({
-      fromPath: encodeURI(`/tags/${tag}`),
-      toPath: encodeURI(`/tag/${tag}`),
-      isPermanent: true,
-    });
-  });
+  // tags.forEach((tag) => {
+  //   const tagRecipes = recipesWithTags.filter((recipe) => {
+  //     return recipe.node.frontmatter.tags.includes(tag);
+  //   });
+  //   createIndexPages(tagRecipes, `/tag/${tag}/`, `#${tag} | Recipes`, {
+  //     tag,
+  //     glob: `**/src/pages/recipes/**`,
+  //   });
+  //   createRedirect({
+  //     fromPath: encodeURI(`/tags/${tag}`),
+  //     toPath: encodeURI(`/tag/${tag}`),
+  //     isPermanent: true,
+  //   });
+  // });
 
   // Create recipe index pages
   createIndexPages(recipes, `/`, "Latest recipes", {
