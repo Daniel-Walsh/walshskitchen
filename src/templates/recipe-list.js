@@ -118,16 +118,7 @@ const RecipesPage = ({ data, pageContext }) => {
                   />
                 </div>
                 <div className="pointer-events-none absolute right-0 transform -translate-y-full group-hover:-translate-y-3/4 transition-all duration-500 mr-12 h-auto w-24 sm:w-32 md:w-40">
-                  <object
-                    className="transform -scale-x-1"
-                    type="image/svg+xml"
-                    data="/dan-drool-anim.svg"
-                  ></object>
-                  {/* <img
-                    className="transform -scale-x-1"
-                    src="/dan-drool-anim.svg"
-                    alt=""
-                  /> */}
+                  <DanDroolSVG className="transform -scale-x-1" />
                 </div>
                 <div className="w-full text-gray-600 transform -translate-y-12 group-hover:-translate-y-16 sm:-translate-y-20 sm:group-hover:-translate-y-24 transition-all duration-500 -mb-16">
                   <div className="p-6 mx-4 sm:mx-8 rounded-3xl bg-white shadow-lg transition-all group-hover:shadow-2xl duration-500">
