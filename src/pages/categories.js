@@ -39,7 +39,7 @@ const CategoriesPage = ({ data, pageContext }) => {
     <>
       <Seo title="Categories" />
       <Navbar pagePath={pagePath} />
-      <section className="container mx-auto my-12 md:my-24 px-4 md:max-w-4xl">
+      <section className="container mx-auto mt-32 px-4 md:max-w-4xl">
         <div className="col-12 col-md-9 col-xl-7 col-xxl-6 mx-auto">
           <h1 className="font-display title-font font-medium text-5xl mb-10 md:mb-20 text-gray-700">
             Categories

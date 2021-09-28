@@ -63,7 +63,7 @@ const RecipesPage = ({ data, pageContext }) => {
       <Breakpoints />
       <Seo title={pageTitle} meta={pageMeta} pageUrl={pageUrl} />
       <Navbar pagePath={pagePath} />
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-36">
         {isFrontpage && (
           <section className="text-gray-600 body-font">
             <div className="px-4 my-12 md:my-24 mx-auto flex flex-wrap justify-between xl:max-w-5xl">
@@ -104,11 +104,10 @@ const RecipesPage = ({ data, pageContext }) => {
               <Link
                 id="featured-recipe"
                 to={`/recipes/${featuredRecipe.slug}`}
-                className="no-underline group w-full sm:mx-12 md:mx-20 lg:mx-0 lg:w-3/5 mt-6 sm:mt-0  max-w-3xl "
+                className="relative no-underline group w-full sm:mx-12 md:mx-20 lg:mx-0 lg:w-3/5 mt-6 sm:mt-0  max-w-3xl "
               >
                 <div className="rounded-3xl shadow-lg overflow-hidden transform">
                   <GatsbyImage
-                    // className="rounded-3xl shadow-lg overflow-hidden object-cover object-center w-full h-full group-hover:scale-105 transition-all transform duration-500"
                     className="w-full object-cover h-full object-center block inset-0 group-hover:scale-105 transition-all transform duration-500"
                     image={
                       featuredRecipe.featuredPhoto.localFile.childImageSharp
@@ -117,8 +116,19 @@ const RecipesPage = ({ data, pageContext }) => {
                     alt={featuredRecipe.title}
                   />
                 </div>
+                <div className="pointer-events-none absolute right-0 transform -translate-y-full group-hover:-translate-y-3/4 transition-all duration-500 mr-12 h-auto w-24 sm:w-32 md:w-40">
+                  <object
+                    className="transform -scale-x-1"
+                    type="image/svg+xml"
+                    data="/dan-drool-anim.svg"
+                  ></object>
+                  {/* <img
+                    className="transform -scale-x-1"
+                    src="/dan-drool-anim.svg"
+                    alt=""
+                  /> */}
+                </div>
                 <div className="w-full text-gray-600 transform -translate-y-12 group-hover:-translate-y-16 sm:-translate-y-20 sm:group-hover:-translate-y-24 transition-all duration-500 -mb-16">
-                  {/* <div className="p-6 rounded-3xl bg-white shadow-xl transform translate-y-1/2 md:translate-y-20"> */}
                   <div className="p-6 mx-4 sm:mx-8 rounded-3xl bg-white shadow-lg transition-all group-hover:shadow-2xl duration-500">
                     <div className="font-semibold text-2xl text-gray-900 pb-3">
                       {featuredRecipe.title}
