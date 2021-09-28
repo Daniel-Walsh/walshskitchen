@@ -71,13 +71,13 @@ const CategoriesPage = ({ data, pageContext }) => {
                           to={`/category/${type.slug}/${category.slug}`}
                           className="flex md:flex-col items-center mr-4 mb-4 md:mb-6 no-underline group"
                         >
-                          <div className="h-14 w-14 md:h-32 md:w-32 md:mb-2 mr-3 md:mr-0 bg-gray-200 rounded-full overflow-hidden relative">
+                          <div className="h-14 w-14 md:h-32 md:w-32 md:mb-2 mr-3 md:mr-0 bg-gray-200 rounded-full overflow-hidden transform relative">
                             {category.featuredPhoto && (
                               <>
                                 <GatsbyImage
                                   image={image}
                                   alt={category.name}
-                                  className="rounded-full"
+                                  className="rounded-full overflow-hidden"
                                 />
                                 <FadeOverlay />
                               </>
