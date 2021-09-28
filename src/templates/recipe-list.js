@@ -12,7 +12,7 @@ import Seo from "../components/seo";
 import Link from "../components/link";
 import { getTotalTime } from "../global-functions";
 import Breakpoints from "../components/breakpoints";
-import DanDroolSVG from "/dan-drool-anim.svg";
+import DanDroolSVG from "../../static/dan-drool-anim.svg";
 
 const RecipesPage = ({ data, pageContext }) => {
   const {
