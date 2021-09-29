@@ -22,6 +22,7 @@ import Footer from "../components/footer";
 import Section from "../components/section";
 import SectionHeading from "../components/section-heading";
 import Header from "../components/header";
+import DanExplain from "../../static/dan-explain-anim.svg";
 
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -460,7 +461,7 @@ export default function Recipe({ data, pageContext }) {
                     >
                       Serving suggestion&mdash;{recipe.servingSuggestion}
                     </div>
-                    <img className="ml-8" src="/dan-explain.svg" alt="" />
+                    <DanExplain className="ml-8 w-60" />
                   </Section>
                 )}
 

@@ -311,7 +311,13 @@ export const pageQuery = graphql`
           featuredPhoto {
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, width: 600, height: 400)
+                gatsbyImageData(
+                  layout: CONSTRAINED
+                  width: 600
+                  height: 400
+                  placeholder: BLURRED
+                  transformOptions: { fit: COVER, cropFocus: CENTER }
+                )
               }
             }
           }
