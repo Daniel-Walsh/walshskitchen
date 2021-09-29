@@ -122,7 +122,7 @@ const RecipesPage = ({ data, pageContext }) => {
                 </div>
                 <div className="w-full text-gray-600 transform -translate-y-12 group-hover:-translate-y-16 sm:-translate-y-20 sm:group-hover:-translate-y-24 transition-all duration-500 -mb-16">
                   <div className="p-6 mx-4 sm:mx-8 rounded-3xl bg-white shadow-lg transition-all group-hover:shadow-2xl duration-500">
-                    <div className="font-semibold text-2xl text-gray-900 pb-3">
+                    <div className="font-bold text-2xl text-gray-900 pb-3">
                       {featuredRecipe.title}
                     </div>
                     <div className="pb-4 border-b flex flex-wrap text-sm md:text-base">
