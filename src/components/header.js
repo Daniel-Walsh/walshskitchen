@@ -51,7 +51,7 @@ const Header = ({ pagePath }) => {
   );
 
   return (
-    <header style={{ zIndex: 1 }} className={headerClasses}>
+    <header style={{ zIndex: 1, marginTop: "-1px" }} className={headerClasses}>
       <div className="flex justify-between lg:justify-start items-center">
         <Link to="/" className="relative w-16 h-16 inline-block">
           <img
