@@ -3,7 +3,7 @@ import NavButtons from "./navbuttons";
 
 const Navbar = ({ pagePath }) => {
   return (
-    <header className="bg-primary p-4 border-b border-primary fixed w-full z-50 shadow-md">
+    <header className="bg-primary p-4 border-b border-primary fixed w-full z-50 shadow-md -mt-0.5">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link to="/">

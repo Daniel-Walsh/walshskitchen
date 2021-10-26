@@ -29,7 +29,7 @@ const Header = ({ pagePath }) => {
 
   const headerClasses = classNames(
     // "fixed px-4 py-4 w-full bg-opacity-95 transition-all",
-    "fixed px-4 py-2 w-full bg-opacity-100 transition-all",
+    "fixed px-4 py-2 w-full bg-opacity-100 transition-all -mt-0.5",
     // { "px-4 py-4 bg-transparent": !scrolled },
     { "bg-transparent": !scrolled },
     {
@@ -51,7 +51,7 @@ const Header = ({ pagePath }) => {
   );
 
   return (
-    <header style={{ zIndex: 1, marginTop: "-1px" }} className={headerClasses}>
+    <header style={{ zIndex: 1 }} className={headerClasses}>
       <div className="flex justify-between lg:justify-start items-center">
         <Link to="/" className="relative w-16 h-16 inline-block">
           <img
